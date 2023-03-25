@@ -46,7 +46,7 @@ SPELL_CHECK = {}
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
-    if LOGIN_CHANNEL and not await is_subscribed(client, message):
+    if LOGIN_CHANNEL and not await get_fsub(client, message):
         try:
             invite_link = await client.create_chat_invite_link(int(LOGIN_CHANNEL))
         except ChatAdminRequired:
