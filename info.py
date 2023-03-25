@@ -68,7 +68,7 @@ SUPPORT_CHAT_ID = int(support_chat_id) if support_chat_id and id_pattern.search(
 
 # Custom Chats
 FILE_CHANNEL = int(environ.get('FILE_CHANNEL', '-1001708959708')
-FILE_CHANNEL_LINK = environ.get('FILE_CHANNEL_LINK', 'https://t.me/+hmpSalmsMjhjMDBl')
+FILE_CHANNEL_LINK = environ.get('FILE_CHANNEL_LINK', '')
 
 #VALUES
 HRK_APP_NAME = environ.get('HRK_APP_NAME', 'mybots')
