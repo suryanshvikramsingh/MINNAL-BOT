@@ -7,21 +7,20 @@ from pyrogram.types import (
     InlineKeyboardMarkup,
     InlineKeyboardButton,
 )
-# from pyrobot import COMMAND_HAND_LER, WARN_DATA_ID, WARN_SETTINGS_ID
-# from pyrobot.pyrobot import PyroBot
+#from pyrobot import COMMAND_HAND_LER, WARN_DATA_ID, WARN_SETTINGS_ID
+from plugins.New.warn import PyroBot
 from plugins.New.admin_check import (
     admin_check,  # TODO: remove in next version
 )
 from plugins.New.cust_p_filters import admin_fliter
 from datetime import datetime, timedelta
-from info import API_ID, API_HASH, BOT_TOKEN
-import os
+
 
 # the logging things
 import logging
 
 from plugins.New.sample_config import Config
-
+from info import ADMINS, API_ID, API_HASH, BOT_TOKEN
 
 logging.basicConfig(
     level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -29,16 +28,35 @@ logging.basicConfig(
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 
+class PyroBot(Client):
+    filterstore: Dict[str, Dict[str, str]] = defaultdict(dict)
+    warndatastore: Dict[str, Dict[str, Union[str, int, List[str]]]] = defaultdict(dict)
+    warnsettingsstore: Dict[str, str] = defaultdict(dict)
 
+    def __init__(self):
+        name = self.__class__.__name__.lower()
+        super().__init__(
+            name="PyroGramBot",
+            plugins=dict(root=f"{name}/plugins"),
+            workdir=TMP_DOWNLOAD_DIRECTORY,
+            api_id=API_ID,
+            api_hash=API_HASH,
+            bot_token=BOT_TOKEN,
+            parse_mode=ParseMode.HTML,
+            sleep_threshold=60,
+            in_memory=True
+        )
 
 COMMAND_HAND_LER = Config.COMMAND_HAND_LER
 WARN_DATA_ID = int(Config.WARN_DATA_ID)
 WARN_SETTINGS_ID = int(Config.WARN_SETTINGS_ID)
+TMP_DOWNLOAD_DIRECTORY = TMP_DOWNLOAD_DIRECTORY
 
-@Client.on_message(
+
+@PyroBot.on_message(
     filters.command(["warnuser", "warn"], COMMAND_HAND_LER) & admin_fliter
 )
-async def warn_user(client, msg):
+async def warn_user(client: PyroBot, msg: Message):
     chat_id = str(msg.chat.id)
 
     replied = msg.reply_to_message
