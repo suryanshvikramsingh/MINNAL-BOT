@@ -41,6 +41,8 @@ LOGIN_CHANNEL = int(login_channel) if login_channel and id_pattern.search(login_
 AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 
 
+# Bot settings
+AUTO_FILTER = is_enabled((environ.get('AUTO_FILTER', "True")), True)
 
 
 # Bot settings
