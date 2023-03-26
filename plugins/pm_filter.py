@@ -89,7 +89,7 @@ async def give_filter(client, message):
             except:
                 pass
         else:
-            await auto_filter(client, message)
+            await auto_ffilter(client, message)
     else:
         k = await message.reply_text('Auto Filter Off! ❌')
         await asyncio.sleep(5)
