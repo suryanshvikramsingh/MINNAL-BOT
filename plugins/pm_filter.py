@@ -1752,10 +1752,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data.startswith("setgs"):
         ident, set_type, status, grp_id = query.data.split("#")
         grpid = await active_connection(str(query.from_user.id))
-
+        userid = query.from_user.id if query.from_user else None
+        st = await client.get_chat_member(grp_id, userid)
+        if (
+                st.status != enums.ChatMemberStatus.ADMINISTRATOR
+                and st.status != enums.ChatMemberStatus.OWNER
+                and str(userid) not in ADMINS
+        ):
+            await query.answer("This Is Not For You!", show_alert=True)
+            return
         if str(grp_id) != str(grpid):
-            await query.message.edit("Yᴏᴜʀ Aᴄᴛɪᴠᴇ Cᴏɴɴᴇᴄᴛɪᴏɴ Hᴀs Bᴇᴇɴ Cʜᴀɴɢᴇᴅ. Gᴏ Tᴏ /connections ᴀɴᴅ ᴄʜᴀɴɢᴇ ʏᴏᴜʀ ᴀᴄᴛɪᴠᴇ ᴄᴏɴɴᴇᴄᴛɪᴏɴ.")
-            return await query.answer(MSG_ALRT)
+            await query.message.edit("I'm not connected to this group! Check /connections or /connect to this group.")
+            return
 
         #"if set_type == 'is_shortlink' and query.from_user.id not in ADMINS:
             #"return await query.answer(text=f"Hey {query.from_user.first_name}, You can't change shortlink settings for your group !\n\nIt's an admin only setting !", show_alert=True)
@@ -1873,9 +1881,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 InlineKeyboardButton('✘ Cʟᴏsᴇ ✘', callback_data='close_data')
             ]
         ]
-            reply_markup = InlineKeyboardMarkup(buttons)
-            await query.message.edit_reply_markup(reply_markup)
-    await query.answer(MSG_ALRT)
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.answer("Changed!")
+        await query.message.edit_reply_markup(reply_markup)
+
 
     
 async def auto_filter(client, msg, spoll=False):
