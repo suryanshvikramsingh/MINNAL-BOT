@@ -50,7 +50,8 @@ SPELL_CHECK = {}
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
-    settings = await get_settings(message.chat.id)
+    content = message.text
+    settings = await get_settings(message.chat.id)        
     if settings["auto_ffilter"]:
         userid = message.from_user.id if message.from_user else None
         if not userid:
@@ -64,9 +65,9 @@ async def give_filter(client, message):
                 pass
             return
 
-        if LOGIN_CHANNEL and not await mute_login(client, message):
+        if AUTH_CHANNEL and not await mute_login(client, message):
             try:
-                invite_link = await client.create_chat_invite_link(int(LOGIN_CHANNEL))
+                invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
             except ChatAdminRequired:
                 logger.error("Make sure Bot is admin in Forcesub channel")
                 return
@@ -78,7 +79,7 @@ async def give_filter(client, message):
             reply_markup = InlineKeyboardMarkup(buttons)
             k = await message.reply_photo(
                 photo=random.choice(PICS),
-                caption=f"👋 Hello {message.from_user.mention},\n\nPlease join my 'Updates Channel' and request again. 😇",
+                caption=f"👋 𝐇𝐞𝐥𝐥𝐨 {message.from_user.mention},\n\n{content} 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞..!!\n\n𝐏𝐥𝐞𝐚𝐬𝐞 𝐉𝐨𝐢𝐧 𝐌𝐲 '𝐔𝐩𝐝𝐚𝐭𝐞𝐬 𝐂𝐡𝐚𝐧𝐧𝐞𝐥' 𝐀𝐧𝐝 𝐑𝐞𝐪𝐮𝐞𝐬𝐭 𝐀𝐠𝐚𝐢𝐧. 😇",
                 reply_markup=reply_markup,
                 parse_mode=enums.ParseMode.HTML
             )
