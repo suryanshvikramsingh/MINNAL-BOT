@@ -12,7 +12,7 @@ import pyrogram
 from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, \
     make_inactive
 from info import LANGUAGES, IMDB_DLT_TIME, BOT_START_TIME, MAX_BTN, ADMINS, AUTH_CHANNEL, AUTH_USERS, SUPPORT_CHAT_ID, CUSTOM_FILE_CAPTION, MSG_ALRT, PICS, AUTH_GROUPS, P_TTI_SHOW_OFF, GRP_LNK, CHNL_LNK, NOR_IMG, LOG_CHANNEL, MAX_B_TN, IMDB, \
-    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, NO_RESULTS_MSG, REQ_CHANNEL, MAIN_CHANNEL, FILE_CHANNEL, FILE_CHANNEL_LINK, CLOSE_IMG, DELETE_TIME, LOGIN_CHANNEL
+    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, NO_RESULTS_MSG, REQ_CHANNEL, MAIN_CHANNEL, FILE_CHANNEL, FILE_CHANNEL_LINK, CLOSE_IMG, DELETE_TIME, LOGIN_CHANNEL, AUTO_FILTER
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto, ChatPermissions
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
@@ -912,6 +912,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
             buttons =  [
             [
                 InlineKeyboardButton(
+                    'Auto Filter',
+                    callback_data=f'setgs#auto_filter#{settings["auto_filter"]}#{str(grp_id)}',
+                ),
+                InlineKeyboardButton(
+                    '✅ Yes' if settings["auto_filter"] else '❌ No',
+                    callback_data=f'setgs#auto_filter#{settings["auto_filter"]}#{str(grp_id)}',
+                ),
+            ],
+            [
+                InlineKeyboardButton(
                     'Fɪʟᴛᴇʀ Bᴜᴛᴛᴏɴ',
                     callback_data=f'setgs#button#{settings["button"]}#{grp_id}',
                 ),
@@ -1055,6 +1065,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
         if settings is not None:
             buttons =  [
+            
+
+            [
+                InlineKeyboardButton(
+                    'Auto Filter',
+                    callback_data=f'setgs#auto_filter#{settings["auto_filter"]}#{str(grp_id)}',
+                ),
+                InlineKeyboardButton(
+                    '✅ Yes' if settings["auto_filter"] else '❌ No',
+                    callback_data=f'setgs#auto_filter#{settings["auto_filter"]}#{str(grp_id)}',
+                ),
+            ],
             [
                 InlineKeyboardButton(
                     'Fɪʟᴛᴇʀ Bᴜᴛᴛᴏɴ',
@@ -1777,6 +1799,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
         if settings is not None:
             buttons =  [
+            [
+                InlineKeyboardButton(
+                    'Auto Filter',
+                    callback_data=f'setgs#auto_filter#{settings["auto_filter"]}#{str(grp_id)}',
+                ),
+                InlineKeyboardButton(
+                    '✅ Yes' if settings["auto_filter"] else '❌ No',
+                    callback_data=f'setgs#auto_filter#{settings["auto_filter"]}#{str(grp_id)}',
+                ),
+            ],
             [
                 InlineKeyboardButton(
                     'Fɪʟᴛᴇʀ Bᴜᴛᴛᴏɴ',
