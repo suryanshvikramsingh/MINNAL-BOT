@@ -51,7 +51,7 @@ SPELL_CHECK = {}
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
     settings = await get_settings(message.chat.id)
-    if settings["auto_filter"]:
+    if settings["auto_ffilter"]:
         userid = message.from_user.id if message.from_user else None
         if not userid:
             search = message.text
@@ -913,16 +913,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             buttons =  [
             [
                 InlineKeyboardButton(
-                    'Auto Filter',
-                    callback_data=f'setgs#auto_filter#{settings["auto_filter"]}#{str(grp_id)}',
-                ),
-                InlineKeyboardButton(
-                    '✅ Yes' if settings["auto_filter"] else '❌ No',
-                    callback_data=f'setgs#auto_filter#{settings["auto_filter"]}#{str(grp_id)}',
-                ),
-            ],
-            [
-                InlineKeyboardButton(
                     'Fɪʟᴛᴇʀ Bᴜᴛᴛᴏɴ',
                     callback_data=f'setgs#button#{settings["button"]}#{grp_id}',
                 ),
@@ -1067,17 +1057,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if settings is not None:
             buttons =  [
             
-
-            [
-                InlineKeyboardButton(
-                    'Auto Filter',
-                    callback_data=f'setgs#auto_filter#{settings["auto_filter"]}#{str(grp_id)}',
-                ),
-                InlineKeyboardButton(
-                    '✅ Yes' if settings["auto_filter"] else '❌ No',
-                    callback_data=f'setgs#auto_filter#{settings["auto_filter"]}#{str(grp_id)}',
-                ),
-            ],
             [
                 InlineKeyboardButton(
                     'Fɪʟᴛᴇʀ Bᴜᴛᴛᴏɴ',
@@ -1800,16 +1779,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
         if settings is not None:
             buttons =  [
-            [
-                InlineKeyboardButton(
-                    'Auto Filter',
-                    callback_data=f'setgs#auto_filter#{settings["auto_filter"]}#{str(grp_id)}',
-                ),
-                InlineKeyboardButton(
-                    '✅ Yes' if settings["auto_filter"] else '❌ No',
-                    callback_data=f'setgs#auto_filter#{settings["auto_filter"]}#{str(grp_id)}',
-                ),
-            ],
+
             [
                 InlineKeyboardButton(
                     'Fɪʟᴛᴇʀ Bᴜᴛᴛᴏɴ',
