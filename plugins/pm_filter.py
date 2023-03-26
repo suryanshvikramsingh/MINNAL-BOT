@@ -50,7 +50,7 @@ SPELL_CHECK = {}
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
     settings = await get_settings(message.chat.id)
-    if settings["auto_filter"]:
+    if settings["auto_ffilter"]:
         userid = message.from_user.id if message.from_user else None
         if not userid:
             search = message.text
