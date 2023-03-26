@@ -38,7 +38,7 @@ WARN_SETTINGS_ID = int(Config.WARN_SETTINGS_ID)
 @Client.on_message(
     filters.command(["warnuser", "warn"], COMMAND_HAND_LER) & admin_fliter
 )
-async def warn_user(client: msg: Message):
+async def warn_user(client, msg):
     chat_id = str(msg.chat.id)
 
     replied = msg.reply_to_message
