@@ -3,6 +3,7 @@ import re
 import ast
 import math
 import random
+from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid, ChatAdminRequired
 
 import datetime 
 import psutil
