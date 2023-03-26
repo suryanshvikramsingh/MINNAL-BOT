@@ -12,7 +12,7 @@ from pyrogram.types import (
 from plugins.New.admin_check import (
     admin_check,  # TODO: remove in next version
 )
-from plugins.helper.helper_functions.cust_p_filters import admin_fliter
+from plugins.New import admin_fliter
 from datetime import datetime, timedelta
 from info import API_ID, API_HASH, BOT_TOKEN
 import os
