@@ -897,7 +897,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 and st.status != enums.ChatMemberStatus.OWNER
                 and str(userid) not in ADMINS
         ):
-            await query.answer("Yᴏᴜ Dᴏɴ'ᴛ Hᴀᴠᴇ Tʜᴇ Rɪɢʜᴛs Tᴏ Dᴏ Tʜɪs !", show_alert=True)
+            await query.answer("This Is Not For You!", show_alert=True)
             return
         if str(grp_id) != str(grpid):
             await query.message.edit("I'm not connected to this group! Check /connections or /connect to this group.")
@@ -1034,6 +1034,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data.startswith("opnsetpm"):
         ident, grp_id = query.data.split("#")
+        grpid = await active_connection(str(query.from_user.id))
         userid = query.from_user.id if query.from_user else None
         st = await client.get_chat_member(grp_id, userid)
         if (
@@ -1041,16 +1042,17 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 and st.status != enums.ChatMemberStatus.OWNER
                 and str(userid) not in ADMINS
         ):
-            await query.answer("Yᴏᴜ Dᴏɴ'ᴛ Hᴀᴠᴇ Tʜᴇ Rɪɢʜᴛs Tᴏ Dᴏ Tʜɪs !", show_alert=True)
+            await query.answer("This Is Not For You!", show_alert=True)
+            return
+        if str(grp_id) != str(grpid):
+            await query.message.edit("I'm not connected to this group! Check /connections or /connect to this group.")
             return
         title = query.message.chat.title
-        settings = await get_settings(grp_id)
-        btn2 = [[
-                 InlineKeyboardButton("‼️ Go To The Chat ‼️", url=f"t.me/{temp.U_NAME}")
-               ]]
-        reply_markup = InlineKeyboardMarkup(btn2)
-        await query.message.edit_text(f"<b>Sᴇᴛᴛɪɴɢꜱ Mᴇɴᴜ Sᴇɴᴛ Iɴ Pʀɪᴠᴀᴛᴇ Cʜᴀᴛ ✅</b>")
-        await query.message.edit_reply_markup(reply_markup)
+        settings = await get_settings(grpid)
+        btn = [[
+            InlineKeyboardButton("⚡️ Go To Chat ⚡️", url=f"https://t.me/{temp.U_NAME}")
+        ]]
+
         if settings is not None:
             buttons =  [
             [
@@ -1158,14 +1160,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ]
         ]
             reply_markup = InlineKeyboardMarkup(buttons)
-            await client.send_message(
-                chat_id=userid,
-                text=f"<b>Cᴜʀʀᴇɴᴛ Sᴇᴛᴛɪɴɢs Fᴏʀ {title}\n\nYᴏᴜ Cᴀɴ Cʜᴀɴɢᴇ Sᴇᴛᴛɪɴɢs As Yᴏᴜʀ Wɪsʜ Bʏ Usɪɴɢ Bᴇʟᴏᴡ Bᴜᴛᴛᴏɴs.</b>",
-                reply_markup=reply_markup,
-                disable_web_page_preview=True,
-                parse_mode=enums.ParseMode.HTML,
-                reply_to_message_id=query.message.id
-            )
+            k = await query.message.edit_text(text=f"Change your settings for <b>'{title}'</b> as your wish. ⚙", reply_markup=reply_markup)
+            await asyncio.sleep(300)
+            await k.delete()
+            try:
+                await query.message.reply_to_message.delete()
+            except:
+                pass
+
 
     elif query.data.startswith("show_option"):
         ident, from_user = query.data.split("#")
