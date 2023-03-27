@@ -46,8 +46,8 @@ async def save_group(bot, message):
         k = await message.reply_text(
             text=f"<b>Thankyou For Adding Me In {message.chat.title} ❣️\n\nIf you have any questions & doubts about using me contact support.</b>",
             reply_markup=reply_markup)
-            await asyncio.sleep(60)
-            await k.delete() 
+        await asyncio.sleep(60)
+        await k.delete() 
     else:
         settings = await get_settings(message.chat.id)
         if settings["welcome"]:
