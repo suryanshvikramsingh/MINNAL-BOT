@@ -40,7 +40,7 @@ async def imdb_search(client, message):
 @Client.on_callback_query(filters.regex('^up'))
 async def imdb_callback(bot: Client, quer_y: CallbackQuery):
     i, movie = quer_y.data.split('#')
-    upd = quer_y.message.text
+    
     imdb = await get_poster(query=movie, id=True)
     btn = [
             [
@@ -57,7 +57,7 @@ async def imdb_callback(bot: Client, quer_y: CallbackQuery):
                 InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
-            await.quer_y.message.reply_photo(photo=imdb.get('poster'), caption=UP_MESSAGE.format(quer_y.message.text),
+            await.quer_y.message.reply_photo(photo=imdb.get('poster'), caption=UP_MESSAGE)
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
             )
@@ -67,7 +67,7 @@ async def imdb_callback(bot: Client, quer_y: CallbackQuery):
             buttons = [[
                 InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
             ]]
-            hmm = await.quer_y.message.reply_photo(photo=poster,  caption=UP_MESSAGE.format(quer_y.message.text),
+            hmm = await.quer_y.message.reply_photo(photo=poster,  caption=UP_MESSAGE)
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
             )
@@ -77,7 +77,7 @@ async def imdb_callback(bot: Client, quer_y: CallbackQuery):
                 InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
-            await.quer_y.message.reply_photo(photo=imdb.get('poster'), caption=UP_MESSAGE.format(quer_y.message.text),
+            await.quer_y.message.reply_photo(photo=imdb.get('poster'), caption=UP_MESSAGE)
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
             )
@@ -87,7 +87,7 @@ async def imdb_callback(bot: Client, quer_y: CallbackQuery):
             InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
-        await.quer_y.message.reply_photo(photo=imdb.get('poster'), caption=UP_MESSAGE.format(quer_y.message.text),
+        await.quer_y.message.reply_photo(photo=imdb.get('poster'), caption=UP_MESSAGE)
         reply_markup=reply_markup,
         parse_mode=enums.ParseMode.HTML
         )
