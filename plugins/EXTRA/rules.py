@@ -141,40 +141,40 @@ async def start_message(client, message):
             url=imdb['url'],
             **locals()
         )
-#    else:
-#        cap = script.NOR_TXT.format(search, total_results, message.from_user.mention, message.chat.title)
-        if imdb and imdb.get('poster'):
+    else:
+        cap = f"👮‍♂ {message.from_user.mention} ɴᴏᴛɪᴄᴇ :ɪ𝙵 ʏᴏᴜ ᴅᴏ ɴᴏᴛ sᴇᴇ ᴛʜᴇ 𝙵ɪʟᴇ𝚂 ᴏ𝙵 ᴛʜɪ𝚂 ᴍᴏᴠɪᴇ ʏᴏᴜ ᴀ𝚂ᴋᴇᴅ 𝙵ᴏʀ. ʟᴏᴏᴋ ᴀᴛ ɴᴇ𝚇ᴛ ᴘᴀɢᴇ🔎\n©️քօաɛʀɛɖ ɮʏ :{message.chat.title}"       
+    if imdb and imdb.get('poster'):
 
-            try:
+        try:
 
-                fmsg = await message.reply_photo(photo=imdb.get('poster'),
+            fmsg = await message.reply_photo(photo=imdb.get('poster'),
 
-                                          reply_markup=InlineKeyboardMarkup(btn))
+                                      reply_markup=InlineKeyboardMarkup(btn))
 
-            except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
 
-                pic = imdb.get('poster')
+            pic = imdb.get('poster')
 
-                poster = pic.replace('.jpg', "._V1_UX360.jpg")
+            poster = pic.replace('.jpg', "._V1_UX360.jpg")
 
-                fmsg = await message.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(btn))
+            fmsg = await message.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(btn))
 
-            except Exception as e:
+        except Exception as e:
 
-                logger.exception(e)
-
-                fmsg = await message.reply_photo(
-                       caption=f"👮‍♂ {message.from_user.mention} ɴᴏᴛɪᴄᴇ :ɪ𝙵 ʏᴏᴜ ᴅᴏ ɴᴏᴛ sᴇᴇ ᴛʜᴇ 𝙵ɪʟᴇ𝚂 ᴏ𝙵 ᴛʜɪ𝚂 ᴍᴏᴠɪᴇ ʏᴏᴜ ᴀ𝚂ᴋᴇᴅ 𝙵ᴏʀ. ʟᴏᴏᴋ ᴀᴛ ɴᴇ𝚇ᴛ ᴘᴀɢᴇ🔎\n©️քօաɛʀɛɖ ɮʏ :{message.chat.title}",
-                       photo="https://telegra.ph/file/8a8ba3e824e1d2482253f.jpg",
-                       parse_mode=enums.ParseMode.HTML,
-                       reply_markup=InlineKeyboardMarkup(btn))
-
-        else:
-
-        
+            logger.exception(e)
 
             fmsg = await message.reply_photo(
                    caption=f"👮‍♂ {message.from_user.mention} ɴᴏᴛɪᴄᴇ :ɪ𝙵 ʏᴏᴜ ᴅᴏ ɴᴏᴛ sᴇᴇ ᴛʜᴇ 𝙵ɪʟᴇ𝚂 ᴏ𝙵 ᴛʜɪ𝚂 ᴍᴏᴠɪᴇ ʏᴏᴜ ᴀ𝚂ᴋᴇᴅ 𝙵ᴏʀ. ʟᴏᴏᴋ ᴀᴛ ɴᴇ𝚇ᴛ ᴘᴀɢᴇ🔎\n©️քօաɛʀɛɖ ɮʏ :{message.chat.title}",
                    photo="https://telegra.ph/file/8a8ba3e824e1d2482253f.jpg",
                    parse_mode=enums.ParseMode.HTML,
                    reply_markup=InlineKeyboardMarkup(btn))
+
+    else:
+
+        
+
+        fmsg = await message.reply_photo(
+               caption=f"👮‍♂ {message.from_user.mention} ɴᴏᴛɪᴄᴇ :ɪ𝙵 ʏᴏᴜ ᴅᴏ ɴᴏᴛ sᴇᴇ ᴛʜᴇ 𝙵ɪʟᴇ𝚂 ᴏ𝙵 ᴛʜɪ𝚂 ᴍᴏᴠɪᴇ ʏᴏᴜ ᴀ𝚂ᴋᴇᴅ 𝙵ᴏʀ. ʟᴏᴏᴋ ᴀᴛ ɴᴇ𝚇ᴛ ᴘᴀɢᴇ🔎\n©️քօաɛʀɛɖ ɮʏ :{message.chat.title}",
+               photo="https://telegra.ph/file/8a8ba3e824e1d2482253f.jpg",
+               parse_mode=enums.ParseMode.HTML,
+               reply_markup=InlineKeyboardMarkup(btn))
