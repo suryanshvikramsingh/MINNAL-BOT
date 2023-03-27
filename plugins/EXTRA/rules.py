@@ -99,7 +99,7 @@ async def r_message(client, message):
 
 
 
-@Client.on_message(filters.chat(SUPPORT_CHAT_ID)
+@Client.on_message(filters.chat(SUPPORT_CHAT_ID))
 async def start_message(client, message):
     mention = message.from_user.mention
     chat_id = message.chat.id
