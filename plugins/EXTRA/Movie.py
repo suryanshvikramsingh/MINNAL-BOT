@@ -81,7 +81,7 @@ async def imdb_callback(bot: Client, quer_y: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
             )
-        await quer_y.message.delete()
+            await quer_y.message.delete()
     else:
         buttons = [[
             InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
