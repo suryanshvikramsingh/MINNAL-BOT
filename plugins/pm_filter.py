@@ -150,7 +150,7 @@ async def give_filter(client, message):
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
             try:
-                await client.restrict_chat_member(message.chat.id, message.from_user.id, ChatPermissions(), datetime.now() + timedelta(minutes=5))
+                await client.restrict_chat_member(message.chat.id, message.from_user.id, ChatPermissions(), datetime.now() + timedelta(seconds=2))
             except:
                 pass
             k = await message.reply_photo(
