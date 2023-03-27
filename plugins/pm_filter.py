@@ -2260,7 +2260,7 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
     else:
-        cap = f"<b>🎪 ᴛɪᴛɪʟᴇ {search}\n\n┏ 🤴 ᴀsᴋᴇᴅ ʙʏ : {message.from_user.mention}\n┣ ⚡ ᴘᴏᴡᴇʀᴇᴅ ʙʏ : <a href='https://t.me/TGxMULTIBOT'>ᴛᴏᴍ</a>\n┗ 🍁 ᴄʜᴀɴɴᴇʟ : <a href='https://t.me/CKTalkies'>ᴄᴋᴛᴀʟᴋɪᴇs</a>\n\n★ ᴘᴏᴡᴇʀᴇᴅ ʙʏ  <a href='https://t.me/MLZ_BOTZ'>ᴍʟᴢʙᴏᴛᴢ</a></b>"
+        cap = f"<b>🎪 ᴛɪᴛɪʟᴇ {search}\n\n┏ 🤴 ᴀsᴋᴇᴅ ʙʏ : {message.from_user.mention}\n┣ ⚡ ᴘᴏᴡᴇʀᴇᴅ ʙʏ : <a href='https://t.me/kinzanoufal'>ᴛᴏᴍ</a>\n┗ 🍁 ᴄʜᴀɴɴᴇʟ : <a href='https://t.me/nasrani_update'>ᴄᴋᴛᴀʟᴋɪᴇs</a>\n\n★ ᴘᴏᴡᴇʀᴇᴅ ʙʏ  <a href='https://t.me/bigmoviesworld'>ᴍʟᴢʙᴏᴛᴢ</a></b>"
     if imdb and imdb.get('poster'):
         try:
             if message.chat.id == SUPPORT_CHAT_ID:
