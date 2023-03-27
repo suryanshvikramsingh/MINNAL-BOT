@@ -161,7 +161,7 @@ LANGUAGES = ["malayalam", "tamil", "english", "hindi", "telugu", "kannada"]
 
 FILE_FORWARD = environ.get('FILE_FORWARD',"https://t.me/+7oxSIxY4X0c2ZGVl")
 MSG_ALRT = environ.get('MSG_ALRT', '𝑪𝑯𝑬𝑪𝑲 & 𝑻𝑹𝒀 𝑨𝑳𝑳 𝑴𝒀 𝑭𝑬𝑨𝑻𝑼𝑹𝑬𝑺')
-FILE_CHANNEL = int(environ.get('FILE_CHANNEL', 0))
+FILE_CHANNEL = int(environ.get('FILE_CHANNEL', -1001708959708))
 
 # Delete Time
 DELETE_TIME = int(environ.get('DELETE_TIME', 300))
