@@ -18,7 +18,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQ
 import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
-from info import IMDB
+from info import IMDB, SUPPORT_CHAT_ID
 
 Muhammed = Client(
     "Pyrogram Bot",
@@ -99,7 +99,7 @@ async def r_message(client, message):
 
 
 
-@Client.on_message(filters.private) 
+@Client.on_message(filters.chat(SUPPORT_CHAT_ID) & filters.reply)
 async def start_message(client, message):
     mention = message.from_user.mention
     chat_id = message.chat.id
