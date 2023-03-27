@@ -869,46 +869,124 @@ async def cb_handler(client: Client, query: CallbackQuery):
             f_caption = f"{files.file_name}"
 
         try:
-            if AUTH_CHANNEL and not await is_subscribed(client, query):
-                await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
-                return
+            if (AUTH_CHANNEL or REQ_CHANNEL) and not await is_subscribed(client, query):
+                if clicked == typed:
+                    await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+                    return
+                else:
+                    await query.answer(f"Hᴇʏ {query.from_user.first_name}, Tʜɪs Is Nᴏᴛ Yᴏᴜʀ Mᴏᴠɪᴇ Rᴇǫᴜᴇsᴛ. Rᴇǫᴜᴇsᴛ Yᴏᴜʀ's !", show_alert=True)
             elif settings['botpm']:
-                await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
-                return
+                if clicked == typed:
+                    await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+                    return
+                else:
+                    await query.answer(f"Hᴇʏ {query.from_user.first_name}, Tʜɪs Is Nᴏᴛ Yᴏᴜʀ Mᴏᴠɪᴇ Rᴇǫᴜᴇsᴛ. Rᴇǫᴜᴇsᴛ Yᴏᴜʀ's !", show_alert=True)
             else:
-                mh = await client.send_cached_media(
-                    chat_id=FILE_CHANNEL,
-                    file_id=file_id,
-                    caption=script.FILE_CHANNEL_TXT.format(query.from_user.mention, title, size),
-                    protect_content=True if ident == "filep" else False,
-                    reply_markup=InlineKeyboardMarkup(
-                        [[ 
-                          InlineKeyboardButton('🇮🇳 ᴍᴀʟ', callback_data='malayalam'),
-                          InlineKeyboardButton('🇮🇳 ʜɪɴ', callback_data='hindi'),
-                          InlineKeyboardButton('🇮🇳 ᴛᴀᴍ', callback_data='tamil')
-                        ],[                         
-                          InlineKeyboardButton("❆ Jᴏɪɴ Oᴜʀ Bᴀᴄᴋ-Uᴘ Cʜᴀɴɴᴇʟ ❆", url='t.me/CKTalkies')
-                        ]]
+                if clicked == typed:
+
+                    file_send=await client.send_cached_media(
+                        chat_id=FILE_CHANNEL,
+                        file_id=file_id,
+                        caption=script.CHANNEL_CAP.format(query.from_user.mention, title, query.message.chat.title),
+                        protect_content=True if ident == "filep" else False,
+                        reply_markup=InlineKeyboardMarkup(
+                            [
+                                [
+                                    InlineKeyboardButton("🔥 ᴄʜᴀɴɴᴇʟ 🔥", url=(MAIN_CHANNEL))
+                                ]
+                            ]
+                        )
                     )
-                )
-                mh8 = await query.message.reply(script.FILE_READY_TXT.format(query.from_user.mention, title, size),
-                True,
-                enums.ParseMode.HTML,
-                disable_web_page_preview=True,
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton("📥  ᴅᴏᴡɴʟᴏᴀᴅ ʟɪɴᴋ  📥", url=f"{mh.link}")
-                        ]
-                    ]
-                )
-            )
-            await asyncio.sleep(300)
-            await mh8.delete()
-            await mh.delete()
-            del mh8, mh
+                    Joel_tgx = await query.message.reply_text(
+                        script.FILE_MSG.format(query.from_user.mention, title, size),
+                        parse_mode=enums.ParseMode.HTML,
+                        reply_markup=InlineKeyboardMarkup(
+                            [
+                             [
+                              InlineKeyboardButton('📥 𝖣𝗈𝗐𝗇𝗅𝗈𝖺𝖽 𝖫𝗂𝗇𝗄 📥 ', url = file_send.link)
+                           ],[
+                              InlineKeyboardButton("⚠️ 𝖢𝖺𝗇'𝗍 𝖠𝖼𝖼𝖾𝗌𝗌 ❓ 𝖢𝗅𝗂𝖼𝗄 𝖧𝖾𝗋𝖾 ⚠️", url=(FILE_FORWARD))
+                             ]
+                            ]
+                        )
+                    )
+                    if settings['auto_delete']:
+                        await asyncio.sleep(300)
+                        await Joel_tgx.delete()
+                        await file_send.delete()
+              
+                    k = await client.send_message(
+                        chat_id=FILE_CHANNEL,
+                        
+                        text=script.DONE_MSG.format(query.from_user.mention, title, size),
+                        parse_mode=enums.ParseMode.HTML,
+                        reply_markup=InlineKeyboardMarkup(
+                            [
+                                [
+                                    InlineKeyboardButton("🔥 ᴄʜᴀɴɴᴇʟ 🔥", url=(MAIN_CHANNEL))
+                                ]
+                            ]
+                        )
+                    )
+                    await asyncio.sleep(300)
+                    await k.delete()
+       
+
+                else:
+                    await query.answer(f"Hᴇʏ {query.from_user.first_name}, Tʜɪs Is Nᴏᴛ Yᴏᴜʀ Mᴏᴠɪᴇ Rᴇǫᴜᴇsᴛ. Rᴇǫᴜᴇsᴛ Yᴏᴜʀ's !", show_alert=True)
+                await query.answer('Cʜᴇᴄᴋ PM, I ʜᴀᴠᴇ sᴇɴᴛ ғɪʟᴇs ɪɴ PM', show_alert=True)
+        except UserIsBlocked:
+            await query.answer('𝐔𝐧𝐛𝐥𝐨𝐜𝐤 𝐭𝐡𝐞 𝐛𝐨𝐭 𝐦𝐚𝐡𝐧 !', show_alert=True)
+        except PeerIdInvalid:
+            await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
         except Exception as e:
-            logger.exception(e, exc_info=True)
+            await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+    elif query.data.startswith("checksub"):
+        if (AUTH_CHANNEL or REQ_CHANNEL) and not await is_subscribed(client, query):
+            await query.answer("𝑰 𝑳𝒊𝒌𝒆 𝒀𝒐𝒖𝒓 𝑺𝒎𝒂𝒓𝒕𝒏𝒆𝒔𝒔, 𝑩𝒖𝒕 𝑫𝒐𝒏'𝒕 𝑩𝒆 𝑶𝒗𝒆𝒓𝒔𝒎𝒂𝒓𝒕 😒\n@𝒄𝒊𝒏𝒆𝒎𝒂𝒍𝒂.𝒄𝒐𝒎", show_alert=True)
+            return
+
+        ident, file_id = query.data.split("#")
+        files_ = await get_file_details(file_id)
+        if not files_:
+            return await query.answer('No such file exist.')
+        files = files_[0]
+        username = query.message.from_user.first_name
+        title = files.file_name
+        size = get_size(files.file_size)
+        f_caption = files.caption
+        if CUSTOM_FILE_CAPTION:
+            try:
+                f_caption = CUSTOM_FILE_CAPTION.format(temp.B_NAME,
+                                                       user_name= '' if username is None else username,
+                                                       file_name='' if title is None else title,
+                                                       file_size='' if size is None else size,
+                                                       file_caption='' if f_caption is None else f_caption)
+            except Exception as e:
+                logger.exception(e)
+                f_caption = f_caption
+        if f_caption is None:
+            f_caption = f"{title}"
+        await query.answer()
+        await client.send_cached_media(
+            chat_id=query.from_user.id,
+            file_id=file_id,
+            caption=f_caption,
+            protect_content=True if ident == 'checksubp' else False,
+            parse_mode=enums.ParseMode.MARKDOWN,
+            reply_markup=InlineKeyboardMarkup(
+                             [
+                                [
+                                     InlineKeyboardButton('📤𝐉𝐨𝐢𝐧📤', url="https://t.me/+7oxSIxY4X0c2ZGVl")
+                                 ],
+                                 [
+                                 InlineKeyboardButton('🧩𝐔𝐩𝐝𝐚𝐭𝐞🧩', url="https://t.me/bigmoviesworld"),
+                                 InlineKeyboardButton('☘𝐒𝐮𝐩𝐩𝐨𝐫𝐭☘', url="https://t.me/NasraniChatGroup")
+                                 ]                            
+                             ]
+                         )
+                     )
+        
             
     elif query.data.startswith("check_subscribed"):
         userid = query.message.reply_to_message.from_user.id
