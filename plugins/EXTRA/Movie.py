@@ -56,7 +56,7 @@ async def imdb_callback(bot: Client, quer_y: CallbackQuery):
                 InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
-            await message.reply_photo(photo=imdb.get('poster'), caption=UP_MESSAGE.format(message.text),
+            await.quer_y.message.reply_photo(photo=imdb.get('poster'), caption=UP_MESSAGE.format(message.text),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
             )
@@ -66,16 +66,30 @@ async def imdb_callback(bot: Client, quer_y: CallbackQuery):
             buttons = [[
                 InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
             ]]
-            hmm = await message.reply_photo(photo=poster,  caption=UP_MESSAGE.format(message.text),
+            hmm = await.quer_y.message.reply_photo(photo=poster,  caption=UP_MESSAGE.format(message.text),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
             )
         except Exception as e:
             logger.exception(e)
-            await quer_y.message.reply(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
+            buttons = [[
+                InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
+            ]]
+            reply_markup = InlineKeyboardMarkup(buttons)
+            await.quer_y.message.reply_photo(photo=imdb.get('poster'), caption=UP_MESSAGE.format(message.text),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+            )
         await quer_y.message.delete()
     else:
-        await quer_y.message.edit(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
+        buttons = [[
+            InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await.quer_y.message.reply_photo(photo=imdb.get('poster'), caption=UP_MESSAGE.format(message.text),
+        reply_markup=reply_markup,
+        parse_mode=enums.ParseMode.HTML
+        )
     await quer_y.answer()
         
 
