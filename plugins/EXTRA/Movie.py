@@ -57,7 +57,7 @@ async def imdb_callback(bot: Client, quer_y: CallbackQuery):
                 InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
             ]]
             reply_markup = InlineKeyboardMarkup(buttons)
-            await.quer_y.message.reply_photo(photo=imdb.get('poster'), caption=UP_MESSAGE)
+            await quer_y.message.reply_photo(photo=imdb.get('poster'), caption=UP_MESSAGE)
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
             )
