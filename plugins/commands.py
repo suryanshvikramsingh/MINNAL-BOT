@@ -8,7 +8,7 @@ from pyrogram.errors import ChatAdminRequired, FloodWait
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id, get_bad_files
 from database.users_chats_db import db
-from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, CHNL_LNK, GRP_LNK, REQST_CHANNEL, SUPPORT_CHAT_ID, MAX_B_TN, VERIFY
+from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, CHNL_LNK, GRP_LNK, REQST_CHANNEL, SUPPORT_CHAT_ID, MAX_B_TN, VERIFY, LOGIN_CHANNEL, SP
 from utils import get_settings, get_size, is_subscribed, save_group_settings, temp, verify_user, check_token, check_verification, get_token
 from database.connections_mdb import active_connection
 from plugins.fsub import ForceSub
@@ -46,16 +46,21 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
         buttons = [[
-            InlineKeyboardButton('〆 ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ 〆', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-            ],[
-            InlineKeyboardButton('🔍 sᴇᴀʀᴄʜ​', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('🧑‍💻 ᴅᴇᴠ​', callback_data='owner_info')
-            ],[      
-            InlineKeyboardButton('🎭 ʜᴇʟᴘ 🎭', callback_data='help2'),
-            InlineKeyboardButton('♻️ ᴀʙᴏᴜᴛ ♻️', callback_data='about')
-            ],[
-            InlineKeyboardButton('💰 ᴇᴀʀɴ ᴍᴏɴᴇʏ ᴡɪᴛʜ ʙᴏᴛ 💸', callback_data='money_bot')
-        ]] 
+            InlineKeyboardButton('𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+        ], [
+                    
+            InlineKeyboardButton('𝐔𝐩𝐝𝐚𝐭𝐞', url='https://t.me/bigmoviesworld'),
+            InlineKeyboardButton('𝐂𝐡𝐚𝐧𝐧𝐞𝐥', url='https://t.me/NasraniChatGroup')
+        ], [
+            InlineKeyboardButton('𝐁𝐨𝐭 𝐂𝐨𝐦𝐦𝐚𝐧𝐝𝐬', url='http://telegra.ph/Minnal-murali-03-06-12')
+        ], [
+            InlineKeyboardButton('𝐒𝐨𝐧𝐠 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_batch_store'),
+            InlineKeyboardButton('𝐌𝐨𝐯𝐢𝐞𝐬 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_update')
+        ], [
+            InlineKeyboardButton('𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_update')
+        ], [
+            InlineKeyboardButton('🔹🔸𝐂𝐋𝐎𝐒𝐄🔸🔹', callback_data='close_data')
+        ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_photo(
             photo=random.choice(PICS),
@@ -72,16 +77,21 @@ async def start(client, message):
         return
     if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
         buttons = [[
-            InlineKeyboardButton('〆 ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ 〆', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
-            ],[
-            InlineKeyboardButton('🔍 sᴇᴀʀᴄʜ​', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('🧑‍💻 ᴅᴇᴠ​', callback_data='owner_info')
-            ],[      
-            InlineKeyboardButton('🎭 ʜᴇʟᴘ 🎭', callback_data='help2'),
-            InlineKeyboardButton('♻️ ᴀʙᴏᴜᴛ ♻️', callback_data='about')
-            ],[
-            InlineKeyboardButton('💰 ᴇᴀʀɴ ᴍᴏɴᴇʏ ᴡɪᴛʜ ʙᴏᴛ 💸', callback_data='money_bot')
-        ]] 
+            InlineKeyboardButton('𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+        ], [
+                    
+            InlineKeyboardButton('𝐔𝐩𝐝𝐚𝐭𝐞', url='https://t.me/bigmoviesworld'),
+            InlineKeyboardButton('𝐂𝐡𝐚𝐧𝐧𝐞𝐥', url='https://t.me/NasraniChatGroup')
+        ], [
+            InlineKeyboardButton('𝐁𝐨𝐭 𝐂𝐨𝐦𝐦𝐚𝐧𝐝𝐬', url='http://telegra.ph/Minnal-murali-03-06-12')
+        ], [
+            InlineKeyboardButton('𝐒𝐨𝐧𝐠 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_batch_store'),
+            InlineKeyboardButton('𝐌𝐨𝐯𝐢𝐞𝐬 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_update')
+        ], [
+            InlineKeyboardButton('𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_update')
+        ], [
+            InlineKeyboardButton('🔹🔸𝐂𝐋𝐎𝐒𝐄🔸🔹', callback_data='close_data')
+        ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_photo(
             photo=random.choice(PICS),
@@ -90,20 +100,50 @@ async def start(client, message):
             parse_mode=enums.ParseMode.HTML
         )
         return
-
-    kk, file_id = message.command[1].split("_", 1) if "_" in message.command[1] else (False, False)
-    pre = ('checksubp' if kk == 'filep' else 'checksub') if kk else False
-
-    status = await ForceSub(client, message, file_id=file_id, mode=pre)
-    if not status:
+    if AUTH_CHANNEL and not await is_subscribed(client, message):
+        try:
+            invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
+        except ChatAdminRequired:
+            logger.error("Make sure Bot is admin in Forcesub channel")
+            return
+        btn = [
+                [
+                    InlineKeyboardButton(
+                        "JOIN CHANNEL", url=invite_link.invite_link
+                    ),
+                    InlineKeyboardButton(
+                        text="NEW MOVIES",
+                        url="https://t.me/+cACZdXU2LH8xOGE1"
+                    ),
+                ]
+                
+            ]
+        
+        if message.command[1] != "subscribe":
+            try:
+                kk, file_id = message.command[1].split("_", 1)
+                pre = 'checksubp' if kk == 'filep' else 'checksub' 
+                btn.append([InlineKeyboardButton(" 🔄 Try Again", callback_data=f"{pre}#{file_id}")])
+            except (IndexError, ValueError):
+                btn.append([InlineKeyboardButton(" 🔄 Try Again", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
+        m=await message.reply_sticker("CAACAgUAAxkBAAINdmL9uWnC3ptj9YnTjFU4YGr5dtzwAAIEAAPBJDExieUdbguzyBAeBA")
+        await asyncio.sleep(1)
+        await m.delete()
+        await client.send_message(
+            chat_id=message.from_user.id,
+            text="**PLEASE JOIN MY UPDATES CHANNEL TO USE TRY AGAIN BUTTON!**",
+            reply_markup=InlineKeyboardMarkup(btn),
+            parse_mode=enums.ParseMode.MARKDOWN
+            )
+        
         return
 
     data = message.command[1]
     if not file_id:
         file_id = data
 
-    if data.split("-", 1)[0] == "BATCH":
-        sts = await message.reply("<b>Please wait...</b>")
+    ifif data.split("-", 1)[0] == "BATCH":
+        sts = await message.reply(f"<b><a href='https://t.me/nasrani_batch_store'>ʏᴏᴜʀ ᴍᴏᴠɪᴇ ꜰɪʟᴇꜱ ꜱᴇɴᴅᴇᴅ ᴛʜɪꜱ ɢʀᴏᴜᴘ.. ᴄʜᴀᴇᴄᴋ</a></b>")
         file_id = data.split("-", 1)[1]
         msgs = BATCH_FILES.get(file_id)
         if not msgs:
@@ -129,42 +169,68 @@ async def start(client, message):
             if f_caption is None:
                 f_caption = f"{title}"
             try:
-                await client.send_cached_media(
-                    chat_id=message.from_user.id,
+                k = await client.send_cached_media(
+                    chat_id=force_channel,
                     file_id=msg.get("file_id"),
-                    caption=f_caption,
+                    caption=f_caption,      
                     protect_content=msg.get('protect', False),
+                    parse_mode=enums.ParseMode.MARKDOWN,
                     reply_markup=InlineKeyboardMarkup(
-                        [
-                         [                         
-                          InlineKeyboardButton("🌿 ɢʀᴏᴜᴘ", url='https://t.me/at3movies'),
-                          InlineKeyboardButton("🍂 ᴄʜᴀɴɴᴇʟ", url='https://t.me/CKTalkies')
-                         ]
-                        ]
-                    )
-                )
+                                     [
+                                         [
+                                             InlineKeyboardButton('1🎁𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩𝐬🎁', callback_data=f"{pre}#{file_id}")
+                                         ],
+                                         [
+                                             InlineKeyboardButton('🧩𝐆𝐨𝐨𝐠𝐥𝐞🧩', url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}"),
+                                             InlineKeyboardButton('☘𝐈𝐦𝐝𝐛☘', url="https://t.me/+YCA-JWZDNsJkNmI1")
+                                         ]                            
+                                     ]
+                                 )
+                             )
+                
+                await message.reply_text(
+                    chat_id=BATCH_GROUP,
+                    text=script.BATCH_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),)
+                    
+                
+                
+                
             except FloodWait as e:
                 await asyncio.sleep(e.x)
                 logger.warning(f"Floodwait of {e.x} sec.")
-                await client.send_cached_media(
+                
+                k = await client.send_cached_media(
                     chat_id=message.from_user.id,
                     file_id=msg.get("file_id"),
-                    caption=f_caption,
+                    caption=f_caption,      
                     protect_content=msg.get('protect', False),
+                    parse_mode=enums.ParseMode.MARKDOWN,
                     reply_markup=InlineKeyboardMarkup(
-                        [
-                         [
-                          InlineKeyboardButton("🌿 ɢʀᴏᴜᴘ", url='https://t.me/at3movies'),
-                          InlineKeyboardButton("🍂 ᴄʜᴀɴɴᴇʟ", url='https://t.me/CKTalkies')
-                         ]
-                        ]
-                    )
-                )
+                                     [
+                                         [
+                                             InlineKeyboardButton('2🎁𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩𝐬🎁', url="https://t.me/+YCA-JWZDNsJkNmI1")
+                                         ],
+                                         [
+                                             InlineKeyboardButton('🧩𝐆𝐨𝐨𝐠𝐥𝐞🧩', url="https://t.me/NasraniChatGroup"),
+                                             InlineKeyboardButton('☘𝐈𝐦𝐝𝐛☘', url="https://t.me/+YCA-JWZDNsJkNmI1")
+                                         ]                            
+                                     ]
+                                 )
+                             )
+                await asyncio.sleep(5)
+                await k.delete()
+                await message.reply(f"<b><a href='https://t.me/NasraniChatGroup'>Thank For Using Me...</a></b>")
+                
+                
+                
+        
+                
+
+
             except Exception as e:
                 logger.warning(e, exc_info=True)
                 continue
-            await asyncio.sleep(1) 
-        await sts.delete()
+            
         return
     elif data.split("-", 1)[0] == "DSTORE":
         sts = await message.reply("<b>Please wait...</b>")
@@ -248,17 +314,28 @@ async def start(client, message):
                 return
             msg = await client.send_cached_media(
                 chat_id=message.from_user.id,
-                file_id=file_id,
-                protect_content=True if pre == 'filep' else False,
+                file_id=msg.get("file_id"),
+                caption=f_caption,      
+                protect_content=msg.get('protect', False),
+                parse_mode=enums.ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(
-                    [
-                         [
-                          InlineKeyboardButton("🌿 ɢʀᴏᴜᴘ", url='https://t.me/at3movies'),
-                          InlineKeyboardButton("🍂 ᴄʜᴀɴɴᴇʟ", url='https://t.me/CKTalkies')
-                         ]
-                        ]
-                    )
-                )
+                                 [
+                                     [
+                                         InlineKeyboardButton('🎁3', url="https://t.me/+YCA-JWZDNsJkNmI1")
+                                     ],
+                                     [
+                                     InlineKeyboardButton('🧩𝐆𝐨𝐨𝐠𝐥𝐞🧩', url="https://t.me/NasraniChatGroup"),
+                                     InlineKeyboardButton('☘𝐈𝐦𝐝𝐛☘', url="https://t.me/NasraniChatGroup")
+                                     ]                            
+                                 ]
+                             )
+                         )
+
+                
+            await message.reply(f"<b><a href='https://t.me/NasraniChatGroup'>Thank For Using Me...</a></b>")
+            await db.add_chat(message.chat.id, message.chat.title)
+            await db.add_user(message.from_user.id, message.from_user.first_name)
+            mention = message.from_user.first_name
             filetype = msg.media
             file = getattr(msg, filetype.value)
             title = file.file_name
@@ -274,13 +351,16 @@ async def start(client, message):
         except:
             pass
         return await message.reply('No such file exist.')
+    await db.add_chat(message.chat.id, message.chat.title)
+    await db.add_user(message.from_user.id, message.from_user.first_name)
     files = files_[0]
+    username = message.from_user.first_name
     title = files.file_name
     size=get_size(files.file_size)
     f_caption=files.caption
     if CUSTOM_FILE_CAPTION:
         try:
-            f_caption=CUSTOM_FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
+            f_caption=CUSTOM_FILE_CAPTION.format(temp.B_NAME, user_name= '' if username is None else username, file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='')
         except Exception as e:
             logger.exception(e)
             f_caption=f_caption
@@ -296,20 +376,30 @@ async def start(client, message):
             reply_markup=InlineKeyboardMarkup(btn)
         )
         return
+    
+
     await client.send_cached_media(
         chat_id=message.from_user.id,
         file_id=file_id,
-        caption=f_caption,
+        caption=f_caption,      
         protect_content=True if pre == 'filep' else False,
+        parse_mode=enums.ParseMode.MARKDOWN,
         reply_markup=InlineKeyboardMarkup(
-            [
-             [
-              InlineKeyboardButton("🌿 ɢʀᴏᴜᴘ", url='https://t.me/at3movies'),
-              InlineKeyboardButton("🍂 ᴄʜᴀɴɴᴇʟ", url='https://t.me/CKTalkies')
-             ]
-              ]
-       )
-  )
+                         [
+                             [
+                                 InlineKeyboardButton('4🎁𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩𝐬🎁', url="https://t.me/+YCA-JWZDNsJkNmI1")
+                             ],
+                             [
+                                 InlineKeyboardButton('🧩𝐆𝐨𝐨𝐠𝐥𝐞🧩', url="https://imdb.com"),
+                                 InlineKeyboardButton('☘𝐈𝐦𝐝𝐛☘', url="https://imdb.com")
+                             ]                            
+                         ]
+                     )
+                 )
+                    
+        
+    await message.reply(f"<b><a href='https://t.me/NasraniChatGroup'>Thank For Using Me...</a></b>")
+    
                     
 
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
