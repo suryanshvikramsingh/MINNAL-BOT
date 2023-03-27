@@ -146,33 +146,24 @@ async def start_message(client, message):
     if imdb and imdb.get('poster'):
 
         try:
-
-            fmsg = await message.reply_photo(photo=imdb.get('poster'))
-
+            buttons = [[
+                InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
+            ]]
+            reply_markup = InlineKeyboardMarkup(buttons)
+            await message.reply_photo(photo=imdb.get('poster'), caption=UP_MESSAGE.format(message.text),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+            )
                                       
-
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-
             pic = imdb.get('poster')
-
             poster = pic.replace('.jpg', "._V1_UX360.jpg")
-
-            fmsg = await message.reply_photo(photo=poster)
-
+            buttons = [[
+                InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
+            ]]
+            hmm = await message.reply_photo(photo=poster,  caption=UP_MESSAGE.format(message.text),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+            )
         except Exception as e:
-
             logger.exception(e)
-
-            fmsg = await message.reply_photo(                   
-                   photo=poster,
-                   parse_mode=enums.ParseMode.HTML)
-                   
-
-    else:
-
-        
-
-        fmsg = await message.reply_photo(               
-               photo=poster,
-               parse_mode=enums.ParseMode.HTML)
-               
