@@ -142,7 +142,7 @@ async def start(client, message):
     if not file_id:
         file_id = data
 
-    ifif data.split("-", 1)[0] == "BATCH":
+    if data.split("-", 1)[0] == "BATCH":
         sts = await message.reply(f"<b><a href='https://t.me/nasrani_batch_store'>ʏᴏᴜʀ ᴍᴏᴠɪᴇ ꜰɪʟᴇꜱ ꜱᴇɴᴅᴇᴅ ᴛʜɪꜱ ɢʀᴏᴜᴘ.. ᴄʜᴀᴇᴄᴋ</a></b>")
         file_id = data.split("-", 1)[1]
         msgs = BATCH_FILES.get(file_id)
