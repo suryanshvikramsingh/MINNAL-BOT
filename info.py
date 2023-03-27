@@ -5,6 +5,17 @@ from dotenv import load_dotenv
 load_dotenv()
 from time import time
 
+import re
+import os
+from os import environ
+from pyrogram import enums
+from Script import script
+
+import asyncio
+import json
+from collections import defaultdict
+from typing import Dict, List, Union
+from pyrogram import Client
 
 id_pattern = re.compile(r'^.\d+$')
 def is_enabled(value, default):
@@ -14,6 +25,26 @@ def is_enabled(value, default):
         return False
     else:
         return default
+
+class evamaria(Client):
+    filterstore: Dict[str, Dict[str, str]] = defaultdict(dict)
+    warndatastore: Dict[
+        str, Dict[str, Union[str, int, List[str]]]
+    ] = defaultdict(dict)
+    warnsettingsstore: Dict[str, str] = defaultdict(dict)
+
+    def __init__(self):
+        name = self.__class__.__name__.lower()
+        super().__init__(
+            ":memory:",
+            plugins=dict(root=f"{name}/plugins"),
+            workdir=TMP_DOWNLOAD_DIRECTORY,
+            api_id=API_ID,
+            api_hash=API_HASH,
+            bot_token=BOT_TOKEN,
+            parse_mode=enums.ParseMode.HTML,
+            sleep_threshold=60
+        )
 
 # Bot information
 SESSION = environ.get('SESSION', 'Media_search')
@@ -31,23 +62,6 @@ auth_grp = environ.get('AUTH_GROUP')
 LOGIN_CHANNEL = int(login_channel) if login_channel and id_pattern.search(login_channel) else None
 AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 
-ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '').split()]
-CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '0').split()]
-auth_users = [int(user) if id_pattern.search(user) else user for user in environ.get('AUTH_USERS', '').split()]
-AUTH_USERS = (auth_users + ADMINS) if auth_users else []
-login_channel = environ.get('LOGIN_CHANNEL')
-auth_grp = environ.get('AUTH_GROUP')
-LOGIN_CHANNEL = int(login_channel) if login_channel and id_pattern.search(login_channel) else None
-AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
-
-ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '').split()]
-CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '0').split()]
-auth_users = [int(user) if id_pattern.search(user) else user for user in environ.get('AUTH_USERS', '').split()]
-AUTH_USERS = (auth_users + ADMINS) if auth_users else []
-login_channel = environ.get('LOGIN_CHANNEL')
-auth_grp = environ.get('AUTH_GROUP')
-LOGIN_CHANNEL = int(login_channel) if login_channel and id_pattern.search(login_channel) else None
-AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 
 
 
