@@ -30,7 +30,8 @@ async def save_group(bot, message):
                 text='<b>CHAT NOT ALLOWED 🐞\n\nMy admins has restricted me from working here ! If you want to know more about it contact support..</b>',
                 reply_markup=reply_markup,
             )
-
+            await asyncio.sleep(60)
+            await k.delete()
             try:
                 await k.pin()
             except:
@@ -42,9 +43,11 @@ async def save_group(bot, message):
             InlineKeyboardButton('ᵁᴾᴰᴬᵀᴱ', url=(MAIN_CHANNEL))
         ]]
         reply_markup=InlineKeyboardMarkup(buttons)
-        await message.reply_text(
+        k = await message.reply_text(
             text=f"<b>Thankyou For Adding Me In {message.chat.title} ❣️\n\nIf you have any questions & doubts about using me contact support.</b>",
             reply_markup=reply_markup)
+            await asyncio.sleep(60)
+            await k.delete() 
     else:
         settings = await get_settings(message.chat.id)
         if settings["welcome"]:
@@ -67,7 +70,7 @@ async def save_group(bot, message):
                 )
                 
         if settings["auto_delete"]:
-            await asyncio.sleep(600)
+            await asyncio.sleep(60)
             await (temp.MELCOW['welcome']).delete()
 
 @Client.on_message(filters.command('leave') & filters.user(ADMINS))
