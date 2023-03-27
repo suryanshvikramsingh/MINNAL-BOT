@@ -173,8 +173,8 @@ MSG_ALRT = environ.get('MSG_ALRT', '𝑪𝑯𝑬𝑪𝑲 & 𝑻𝑹𝒀 𝑨𝑳
 FILE_CHANNEL = int(environ.get('FILE_CHANNEL', -1001708959708))
 
 # Delete Time
-DELETE_TIME = int(environ.get('DELETE_TIME', 300))
-IMDB_DLT_TIME = int(environ.get('IMDB_DLT_TIME', 300))
+DELETE_TIME = int(environ.get('DELETE_TIME', 180))
+IMDB_DLT_TIME = int(environ.get('IMDB_DLT_TIME', 180))
 
 LOG_STR = "Current Cusomized Configurations are:-\n"
 LOG_STR += ("IMDB Results are enabled, Bot will be showing imdb details for you queries.\n" if IMDB else "IMBD Results are disabled.\n")
