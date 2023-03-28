@@ -17,7 +17,7 @@ CAPTION = os.environ.get("CAPTION", None)
 
 @Client.on_message(filters.chat(LOGIN_CHANNEL) &  filters.media)
 async def caption(bot, message):
-    chat_id = message.chat.id
+    chat_id = LOGIN_CHANNEL
     if CAPTION:
         caption = CAPTION
     else:
