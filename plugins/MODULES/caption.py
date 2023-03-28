@@ -10,7 +10,6 @@ from pyrogram.types import (
 
 
 
-app = Client('viewcounterbot', in_memory=True, api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 non_anonymous_poll = filters.create(
     lambda *_: _[2].poll is not None and not _[2].poll.is_anonymous
