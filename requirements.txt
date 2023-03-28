@@ -27,4 +27,4 @@ youtube_dl
 wget
 aiofiles
 
-googlesearch-python== 1.0.1
+pyromod
