@@ -1153,7 +1153,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     'Eɴᴀʙʟᴇ' if settings["auto_delete"] else 'Dɪsᴀʙʟᴇ',
                     callback_data=f'setgs#auto_delete#{settings["auto_delete"]}#{grp_id}',
                 ),
-elif query.data.startswith("opnsetgrp"):
+    elif query.data.startswith("opnsetgrp"):
         ident, grp_id = query.data.split("#")
         grpid = await active_connection(str(query.from_user.id))
         userid = query.from_user.id if query.from_user else None
