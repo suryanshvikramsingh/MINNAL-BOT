@@ -1,75 +1,65 @@
-import logging
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-
-import asyncio
-from pyrogram import Client, filters, enums
-
-
-import os
-from info import LOGIN_CHANNEL
+from pyrogram import Client, filters
+from pyrogram.types import (
+    Message,
+    Poll,
+    InlineKeyboardMarkup,
+    InlineKeyboardButton,
+    CallbackQuery,
+)
 
 
-class Config(object):
-      BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
-      API_ID = int(os.environ.get("API_ID", 12345))
-      API_HASH = os.environ.get("API_HASH")
-      CAPTION_TEXT = os.environ.get("CAPTION_TEXT", "🔰🔰🔰🔰")
-      CAPTION_POSITION = os.environ.get("CAPTION_POSITION", "nil")
-      ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME", "kinzanoufal")
+API_ID: int = API_ID
+API_HASH: str = "API_HASH"
+BOT_TOKN: str = "BOT_TOKEN"
 
-UP_MESSAGE = """
- 𝐌𝐨𝐯𝐢𝐞 𝐀𝐝𝐝𝐞𝐝 𝐓𝐡𝐢𝐬 𝐆𝐫𝐨𝐮𝐩
+
+app = Client('viewcounterbot', in_memory=True, api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+
+non_anonymous_poll = filters.create(
+    lambda *_: _[2].poll is not None and not _[2].poll.is_anonymous
+)
+
+forwardchannel = -1000000000000
+startmsg: str = """
+start message
 """
 
 
+@Client.on_message(filters.command("cstart") & filters.private)
+async def start(client, message):
+    await message.reply(
+        startmsg,
+    )
 
-usercaption_position = Config.CAPTION_POSITION
-caption_position = usercaption_position.lower()
-caption_text = Config.CAPTION_TEXT
+
+@Client.on_message(
+    ~filters.service
+    & ~filters.game
+    & ~filters.channel
+    & ~filters.linked_channel
+    & ~non_anonymous_poll
+)
+async def viewcounter(client, message):
+    forward = await message.forward(forwardchannel)
+    await forward.forward(message.chat.id)
+    await forward.delete()
 
 
-@Client.on_message(filters.group & (filters.document | filters.video | filters.audio ) & filters.forwarded)
-async def editing(bot, message):
-      try:
-         media = message.document or message.video or message.audio
-         caption_text = UP_MESSAGE
-      except:
-         caption_text = ""
-         pass 
-      if (message.document or message.video or message.audio): 
-          if message.caption:                        
-             file_caption = f"**{message.caption}**"                
-          else:
-             fname = media.file_name
-             filename = fname.replace("_", ".")
-             file_caption = f"`{filename}`"  
-              
-      try:
-          if caption_position == "top":
-             await bot.edit_message_caption(
-                 chat_id = message.chat.id, 
-                 message_id = message.message_id,
-                 caption = caption_text + "\n" + file_caption,
-                 parse_mode=enums.ParseMode.MARKDOWN
-             )
-          elif caption_position == "bottom":
-             await bot.edit_message_caption(
-                 chat_id = message.chat.id, 
-                 message_id = message.message_id,
-                 caption = file_caption + "\n" + caption_text,
-                 parse_mode=enums.ParseMode.MARKDOWN
-             )
-          elif caption_position == "nil":
-             await bot.edit_message_caption(
-                 chat_id = message.chat.id,
-                 message_id = message.message_id,
-                 caption = caption_text, 
-                 parse_mode=enums.ParseMode.MARKDOWN
-             ) 
-      except:
-          pass
-              
-                   
-      
+@Client.on_message(
+    (filters.service | filters.game | filters.channel | non_anonymous_poll)
+)
+async def notsupported(client, message):
+    await message.reply(
+        "sorry but this type of message not supported (non anonymous polls or games (like @gamebot or @gamee) or message from channels or service messages)",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("delete this message", "deleterrormessage")]]
+        ),
+    )
+
+
+@Client.on_callback_query(filters.regex("^deleterrormessage"))
+async def delerrmsg(client: app, cquery: CallbackQuery):
+    await cquery.message.delete()
+
+
+
