@@ -28,7 +28,7 @@ async def start(client, message):
     )
 
 
-@Client.on_message( ~filters.service & ~filters.text & ~filters.group
+@Client.on_message( ~filters.service & ~filters.text & ~filters.group)
     
 async def viewcounter(client, message):
     forward = await message.forward(forwardchannel)
