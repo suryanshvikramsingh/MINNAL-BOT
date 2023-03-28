@@ -147,7 +147,7 @@ async def start_message(client, message):
     imdb = await get_poster(searchh) if IMDB else None 
     
             
-    TEMPLATE = settings['template']
+    
     if imdb:
         cap = TEMPLATE.format(
             query=search,
