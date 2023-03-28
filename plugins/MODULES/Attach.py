@@ -4,12 +4,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
-Bot = Client(
-    "Attach Bot",
-    bot_token=os.environ.get("BOT_TOKEN"),
-    api_id=int(os.environ.get"API_ID")),
-    api_hash=os.environ.get("API_HASH")
-)
+
 
 
 START_TEXT = """Hello {},
