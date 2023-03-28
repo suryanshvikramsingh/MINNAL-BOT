@@ -10,7 +10,6 @@ from pyrogram.errors import ChatAdminRequired
 import asyncio
 
 """-----------------------------------------https://t.me/GetTGLink/4179 --------------------------------------"""
-
 @Client.on_message(filters.new_chat_members & filters.group)
 async def save_group(bot, message):
     r_j_check = [u.id for u in message.new_chat_members]
@@ -23,15 +22,14 @@ async def save_group(bot, message):
         if message.chat.id in temp.BANNED_CHATS:
             # Inspired from a boat of a banana tree
             buttons = [[
-                InlineKeyboardButton('ᵁᴾᴰᴬᵀᴱ', url=f'https://t.me/{SUPPORT_CHAT}')
+                InlineKeyboardButton('Support', url=f'https://t.me/{SUPPORT_CHAT}')
             ]]
             reply_markup=InlineKeyboardMarkup(buttons)
             k = await message.reply(
-                text='<b>CHAT NOT ALLOWED 🐞\n\nMy admins has restricted me from working here ! If you want to know more about it contact support..</b>',
+                text='<b>🚫 CHAT NOT ALLOWED 🚫\n\nMʏ Aᴅᴍɪɴs Hᴀs Rᴇsᴛʀɪᴄᴛᴇᴅ Mᴇ Fʀᴏᴍ Wᴏʀᴋɪɴɢ Hᴇʀᴇ ! Iғ Yᴏᴜ Wᴀɴᴛ Tᴏ Kɴᴏᴡ Mᴏʀᴇ Aʙᴏᴜᴛ Iᴛ Cᴏɴᴛᴀᴄᴛ Sᴜᴘᴘᴏʀᴛ..</b>',
                 reply_markup=reply_markup,
             )
-            await asyncio.sleep(60)
-            await k.delete()
+
             try:
                 await k.pin()
             except:
@@ -43,11 +41,9 @@ async def save_group(bot, message):
             InlineKeyboardButton('ᵁᴾᴰᴬᵀᴱ', url=(MAIN_CHANNEL))
         ]]
         reply_markup=InlineKeyboardMarkup(buttons)
-        k = await message.reply_text(
-            text=f"<b>Thankyou For Adding Me In {message.chat.title} ❣️\n\nIf you have any questions & doubts about using me contact support.</b>",
+        await message.reply_sticker(
+            sticker="CAACAgUAAxkBAAEUITVkDglLmbrE00xjQRMoi1oCJyYPDQAC0gcAArwmiVSTwrq-v5Wohx4E",
             reply_markup=reply_markup)
-        await asyncio.sleep(60)
-        await k.delete() 
     else:
         settings = await get_settings(message.chat.id)
         if settings["welcome"]:
@@ -59,14 +55,12 @@ async def save_group(bot, message):
                         pass
                 temp.MELCOW['welcome'] = await message.reply_sticker(
                                                  sticker="CAACAgUAAxkBAAEUITVkDglLmbrE00xjQRMoi1oCJyYPDQAC0gcAArwmiVSTwrq-v5Wohx4E",
-#                                                caption=(script.MELCOW_ENG.format(u.mention, message.chat.title)),
                                                  reply_markup=InlineKeyboardMarkup(
                                                                          [[
                                                                            InlineKeyboardButton('ᴊᴏɪɴ ɢʀᴏᴜᴘ', url=S_GROUP),
                                                                            InlineKeyboardButton('ᵁᴾᴰᴬᵀᴱ', url=MAIN_CHANNEL)
                                                                         ]]
                                                  )
-                                                 
                 )
                 
         if settings["auto_delete"]:
