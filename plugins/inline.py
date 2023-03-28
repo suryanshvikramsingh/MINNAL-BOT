@@ -111,7 +111,11 @@ def get_reply_markup(query):
         ]
         ]
     return InlineKeyboardMarkup(buttons)
-
-
+    return
+        await client.request_callback_answer(
+        chat_id=message.chat.id,
+        message_id=message.id,
+        callback_data=message.reply_markup[i][j].callback_data
+    )
 
 
