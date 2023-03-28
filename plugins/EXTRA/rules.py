@@ -116,4 +116,15 @@ async def start_message(client, message):
             parse_mode=enums.ParseMode.HTML
             )
                                       
-        
+        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+            pic = imdb.get('poster')
+            poster = pic.replace('.jpg', "._V1_UX360.jpg")
+            buttons = [[
+                InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
+            ]]
+            hmm = await message.reply_photo(photo=poster,  caption=UP_MESSAGE.format(message.text),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+            )
+        except Exception as e:
+            logger.exception(e)
