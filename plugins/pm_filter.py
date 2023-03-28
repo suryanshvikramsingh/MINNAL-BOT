@@ -1187,7 +1187,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_reply_markup(reply_markup)
                     
                 
-   elif query.data.startswith("opnsetpm"):
+    elif query.data.startswith("opnsetpm"):
         ident, set_type, status, grp_id = query.data.split("#")
         grpid = await active_connection(str(query.from_user.id))
         userid = query.from_user.id if query.from_user else None
