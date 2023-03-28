@@ -103,7 +103,7 @@ async def r_message(client, message):
 @Client.on_message(filters.chat(AUTH_CHANNEL)) 
 async def start_message(client, message):
 #    mention = message.from_user.mention
-    chat_id = message.chat.id
+#    chat_id = message.chat.id
 #    mv_rqst = message.text
     searchh = message.text                 
 #    reqstr1 = message.from_user.id if message.from_user else 0
