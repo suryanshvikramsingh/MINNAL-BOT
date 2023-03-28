@@ -18,3 +18,9 @@ openai==0.25.0
 python-telegram-bot==10.1.0
 Pillow>=4.2.0
 telegraph
+
+youtube_search
+youtubesearchpython
+yt_dlp
+youtube_dl
+wget
