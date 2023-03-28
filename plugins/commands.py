@@ -689,16 +689,19 @@ async def settings(client, message):
                 text="<b>Wʜᴇʀᴇ Dᴏ Yᴏᴜ Wᴀɴᴛ Tᴏ Oᴘᴇɴ Tʜᴇ Sᴇᴛᴛɪɴɢꜱ Mᴇɴᴜ ⚙️</b>",
                 reply_markup=InlineKeyboardMarkup(btn),
                 disable_web_page_preview=True,
-                parse_mode=enums.ParseMode.HTML,
-                reply_to_message_id=message.id
+                parse_mode=enums.ParseMode.HTML
             )
+                await asyncio.sleep(300)
+                await k.delete()
+            try:
+                await message.delete()
+        except:
+               pass
         else:
             await message.reply_text(
-                text=f"<b>Cᴜʀʀᴇɴᴛ Sᴇᴛᴛɪɴɢs Fᴏʀ {title}\n\nYᴏᴜ Cᴀɴ Cʜᴀɴɢᴇ Sᴇᴛᴛɪɴɢs As Yᴏᴜʀ Wɪsʜ Bʏ Usɪɴɢ Bᴇʟᴏᴡ Bᴜᴛᴛᴏɴs.</b>",
-                reply_markup=reply_markup,
-                disable_web_page_preview=True,
-                parse_mode=enums.ParseMode.HTML,
-                reply_to_message_id=message.id
+                text=f"Change your settings for <b>'{title}'</b> as your wish. ⚙",
+                reply_markup=InlineKeyboardMarkup(buttons),
+                parse_mode=enums.ParseMode.HTML
             )
 
 
