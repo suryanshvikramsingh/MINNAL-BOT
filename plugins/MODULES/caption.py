@@ -4,11 +4,11 @@ logging.basicConfig(level=logging.DEBUG,
 logger = logging.getLogger(__name__)
 
 import asyncio
-from pyrogram import filters
+from pyrogram import filters enums
 
 
 import os
-from info import LOGIN_CHHANEL
+from info import LOGIN_CHANEL
 
 
 class Config(object):
@@ -27,7 +27,7 @@ caption_position = usercaption_position.lower()
 caption_text = Config.CAPTION_TEXT
 
 
-@Client.on_message(filters.chat(LOGIN_CHHANEL) & (filters.document | filters.video | filters.audio ) & ~filters.edited, group=-1)
+@Client.on_message(filters.chat(LOGIN_CHANEL) & (filters.document | filters.video | filters.audio ) & ~filters.edited, group=-1)
 async def editing(bot, message):
       try:
          media = message.document or message.video or message.audio
@@ -49,21 +49,21 @@ async def editing(bot, message):
                  chat_id = message.chat.id, 
                  message_id = message.message_id,
                  caption = caption_text + "\n" + file_caption,
-                 parse_mode = "markdown"
+                 parse_mode=enums.ParseMode.MARKDOWN
              )
           elif caption_position == "bottom":
              await bot.edit_message_caption(
                  chat_id = message.chat.id, 
                  message_id = message.message_id,
                  caption = file_caption + "\n" + caption_text,
-                 parse_mode = "markdown"
+                 parse_mode=enums.ParseMode.MARKDOWN
              )
           elif caption_position == "nil":
              await bot.edit_message_caption(
                  chat_id = message.chat.id,
                  message_id = message.message_id,
                  caption = caption_text, 
-                 parse_mode = "markdown"
+                 parse_mode=enums.ParseMode.MARKDOWN
              ) 
       except:
           pass
