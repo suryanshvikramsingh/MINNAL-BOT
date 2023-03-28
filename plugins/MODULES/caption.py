@@ -6,7 +6,6 @@ logger = logging.getLogger(__name__)
 import asyncio
 from pyrogram import filters
 
-from config import Config
 
 import os
 from info import LOGIN_CHHANEL
