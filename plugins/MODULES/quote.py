@@ -3,7 +3,7 @@ app = Client('1BJWap1sBu0let_yfAfQYseESxLaUncqOE89aWOpc3IrMXTCD7F83rKi4aYIAGEdTB
 
 
 
-@Client.on_message(filters.me &filters.command(['tag'],['/','!','+','-','']))
+@Client.on_message(filters.command("tag"))
 def tag(client, message):
     try:
         list5 = []
