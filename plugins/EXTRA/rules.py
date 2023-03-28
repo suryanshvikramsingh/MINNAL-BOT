@@ -163,6 +163,4 @@ async def start_message(client, message):
 
 
 
-    if spoll:
-
-        await msg.message.delete()
+    
