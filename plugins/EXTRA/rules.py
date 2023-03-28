@@ -85,6 +85,7 @@ async def r_message(client, message):
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)
     await message.reply_text(START_MESSAGE.format(message.from_user.mention, message.chat.title),
+    protect_content=msg.get('protect', False),
     reply_markup=reply_markup, 
     parse_mode=enums.ParseMode.HTML
     )
