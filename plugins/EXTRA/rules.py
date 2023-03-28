@@ -8,7 +8,7 @@ from Script import script
 import os
 from pyrogram import Client, filters, enums
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
-from info import IMDB_TEMPLATE, LOGIN_CHANNEL, ADMINS
+from info import IMDB_TEMPLATE, LOGIN_CHANNEL, ADMINS, PROTECT_CONTENT
 from utils import extract_user, get_file_id, get_poster, last_online
 from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings
 
@@ -19,6 +19,31 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 from info import IMDB
+
+
+
+
+import os
+import logging
+import random
+import asyncio
+from Script import script
+from pyrogram import Client, filters, enums
+from pyrogram.errors import ChatAdminRequired, FloodWait
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from database.ia_filterdb import Media, get_file_details, unpack_new_file_id, get_bad_files
+from database.users_chats_db import db
+
+from utils import get_settings, get_size, is_subscribed, save_group_settings, temp, verify_user, check_token, check_verification, get_token
+from database.connections_mdb import active_connection
+from plugins.fsub import ForceSub
+import re
+import json
+import base64
+logger = logging.getLogger(__name__)
+
+BATCH_FILES = {}
+
 
 
 
@@ -79,13 +104,15 @@ UP_MESSAGE = """
 
 @Client.on_message(filters.command("rules") & filters.group) 
 async def r_message(client, message):
+    protect = "/pbatch" if PROTECT_CONTENT else "batch"
+    diff = int(l_msg_id) - int(f_msg_id)
     mention = message.from_user.mention
     buttons = [[
         InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)
     await message.reply_text(START_MESSAGE.format(message.from_user.mention, message.chat.title),
-    protect_content=message.get('protect', False),
+    protect_content=True if protect == "/pbatch" else False,
     reply_markup=reply_markup, 
     parse_mode=enums.ParseMode.HTML
     )
