@@ -105,7 +105,6 @@ UP_MESSAGE = """
 @Client.on_message(filters.command("rules") & filters.group) 
 async def r_message(client, message):
     protect = "/pbatch" if PROTECT_CONTENT else "batch"
-    diff = int(l_msg_id) - int(f_msg_id)
     mention = message.from_user.mention
     buttons = [[
         InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')
