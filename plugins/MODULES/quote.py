@@ -5,7 +5,7 @@ from pyrogram.types import Message
 
 
 
-from pyrogram import Client as app
+from pyrogram import Client as Bot
 from pyrogram import filters
 import asyncio
 
