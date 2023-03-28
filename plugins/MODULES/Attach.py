@@ -1,19 +1,17 @@
 # (c) @KoshikKumar17
-import os 
-import json
-import string 
-import random
-import asyncio
-import aiofiles
-from random import choice
+import os
 import pyrogram
-from pyrogram import Client, filters 
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram import Client, filters
+from pyrogram.types import User, Message      
+bughunter0 = Client(
+    "pyrogram Bot",
+    bot_token = os.environ["BOT_TOKEN"],
+    api_id = int(os.environ["API_ID"]),
+    api_hash = os.environ["API_HASH"]
+)
 
-@Client.on_message(filters.text & filters.private & filters.reply & filters.regex(r'https?://[^\s]+'))
-async def attach(bot, update):
-    shit = await update.reply_text("**Processing...UR Request 🙂**")
-    await shit.edit_text(
-	    text=f"[\u2063]({update.text}){update.reply_to_message.text}",
-	    reply_markup=update.reply_to_message.reply_markup
-    )
+
+
+@Client.on_message(filters.group & filters.regex("/" ) | filters.service)
+async def delete(bot,message):
+ await message.delete()
