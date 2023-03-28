@@ -79,10 +79,6 @@ UP_MESSAGE = """
 {} 𝐌𝐨𝐯𝐢𝐞 𝐀𝐝𝐝𝐞𝐝 𝐓𝐡𝐢𝐬 𝐆𝐫𝐨𝐮𝐩
 """
 
-@Client.on_message(filters.command("rs") & filters.group) 
-async for message in bot.search_messages(chat_id, query="hello", limit=120):
-    print(message.text)
-
 
 @Client.on_message(filters.command("rules") & filters.group) 
 async def r_message(client, message):
