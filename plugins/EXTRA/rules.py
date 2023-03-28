@@ -107,7 +107,10 @@ async def start_message(client, message):
     searchh = message.text                 
 #    reqstr1 = message.from_user.id if message.from_user else 0
 #    reqstr = await client.get_users(reqstr1)   
-    imdb = await get_poster(searchh) if IMDB else None    
+    imdb = await get_poster(searchh) if IMDB else None 
+    pic = imdb.get('poster')
+    poster = pic.replace('.jpg', "._V1_UX360.jpg")
+  
             
     if imdb and imdb.get('poster'):
         try:
