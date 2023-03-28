@@ -8,7 +8,7 @@ from pyrogram import filters, enums
 
 
 import os
-from info import LOGIN_CHANEL
+from info import LOGIN_CHANNEL
 
 
 class Config(object):
@@ -27,7 +27,7 @@ caption_position = usercaption_position.lower()
 caption_text = Config.CAPTION_TEXT
 
 
-@Client.on_message(filters.chat(LOGIN_CHANEL) & (filters.document | filters.video | filters.audio ) & ~filters.edited, group=-1)
+@Client.on_message(filters.chat(LOGIN_CHANNEL) & (filters.document | filters.video | filters.audio ) & ~filters.edited, group=-1)
 async def editing(bot, message):
       try:
          media = message.document or message.video or message.audio
