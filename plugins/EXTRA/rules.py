@@ -150,38 +150,37 @@ async def start_message(client, message):
     
     if imdb:
         cap = TEMPLATE.format(
-            query=search,
-            title=imdb['title'],
-            votes=imdb['votes'],
-            aka=imdb["aka"],
-            seasons=imdb["seasons"],
-            box_office=imdb['box_office'],
-            localized_title=imdb['localized_title'],
-            kind=imdb['kind'],
-            imdb_id=imdb["imdb_id"],
-            cast=imdb["cast"],
-            runtime=imdb["runtime"],
-            countries=imdb["countries"],
-            certificates=imdb["certificates"],
-            languages=imdb["languages"],
-            director=imdb["director"],
-            writer=imdb["writer"],
-            producer=imdb["producer"],
-            composer=imdb["composer"],
-            cinematographer=imdb["cinematographer"],
-            music_team=imdb["music_team"],
-            distributors=imdb["distributors"],
-            release_date=imdb['release_date'],
-            year=imdb['year'],
-            genres=imdb['genres'],
-            poster=imdb['poster'],
-            plot=imdb['plot'],
-            rating=imdb['rating'],
-            url=imdb['url'],
-            **locals()
-        )
-    else:
-        cap = script.NOR_TXT.format(search, total_results, message.from_user.mention, message.chat.title)
+        query=search,
+        title=imdb['title'],
+        votes=imdb['votes'],
+        aka=imdb["aka"],
+        seasons=imdb["seasons"],
+        box_office=imdb['box_office'],
+        localized_title=imdb['localized_title'],
+        kind=imdb['kind'],
+        imdb_id=imdb["imdb_id"],
+        cast=imdb["cast"],
+        runtime=imdb["runtime"],
+        countries=imdb["countries"],
+        certificates=imdb["certificates"],
+        languages=imdb["languages"],
+        director=imdb["director"],
+        writer=imdb["writer"],
+        producer=imdb["producer"],
+        composer=imdb["composer"],
+        cinematographer=imdb["cinematographer"],
+        music_team=imdb["music_team"],
+        distributors=imdb["distributors"],
+        release_date=imdb['release_date'],
+        year=imdb['year'],
+        genres=imdb['genres'],
+        poster=imdb['poster'],
+        plot=imdb['plot'],
+        rating=imdb['rating'],
+        url=imdb['url'],
+        **locals()
+    )
+    
     if imdb and imdb.get('poster'):
         try:
             if message.chat.id == SUPPORT_CHAT_ID:
@@ -194,7 +193,7 @@ async def start_message(client, message):
                     )
                 )
             else:
-                hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
+                hehe = await message.reply_photo(photo=imdb.get('poster'), reply_markup=InlineKeyboardMarkup(btn))
                 try:
                     if settings['auto_delete']:
                         await asyncio.sleep(IMDB_DLT_TIME)
@@ -229,7 +228,7 @@ async def start_message(client, message):
             else:
                 pic = imdb.get('poster')
                 poster = pic.replace('.jpg', "._V1_UX360.jpg")
-                hmm = await message.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
+                hmm = await message.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(btn))
                 try:
                     if settings['auto_delete']:
                         await asyncio.sleep(IMDB_DLT_TIME)
@@ -263,7 +262,7 @@ async def start_message(client, message):
                 )
             else:                
                 logger.exception(e)
-                fek = await message.reply_text(text=cap, reply_markup=InlineKeyboardMarkup(btn))
+                fek = await message.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(btn))
                 try:
                     if settings['auto_delete']:
                         await asyncio.sleep(IMDB_DLT_TIME)
@@ -296,7 +295,7 @@ async def start_message(client, message):
                 )
             )
         else:
-            fuk = await message.reply_text(text=cap, reply_markup=InlineKeyboardMarkup(btn))
+            fuk = await message.reply_photo(photo=poster, reply_markup=InlineKeyboardMarkup(btn))
             try:
                 if settings['auto_delete']:
                     await asyncio.sleep(IMDB_DLT_TIME)
