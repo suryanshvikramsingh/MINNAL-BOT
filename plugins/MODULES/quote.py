@@ -134,7 +134,7 @@ async def locks_func(client: Client, message: Message):
 
 
 @Client.on_message(filters.command("locks")
-async def locktypes(client, message):
+async def locktypes(client: Client, message: Message):
     permissions = await current_chat_permissions(client, message.chat.id)
 
     if not permissions:
