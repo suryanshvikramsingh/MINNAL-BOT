@@ -101,7 +101,7 @@ async def r_message(client, message):
 
 
 
-@Client.on_message(filters.command("kgf") & filters.reply)
+@Client.on_message(filters.reply)
 async def start_message(client, message):
     searchh = message.text                 
     imdb = await get_poster(searchh) if IMDB else None                             
