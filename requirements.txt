@@ -27,4 +27,4 @@ youtube_dl
 wget
 aiofiles
 
-pyromod
+
