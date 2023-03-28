@@ -5,78 +5,40 @@ from pyrogram.types import Message
 
 
 
-@Client.on_message(filters.command("dell", ".") & filters.me)
-async def del_msg(client, message):
-    msg_src = message.reply_to_message
-    if msg_src:
-        if msg_src.from_user.id:
-            try:
-                await client.delete_messages(message.chat.id, msg_src.id)
-                await message.delete()
-            except BaseException:
-                pass
-    else:
-        await message.delete()
+from pyrogram import Client as app
+from pyrogram import filters
+import asyncio
 
+async def bla(sec):
+    await asyncio.sleep(sec)
+@Client.on_message(filters.command("dell"))
 
+async def setprofilephoto(client, message):
+    try:
+        gif = message.reply_to_message.animation if message.reply_to_message.video else None
+        photo = message.reply_to_message.photo if message.reply_to_message.photo else None
+        if photo:
+            await client.edit_message_text(message.chat.id, message.message_id, '**در حال دانلود عکس .**')
+            await client.edit_message_text(message.chat.id, message.message_id, '**در حال دانلود عکس ..**')
+            await client.edit_message_text(message.chat.id, message.message_id, '**در حال دانلود عکس ...**')
+            await message.reply_to_message.download('profile.png')
+            await client.edit_message_text(message.chat.id, message.message_id, '**در حال دانلود عکس ..**')
+            await client.edit_message_text(message.chat.id, message.message_id, '**در حال دانلود عکس .**')
+            await client.set_profile_photo(photo = 'downloads/profile.png')
+            os.remove('downloads/profile.png')
+            await client.edit_message_text(message.chat.id, message.message_id, '**پروفایل با موفقیت تنظیم شد 👁**')
+            await bla(10)
+            await app.delete_messages(message.chat.id, message.message_id)
 
-@Client.on_message(filters.command("pd"))
-async def purge(client, message):
-    ex = await message.edit_text("`Starting To Purge Messages!`")
-    msg = message.reply_to_message
-    if msg:
-        itermsg = list(range(msg.id, message.id))
-    else:
-        await ex.edit("`Reply To Message To Purge!`")
-        return
-    count = 0
-
-    for i in itermsg:
-        try:
-            count = count + 1
-            await client.delete_messages(
-                chat_id=message.chat.id, message_ids=i, revoke=True
-            )
-        except FloodWait as e:
-            await asyncio.sleep(e.x)
-        except Exception as e:
-            await ex.edit(f"**ERROR:** `{e}`")
-            return
-
-    done = await ex.edit(
-        f"**Fast Purge Completed!**\n**Successfully Delete** `{str(count)}` **Message.**"
-    )
-    await asyncio.sleep(2)
-    await done.delete()
-
-
-
-@Client.on_message(filters.command("pdl"))
-async def purgeme(client, message):
-    if len(message.command) != 2:
-        return await message.delete()
-    n = message.text.split(None, 1)[1].strip()
-    if not n.isnumeric():
-        return await message.edit_text("Please enter a number")
-    n = int(n)
-    if n < 1:
-        return await message.edit_text("Enter the number of messages you want to delete!")
-    chat_id = message.chat.id
-    message_ids = [
-        m.id
-        async for m in client.search_messages(
-            chat_id,
-            from_user="me",
-            limit=n,
-        )
-    ]
-    if not message_ids:
-        return await message.edit_text("Could not find message.")
-    to_delete = [message_ids[i : i + 99] for i in range(0, len(message_ids), 99)]
-    for hundred_messages_or_less in to_delete:
-        await client.delete_messages(
-            chat_id=chat_id,
-            message_ids=hundred_messages_or_less,
-            revoke=True,
-        )
-    await message.delete()
+        if gif: #it does not working right now :(
+            await client.edit_message_text(message.chat.id, message.message_id, '**درحال دانلود گیف .**')
+            await client.edit_message_text(message.chat.id, message.message_id, '**در حال دانلود گیف ..**')
+            await client.edit_message_text(message.chat.id, message.message_id, '**در حال دانلود گیف ...**')
+            await message.reply_to_message.download('profile.mp4')
+            await client.edit_message_text(message.chat.id, message.message_id, '**در حال دانلود گیف ..**')
+            await client.edit_message_text(message.chat.id, message.message_id, '**در حال دانلود گیف .**')
+            await client.set_profile_photo(video = 'downloads/profile.mp4')
+            os.remove('downloads/profile.mp4')
+            await client.edit_message_text(message.chat.id, message.message_id, '**پروفایل با موفقیت تنظیم شد 👁**')
+    except:
+        pass
