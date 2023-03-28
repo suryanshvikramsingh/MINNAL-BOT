@@ -7,8 +7,8 @@ from database.k import get_arg
 
 
 
-@Client.on_message(filters.command(["q", "quotly"]))
-async def quotly(client: Client, message: Message):
+@Client.on_message(filters.command("q"))
+async def quotly(client, message):
     args = get_arg(message)
     if not message.reply_to_message and not args:
         return await message.edit("**Please Reply to Message**")
