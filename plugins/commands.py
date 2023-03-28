@@ -521,6 +521,7 @@ async def delete_all_index_confirm(bot, message):
     await message.message.edit('Succesfully Deleted All The Indexed Files.')
 
 
+
 @Client.on_message(filters.command('settings'))
 async def settings(client, message):
     userid = message.from_user.id if message.from_user else None
@@ -555,13 +556,20 @@ async def settings(client, message):
             and st.status != enums.ChatMemberStatus.OWNER
             and str(userid) not in ADMINS
     ):
-        try:
-            await message.delete()
-        except:
-            pass
         return
-
+    
     settings = await get_settings(grp_id)
+
+    try:
+        if settings['max_btn']:
+            settings = await get_settings(grp_id)
+    except KeyError:
+        await save_group_settings(grp_id, 'max_btn', False)
+        settings = await get_settings(grp_id)
+    if 'is_shortlink' not in settings.keys():
+        await save_group_settings(grp_id, 'is_shortlink', False)
+    else:
+        pass
 
     if settings is not None:
         buttons =  [
@@ -678,23 +686,20 @@ async def settings(client, message):
 
         reply_markup = InlineKeyboardMarkup(buttons)
         if chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
-            k = await message.reply_text(
+            await message.reply_text(
                 text="<b>Wʜᴇʀᴇ Dᴏ Yᴏᴜ Wᴀɴᴛ Tᴏ Oᴘᴇɴ Tʜᴇ Sᴇᴛᴛɪɴɢꜱ Mᴇɴᴜ ⚙️</b>",
                 reply_markup=InlineKeyboardMarkup(btn),
                 disable_web_page_preview=True,
-                parse_mode=enums.ParseMode.HTML
+                parse_mode=enums.ParseMode.HTML,
+                reply_to_message_id=message.id
             )
-            await asyncio.sleep(300)
-            await k.delete()
-            try:
-                await message.delete()
-            except:
-               pass
         else:
             await message.reply_text(
-                text=f"Change your settings for <b>'{title}'</b> as your wish. ⚙",
-                reply_markup=InlineKeyboardMarkup(buttons),
-                parse_mode=enums.ParseMode.HTML
+                text=f"<b>Cᴜʀʀᴇɴᴛ Sᴇᴛᴛɪɴɢs Fᴏʀ {title}\n\nYᴏᴜ Cᴀɴ Cʜᴀɴɢᴇ Sᴇᴛᴛɪɴɢs As Yᴏᴜʀ Wɪsʜ Bʏ Usɪɴɢ Bᴇʟᴏᴡ Bᴜᴛᴛᴏɴs.</b>",
+                reply_markup=reply_markup,
+                disable_web_page_preview=True,
+                parse_mode=enums.ParseMode.HTML,
+                reply_to_message_id=message.id
             )
 
 
