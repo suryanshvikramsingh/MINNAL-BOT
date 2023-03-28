@@ -130,8 +130,8 @@ async def start_message(client, message):
 
             fmsg = await message.reply_photo(
                    caption=f"👮‍♂ {message.from_user.mention} ɴᴏᴛɪᴄᴇ :ɪ𝙵 ʏᴏᴜ ᴅᴏ ɴᴏᴛ sᴇᴇ ᴛʜᴇ 𝙵ɪʟᴇ𝚂 ᴏ𝙵 ᴛʜɪ𝚂 ᴍᴏᴠɪᴇ ʏᴏᴜ ᴀ𝚂ᴋᴇᴅ 𝙵ᴏʀ. ʟᴏᴏᴋ ᴀᴛ ɴᴇ𝚇ᴛ ᴘᴀɢᴇ🔎\n©️քօաɛʀɛɖ ɮʏ :{message.chat.title}",
-                   photo="https://telegra.ph/file/8a8ba3e824e1d2482253f.jpg",
-                   parse_mode="html")
+                   photo="https://telegra.ph/file/8a8ba3e824e1d2482253f.jpg")
+                   
                    
 
     else:
@@ -140,8 +140,8 @@ async def start_message(client, message):
 
         fmsg = await message.reply_photo(
                caption=f"👮‍♂ {message.from_user.mention} ɴᴏᴛɪᴄᴇ :ɪ𝙵 ʏᴏᴜ ᴅᴏ ɴᴏᴛ sᴇᴇ ᴛʜᴇ 𝙵ɪʟᴇ𝚂 ᴏ𝙵 ᴛʜɪ𝚂 ᴍᴏᴠɪᴇ ʏᴏᴜ ᴀ𝚂ᴋᴇᴅ 𝙵ᴏʀ. ʟᴏᴏᴋ ᴀᴛ ɴᴇ𝚇ᴛ ᴘᴀɢᴇ🔎\n©️քօաɛʀɛɖ ɮʏ :{message.chat.title}",
-               photo="https://telegra.ph/file/8a8ba3e824e1d2482253f.jpg",
-               parse_mode="html")
+               photo="https://telegra.ph/file/8a8ba3e824e1d2482253f.jpg")
+               
                
 
     
