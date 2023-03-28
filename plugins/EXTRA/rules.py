@@ -122,7 +122,7 @@ async def start_message(client, message):
 
             poster = pic.replace('.jpg', "._V1_UX360.jpg")
 
-            fmsg = await message.reply_photo(photo=poster))
+            fmsg = await message.reply_photo(photo=poster)
 
         except Exception as e:
 
