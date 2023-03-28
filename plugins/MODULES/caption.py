@@ -53,9 +53,3 @@ async def notsupported(client, message):
     )
 
 
-@Client.on_callback_query(filters.regex("^deleterrormessage"))
-async def delerrmsg(client: bot, cquery: CallbackQuery):
-    await cquery.message.delete()
-
-
-
