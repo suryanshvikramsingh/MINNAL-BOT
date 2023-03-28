@@ -9,7 +9,7 @@ bs4
 git+https://github.com/Joelkb/cinemagoer
 datetime
 pytz
-aiohttp
+aiohttp==3.7.4
 python-dotenv
 psutil
 heroku3
@@ -21,7 +21,7 @@ Pillow>=4.2.0
 telegraph
 
 youtube_search
-youtubesearchpython
+youtube-search-python==1.4.6
 yt_dlp
 youtube_dl
 wget
