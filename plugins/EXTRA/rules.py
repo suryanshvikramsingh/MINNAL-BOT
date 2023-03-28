@@ -128,7 +128,7 @@ async def start_message(client, message):
 
             logger.exception(e)
 
-            fmsg = await message.reply_photo(photo=imdb.get('poster'))
+            fmsg = await message.reply_photo(photo=poster)
                    
                    
 
@@ -136,7 +136,7 @@ async def start_message(client, message):
 
         
 
-        fmsg = await message.reply_photo(photo=imdb.get('poster'))
+        fmsg = await message.reply_photo(photo=poster)
                
                
 
