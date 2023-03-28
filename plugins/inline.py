@@ -7,6 +7,12 @@ from utils import is_subscribed, get_size, temp
 from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, REQ_CHANNEL, INLINE_CAPTION
 from database.connections_mdb import active_connection
 
+from pyrogram import Client
+from pyrogram.types import (ReplyKeyboardMarkup, InlineKeyboardMarkup,
+                            InlineKeyboardButton)
+
+
+
 logger = logging.getLogger(__name__)
 cache_time = 0 if AUTH_USERS or AUTH_CHANNEL else CACHE_TIME
 
@@ -112,5 +118,64 @@ def get_reply_markup(query):
         ]
     return InlineKeyboardMarkup(buttons)
     
+
+
+
+
+
+
+
+
+async def main():
+    async with bot:
+        await bot.send_message(
+            "me",  # Edit this
+            "This is a ReplyKeyboardMarkup example",
+            reply_markup=ReplyKeyboardMarkup(
+                [
+                    ["A", "B", "C", "D"],  # First row
+                    ["E", "F", "G"],  # Second row
+                    ["H", "I"],  # Third row
+                    ["J"]  # Fourth row
+                ],
+                resize_keyboard=True  # Make the keyboard smaller
+            )
+        )
+
+        await bot.send_message(
+            "me",  # Edit this
+            "This is a InlineKeyboardMarkup example",
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [  # First row
+                        InlineKeyboardButton(  # Generates a callback query when pressed
+                            "Button",
+                            callback_data="data"
+                        ),
+                        InlineKeyboardButton(  # Opens a web URL
+                            "URL",
+                            url="https://docs.pyrogram.org"
+                        ),
+                    ],
+                    [  # Second row
+                        InlineKeyboardButton(  # Opens the inline interface
+                            "Choose chat",
+                            switch_inline_query="pyrogram"
+                        ),
+                        InlineKeyboardButton(  # Opens the inline interface in the current chat
+                            "Inline here",
+                            switch_inline_query_current_chat="pyrogram"
+                        )
+                    ]
+                ]
+            )
+        )
+
+
+
+
+
+
+
 
 
