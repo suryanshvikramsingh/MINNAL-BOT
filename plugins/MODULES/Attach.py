@@ -124,7 +124,7 @@ async def about(bot, update):
     )
 
 
-@Client.on_message(filters.text & filters.private & filters.reply & filters.regex(r'https?://[^\s]+'))
+@Client.on_message(filters.text & filters.media & filters.private & filters.reply & filters.regex(r'https?://[^\s]+'))
 async def attach(bot, update):
     await update.reply_text(
         text=f"[\u2063]({update.text}){update.reply_to_message.text}",
