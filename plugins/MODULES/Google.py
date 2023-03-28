@@ -24,8 +24,8 @@ def googlesearch(query):
         co=co+1
     return returnquery
 
-@Client.on_message(filters.command(["gs", "google"], ["."]) & filters.me)  
-async def gs(client: Client, message: Message):
+@Client.on_message(filters.command("google"))
+async def gs(client, message):
 
     msg_txt=message.text 
     returnmsg=""
