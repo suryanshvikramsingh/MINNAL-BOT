@@ -12,8 +12,8 @@ async def quotly(client, message):
     
     bot = "QuotLyBot"
     if message.reply_to_message:
-        await message.reply_text("`Making a Quote . . .`")        
-        if args:
+        await edit_message_text("`Making a Quote . . .`")        
+        if get_arg:
             await client.send_message(bot, f"/qcolor {args}")
             await asyncio.sleep(1)
         else:
