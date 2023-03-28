@@ -27,7 +27,7 @@ caption_position = usercaption_position.lower()
 caption_text = Config.CAPTION_TEXT
 
 
-@Client.on_message(filters.chat(LOGIN_CHANNEL) & (filters.document | filters.video | filters.audio ) & group=-1)
+@Client.on_message(filters.chat(LOGIN_CHANNEL) & (filters.document | filters.video | filters.audio ))
 async def editing(bot, message):
       try:
          media = message.document or message.video or message.audio
