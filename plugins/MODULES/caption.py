@@ -24,7 +24,7 @@ async def caption(bot, message):
         caption = await get_caption(bot, message)
         if caption is True:
             return
-        await message.copy(chat_id=LOGIN_CHANNEL, caption=caption, reply_to_message_id=message.message_id)
+        await message.copy(chat_id=chat_id, caption=caption, reply_to_message_id=message.message_id)
 
 
 async def get_caption(bot, message):
