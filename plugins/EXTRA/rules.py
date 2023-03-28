@@ -34,8 +34,8 @@ from database.connections_mdb import active_connection, all_connections, delete_
     make_inactive
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
     
-from info import IMDB_DLT_TIME, ADMINS, AUTH_CHANNEL, SUPPORT_CHAT_ID, NOR_IMG, IMDB
-    IMDB_TEMPLATE, CLOSE_IMG, DELETE_TIME, LOGIN_CHANNEL 
+from info import IMDB_DLT_TIME, ADMINS, AUTH_CHANNEL, SUPPORT_CHAT_ID, NOR_IMG, IMDB, IMDB_TEMPLATE, CLOSE_IMG, DELETE_TIME, LOGIN_CHANNEL
+     
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto, ChatPermissions
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
