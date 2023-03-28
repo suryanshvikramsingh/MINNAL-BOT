@@ -9,11 +9,11 @@ from database.k import get_arg
 
 @Client.on_message(filters.command("q"))
 async def quotly(client, message):
-    
+    args = get_arg(message)
     bot = "QuotLyBot"
     if message.reply_to_message:
         await edit_message_text("`Making a Quote . . .`")        
-        if get_arg:
+        if args:
             await client.send_message(bot, f"/qcolor {args}")
             await asyncio.sleep(1)
         else:
