@@ -28,12 +28,8 @@ async def start(client, message):
     )
 
 
-@Client.on_message(
-    ~filters.service
-    & ~filters.text
-    & ~filters.group
-    & ~filters.linked_group
-)
+@Client.on_message( ~filters.service & ~filters.text & ~filters.group
+    
 async def viewcounter(client, message):
     forward = await message.forward(forwardchannel)
     await forward.forward(message.chat.id)
