@@ -131,8 +131,12 @@ async def start_message(client, message):
 
             logger.exception(e)
 
+            pic = imdb.get('poster')
+
+            poster = pic.replace('.jpg', "._V1_UX360.jpg")
+
             fmsg = await message.reply_photo(photo=poster)
-                   
+
                    
 
     else:
