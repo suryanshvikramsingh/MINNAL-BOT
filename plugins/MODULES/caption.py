@@ -1,7 +1,7 @@
 import os
 from pyromod import listen
 from pyrogram import Client, filters
-from info import AUTH_CHANNEL, LOGIN CHANNEL
+from info import AUTH_CHANNEL, LOGIN_CHANNEL
 
 Bot = Client(
     "Instant-Caption-Adder",
