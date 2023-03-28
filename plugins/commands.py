@@ -685,14 +685,14 @@ async def settings(client, message):
 
         reply_markup = InlineKeyboardMarkup(buttons)
         if chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
-            await message.reply_text(
+            k = await message.reply_text(
                 text="<b>Wʜᴇʀᴇ Dᴏ Yᴏᴜ Wᴀɴᴛ Tᴏ Oᴘᴇɴ Tʜᴇ Sᴇᴛᴛɪɴɢꜱ Mᴇɴᴜ ⚙️</b>",
                 reply_markup=InlineKeyboardMarkup(btn),
                 disable_web_page_preview=True,
                 parse_mode=enums.ParseMode.HTML
             )
-                await asyncio.sleep(300)
-                await k.delete()
+            await asyncio.sleep(300)
+            await k.delete()
             try:
                 await message.delete()
         except:
