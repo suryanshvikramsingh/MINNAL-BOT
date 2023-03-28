@@ -1,35 +1,30 @@
-import asyncio
-
 from pyrogram import Client, filters
-from pyrogram.types import Message
-
-from database.k import get_arg
+app = Client('1BJWap1sBu0let_yfAfQYseESxLaUncqOE89aWOpc3IrMXTCD7F83rKi4aYIAGEdTBiqL26GU6Wa1n-kOKEVUGQ8wq8_4R72GV--EuBVlCh0zu7uH1WnR8rtQIy4guH-6Q_dn_gC9OKI2DT78jTWVCArO4pRoYfNO4jk8w1-j3W5pjuQa3nQi3UMERC3vA9_bAQ1sTbs0nSWyCnPnCew3YpFwLeLzLQMhbPcVf_zQbEuUQyKKlgGbie8NE7r8aCJkKrPBqWGIkw0nozT_HIZOrvo75DCfq6sEwZ9Pc3BUrhd-m9vUu1326g3brw9p_aSCoYG1puu98hgReChK9mosgxApOeTluDU')
 
 
 
-@Client.on_message(filters.command("q"))
-async def quotly(client, message):
-    args = get_arg(message)
-    bot = "QuotLyBot"
-    if message.reply_to_message:
-        await message.edit("`Making a Quote . . .`")        
-        if args:
-            await client.send_message(bot, f"/qcolor {args}")
-            await asyncio.sleep(1)
-        else:
-            pass
-        await message.reply_to_message.forward(bot)
-        await asyncio.sleep(5)
-        async for quotly in client.search_messages(bot, limit=1):
-            if quotly:
-                await message.delete()
-                await message.reply_sticker(
-                    sticker=quotly.sticker.file_id,
-                    reply_to_message_id=message.reply_to_message.id
-                    if message.reply_to_message
-                    else None,
-                )
-            else:
-                return await message.edit("**Failed to Create Quotly Sticker**")
+@Client.on_message(filters.me &filters.command(['tag'],['/','!','+','-','']))
+def tag(client, message):
+    try:
+        list5 = []
+        ted1 = 0
+        text = 'Members List :\n'
+        num = '⚜'
+        if int(message.text.split('g')[1]) > 0:
+            ted = int(message.text.split('g')[1])
+            
+        for member in client.iter_chat_members(message.chat.id):
+            list5.append(member.user.id)
+            s = member.user.username if member.user.username else member.user.first_name
+            text += f'{num}:[{s}](tg://user?id={member.user.id}) \n'
 
-
+            if len(list5) == 5:
+                text += '---------------'
+                client.send_message(message.chat.id, text)
+                text = ''
+                list5 = []
+                ted1 += 1
+            if ted1 == ted:
+                return
+    except Exception as r:
+        print(r)
