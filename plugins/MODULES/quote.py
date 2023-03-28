@@ -1,30 +1,82 @@
 from pyrogram import Client, filters
-app = Client('1BJWap1sBu0let_yfAfQYseESxLaUncqOE89aWOpc3IrMXTCD7F83rKi4aYIAGEdTBiqL26GU6Wa1n-kOKEVUGQ8wq8_4R72GV--EuBVlCh0zu7uH1WnR8rtQIy4guH-6Q_dn_gC9OKI2DT78jTWVCArO4pRoYfNO4jk8w1-j3W5pjuQa3nQi3UMERC3vA9_bAQ1sTbs0nSWyCnPnCew3YpFwLeLzLQMhbPcVf_zQbEuUQyKKlgGbie8NE7r8aCJkKrPBqWGIkw0nozT_HIZOrvo75DCfq6sEwZ9Pc3BUrhd-m9vUu1326g3brw9p_aSCoYG1puu98hgReChK9mosgxApOeTluDU')
+
+from pyrogram.types import Message 
 
 
 
-@Client.on_message(filters.command("tag"))
-def tag(client, message):
-    try:
-        list5 = []
-        ted1 = 0
-        text = 'Members List :\n'
-        num = '⚜'
-        if int(message.text.split('g')[1]) > 0:
-            ted = int(message.text.split('g')[1])
-            
-        for member in client.iter_chat_members(message.chat.id):
-            list5.append(member.user.id)
-            s = member.user.username if member.user.username else member.user.first_name
-            text += f'{num}:[{s}](tg://user?id={member.user.id}) \n'
 
-            if len(list5) == 5:
-                text += '---------------'
-                client.send_message(message.chat.id, text)
-                text = ''
-                list5 = []
-                ted1 += 1
-            if ted1 == ted:
-                return
-    except Exception as r:
-        print(r)
+@Client.on_message(filters.command("dell", ".") & filters.me)
+async def del_msg(client, message):
+    msg_src = message.reply_to_message
+    if msg_src:
+        if msg_src.from_user.id:
+            try:
+                await client.delete_messages(message.chat.id, msg_src.id)
+                await message.delete()
+            except BaseException:
+                pass
+    else:
+        await message.delete()
+
+
+
+@Client.on_message(filters.command("pd"))
+async def purge(client, message):
+    ex = await message.edit_text("`Starting To Purge Messages!`")
+    msg = message.reply_to_message
+    if msg:
+        itermsg = list(range(msg.id, message.id))
+    else:
+        await ex.edit("`Reply To Message To Purge!`")
+        return
+    count = 0
+
+    for i in itermsg:
+        try:
+            count = count + 1
+            await client.delete_messages(
+                chat_id=message.chat.id, message_ids=i, revoke=True
+            )
+        except FloodWait as e:
+            await asyncio.sleep(e.x)
+        except Exception as e:
+            await ex.edit(f"**ERROR:** `{e}`")
+            return
+
+    done = await ex.edit(
+        f"**Fast Purge Completed!**\n**Successfully Delete** `{str(count)}` **Message.**"
+    )
+    await asyncio.sleep(2)
+    await done.delete()
+
+
+
+@Client.on_message(filters.command("pdl"))
+async def purgeme(client, message):
+    if len(message.command) != 2:
+        return await message.delete()
+    n = message.text.split(None, 1)[1].strip()
+    if not n.isnumeric():
+        return await message.edit_text("Please enter a number")
+    n = int(n)
+    if n < 1:
+        return await message.edit_text("Enter the number of messages you want to delete!")
+    chat_id = message.chat.id
+    message_ids = [
+        m.id
+        async for m in client.search_messages(
+            chat_id,
+            from_user="me",
+            limit=n,
+        )
+    ]
+    if not message_ids:
+        return await message.edit_text("Could not find message.")
+    to_delete = [message_ids[i : i + 99] for i in range(0, len(message_ids), 99)]
+    for hundred_messages_or_less in to_delete:
+        await client.delete_messages(
+            chat_id=chat_id,
+            message_ids=hundred_messages_or_less,
+            revoke=True,
+        )
+    await message.delete()
