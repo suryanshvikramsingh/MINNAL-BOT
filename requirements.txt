@@ -17,3 +17,4 @@ openai==0.25.0
 
 python-telegram-bot==10.1.0
 Pillow>=4.2.0
+telegraph
