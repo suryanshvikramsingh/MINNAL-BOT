@@ -688,7 +688,7 @@ async def settings(client, message):
             await k.delete()
             try:
                 await message.delete()
-        except:
+            except:
                pass
         else:
             await message.reply_text(
