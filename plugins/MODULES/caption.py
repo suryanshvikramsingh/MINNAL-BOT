@@ -19,6 +19,9 @@ class Config(object):
       CAPTION_POSITION = os.environ.get("CAPTION_POSITION", "nil")
       ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME", "kinzanoufal")
 
+UP_MESSAGE = """
+ 𝐌𝐨𝐯𝐢𝐞 𝐀𝐝𝐝𝐞𝐝 𝐓𝐡𝐢𝐬 𝐆𝐫𝐨𝐮𝐩
+"""
 
 
 
@@ -31,7 +34,7 @@ caption_text = Config.CAPTION_TEXT
 async def editing(bot, message):
       try:
          media = message.document or message.video or message.audio
-         caption_text = Config.CAPTION_TEXT
+         caption_text = UP_MESSAGE
       except:
          caption_text = ""
          pass 
