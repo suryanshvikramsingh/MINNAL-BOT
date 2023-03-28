@@ -137,33 +137,4 @@ async def start_message(client, message):
 
                    
 
-    else:
-
-        pic = imdb.get('poster')
-        poster = pic.replace('.jpg', "._V1_UX360.jpg")        
-        fmsg = await message.reply_photo(photo=poster)
-
-
-         
-               
-
-    
- 
-    await asyncio.sleep(180)
-
-    await fmsg.delete()
-
-
-    
-    await message.reply_photo(
-    photo=random.choice(SP),
-    caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️"
-    
-    )               
-            
-
-    
-
-
-
     
