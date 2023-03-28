@@ -25,3 +25,4 @@ youtube-search-python==1.4.6
 yt_dlp
 youtube_dl
 wget
+aiofiles
