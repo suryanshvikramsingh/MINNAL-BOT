@@ -111,24 +111,68 @@ async def start_message(client, message):
             
     if imdb and imdb.get('poster'):
         try:
-            buttons = [[
-                InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
-            ]]
-            reply_markup = InlineKeyboardMarkup(buttons)
-            await message.reply_photo(photo=imdb.get('poster'), caption=UP_MESSAGE.format(message.text),
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-            )
-                                      
+
+            fmsg = await message.reply_photo(photo=imdb.get('poster'), caption=cap[:1024],
+
+                                      reply_markup=InlineKeyboardMarkup(btn))
+
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
+
             pic = imdb.get('poster')
+
             poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            buttons = [[
-                InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
-            ]]
-            hmm = await message.reply_photo(photo=poster,  caption=UP_MESSAGE.format(message.text),
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-            )
+
+            fmsg = await message.reply_photo(photo=poster, caption=cap[:1024], reply_markup=InlineKeyboardMarkup(btn))
+
         except Exception as e:
+
             logger.exception(e)
+
+            fmsg = await message.reply_photo(
+                   caption=f"👮‍♂ {message.from_user.mention} ɴᴏᴛɪᴄᴇ :ɪ𝙵 ʏᴏᴜ ᴅᴏ ɴᴏᴛ sᴇᴇ ᴛʜᴇ 𝙵ɪʟᴇ𝚂 ᴏ𝙵 ᴛʜɪ𝚂 ᴍᴏᴠɪᴇ ʏᴏᴜ ᴀ𝚂ᴋᴇᴅ 𝙵ᴏʀ. ʟᴏᴏᴋ ᴀᴛ ɴᴇ𝚇ᴛ ᴘᴀɢᴇ🔎\n©️քօաɛʀɛɖ ɮʏ :{message.chat.title}",
+                   photo="https://telegra.ph/file/8a8ba3e824e1d2482253f.jpg",
+                   parse_mode="html",
+                   reply_markup=InlineKeyboardMarkup(btn))
+
+    else:
+
+        
+
+        fmsg = await message.reply_photo(
+               caption=f"👮‍♂ {message.from_user.mention} ɴᴏᴛɪᴄᴇ :ɪ𝙵 ʏᴏᴜ ᴅᴏ ɴᴏᴛ sᴇᴇ ᴛʜᴇ 𝙵ɪʟᴇ𝚂 ᴏ𝙵 ᴛʜɪ𝚂 ᴍᴏᴠɪᴇ ʏᴏᴜ ᴀ𝚂ᴋᴇᴅ 𝙵ᴏʀ. ʟᴏᴏᴋ ᴀᴛ ɴᴇ𝚇ᴛ ᴘᴀɢᴇ🔎\n©️քօաɛʀɛɖ ɮʏ :{message.chat.title}",
+               photo="https://telegra.ph/file/8a8ba3e824e1d2482253f.jpg",
+               parse_mode="html",
+               reply_markup=InlineKeyboardMarkup(btn))
+
+    
+ 
+    await asyncio.sleep(180)
+
+    await fmsg.delete()
+
+
+    buttons = [
+
+            [
+
+                InlineKeyboardButton(f"{message.from_user.first_name}", url=f"https://t.me/NasraniSeries"),
+
+                InlineKeyboardButton('SUPPORT', url=f"https://t.me/NasraniChatGroup"),
+
+            ]
+
+            ]
+    await message.reply_photo(
+    photo=random.choice(SP),
+    caption=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️",
+    reply_markup=InlineKeyboardMarkup(buttons)
+    )               
+            
+
+    
+
+
+
+    if spoll:
+
+        await msg.message.delete()
