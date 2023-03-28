@@ -136,51 +136,10 @@ async def r_message(client, message):
 
 
 
-@Client.on_message(filters.command("r"))
+@Client.on_message(filters.command("kgf") & filters.reply)
 async def start_message(client, message):
-#    mention = message.from_user.mention
-#    chat_id = message.chat.id
-#    mv_rqst = message.text
     search = message.text                 
-#    reqstr1 = message.from_user.id if message.from_user else 0
-#    reqstr = await client.get_users(reqstr1)   
-    imdb = await get_poster(searchh) if IMDB else None 
-    
-            
-    
-    if imdb:
-        cap = TEMPLATE.format(
-        query=search,
-        title=imdb['title'],
-        votes=imdb['votes'],
-        aka=imdb["aka"],
-        seasons=imdb["seasons"],
-        box_office=imdb['box_office'],
-        localized_title=imdb['localized_title'],
-        kind=imdb['kind'],
-        imdb_id=imdb["imdb_id"],
-        cast=imdb["cast"],
-        runtime=imdb["runtime"],
-        countries=imdb["countries"],
-        certificates=imdb["certificates"],
-        languages=imdb["languages"],
-        director=imdb["director"],
-        writer=imdb["writer"],
-        producer=imdb["producer"],
-        composer=imdb["composer"],
-        cinematographer=imdb["cinematographer"],
-        music_team=imdb["music_team"],
-        distributors=imdb["distributors"],
-        release_date=imdb['release_date'],
-        year=imdb['year'],
-        genres=imdb['genres'],
-        poster=imdb['poster'],
-        plot=imdb['plot'],
-        rating=imdb['rating'],
-        url=imdb['url'],
-        **locals()
-    )
-    
+    imdb = await get_poster(searchh) if IMDB else None                             
     if imdb and imdb.get('poster'):
         try:
             buttons = [[
@@ -192,15 +151,4 @@ async def start_message(client, message):
             parse_mode=enums.ParseMode.HTML
             )
                                       
-        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-            pic = imdb.get('poster')
-            poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            buttons = [[
-                InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')           
-            ]]
-            hmm = await message.reply_photo(photo=poster,  caption=UP_MESSAGE.format(message.text),
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-            )
-        except Exception as e:
-            logger.exception(e)
+        
