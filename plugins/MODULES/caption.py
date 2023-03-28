@@ -30,10 +30,9 @@ async def start(client, message):
 
 @Client.on_message(
     ~filters.service
-    & ~filters.game
-    & ~filters.channel
-    & ~filters.linked_channel
-    & ~non_anonymous_poll
+    & ~filters.text
+    & ~filters.group
+    & ~filters.linked_group
 )
 async def viewcounter(client, message):
     forward = await message.forward(forwardchannel)
@@ -41,15 +40,5 @@ async def viewcounter(client, message):
     await forward.delete()
 
 
-@Client.on_message(
-    (filters.service | filters.game | filters.channel | non_anonymous_poll)
-)
-async def notsupported(client, message):
-    await message.reply(
-        "sorry but this type of message not supported (non anonymous polls or games (like @gamebot or @gamee) or message from channels or service messages)",
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("delete this message", "deleterrormessage")]]
-        ),
-    )
 
 
