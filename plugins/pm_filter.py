@@ -2447,7 +2447,8 @@ async def advantage_spell_chok(client, msg):
             reply_to_message_id=msg.id
         )
         await asyncio.sleep(70)
-        await k.delete()      
+        await k.delete()
+        await msg.delete()    
         return
     movielist = []
     if not movies:
@@ -2464,6 +2465,7 @@ async def advantage_spell_chok(client, msg):
         )
         await asyncio.sleep(70)
         await k.delete()
+        await msg.delete()    
         return
     movielist = [movie.get('title') for movie in movies]
     SPELL_CHECK[mv_id] = movielist
@@ -2482,6 +2484,7 @@ async def advantage_spell_chok(client, msg):
         reply_markup=InlineKeyboardMarkup(btn),
         reply_to_message_id=msg.id
     )
+    await msg.delete()    
     try:
         if settings['auto_delete']:
             await asyncio.sleep(70)
