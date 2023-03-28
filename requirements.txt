@@ -26,3 +26,5 @@ yt_dlp
 youtube_dl
 wget
 aiofiles
+
+googlesearch
