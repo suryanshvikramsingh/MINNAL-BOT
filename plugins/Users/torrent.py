@@ -17,9 +17,9 @@ async def start(_, message):
 
 
 
-@Client.on_message(filters.command(['trn']))
+@Client.on_message(filters.command(['torrent']))
 async def help(_, message):
-    await message.reply_text("Example: /find titanic")
+    await message.reply_text("Example: /torrent titanic")
 
 m = None
 i = 0
