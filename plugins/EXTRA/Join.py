@@ -56,6 +56,28 @@ async def sub(client, message):
     )
 
 
+
+
+
+@Client.on_message(filters.private & filters.command(["join"]))
+async def sub(client, message):
+    text = message.text         
+    button = [[
+        InlineKeyboardButton('𝐉𝐎𝐈𝐍 𝐂𝐇𝐀𝐍𝐍𝐄𝐋', url=f'https://t.me/bigmoviesworld')   
+    
+    ],[
+        InlineKeyboardButton("𝐃𝐞𝐥𝐞𝐭𝐞", callback_data = "de"),
+        InlineKeyboardButton("𝐈𝐦𝐩𝐨𝐫𝐭𝐚𝐧𝐭", callback_data = "answ")
+    ]]
+    reply_markup = InlineKeyboardMarkup(buttons)
+    await message.reply_photo(
+    photo=SP,
+    caption=ADS.format(message.text),
+    reply_markup=reply_markup, 
+    parse_mode=enums.ParseMode.HTML
+    )
+
+
 @Client.on_callback_query()
 async def cb_handler(client, query: CallbackQuery):
     data = query.data 
@@ -102,40 +124,12 @@ async def cb_handler(client, query: CallbackQuery):
                ]]
             )
         )
-    elif data == "d.":
-        await query.message.edit_text(
-            text=mr.DEV_TXT,
-            reply_markup=InlineKeyboardMarkup( [[
-               #⚠️ don't change source code & source link ⚠️ #
-               InlineKeyboardButton("❣️ 𝚂𝙾𝚄𝚁𝙲𝙴", url="https://github.com/TEAM-PYRO-BOTZ/PYRO-RENAME-BOT")
-               ],[
-               InlineKeyboardButton("🖥️ 𝙷𝙾𝚆 𝚃𝙾 𝙼𝙰𝙺𝙴", url="https://youtu.be/GfulqsSnTv4")
-               ],[
-               InlineKeyboardButton("🔒 𝙲𝙻𝙾𝚂𝙴", callback_data = "close"),
-               InlineKeyboardButton("◀️ 𝙱𝙰𝙲𝙺", callback_data = "start")
-               ]]
-            )
-        )
-    elif data == "c.":
+    elif data == "answ":
+        await query.answer(f"𝐓𝐡𝐞 𝐁𝐞𝐬𝐭 𝐅𝐢𝐥𝐦 𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐁𝐨𝐭", show_alert=True)
+            
+    elif data == "de":
         try:
             await query.message.delete()
             await query.message.reply_to_message.delete()
         except:
             await query.message.delete()
-
-
-@Client.on_message(filters.private & filters.command(["sub"]))
-async def sub(client, message):
-                 
-    button = [[
-        InlineKeyboardButton('𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/{temp.U_NAME}?startgroup=true')   
-    ]] 
-    reply_markup = InlineKeyboardMarkup(buttons)
-    await message.reply_photo(
-    photo=PIC,
-    text=START_MESSAGE,
-    reply_markup=reply_markup, 
-    parse_mode=enums.ParseMode.HTML
-    )
-
-
