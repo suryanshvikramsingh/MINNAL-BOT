@@ -35,10 +35,7 @@ from pyrogram.enums import MessageMediaType
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ForceReply
 
 
-LAZY_MODE = bool(environ.get("LAZY_MODE"))
-#Add user id of the user in this field those who you want to be Authentic user for file renaming features
-lazy_renamers = [int(lazrenamers) if id_pattern.search(lazrenamers) else lazrenamers for lazrenamers in environ.get('LAZY_RENAMERS', '').split()]
-LAZY_RENAMERS = (lazy_renamers + ADMINS) if lazy_renamers else []
+from info import ADMINS , FLOOD, LAZY_MODE, LAZY_RENAMERS
 
 
 
