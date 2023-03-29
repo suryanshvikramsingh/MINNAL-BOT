@@ -2,6 +2,7 @@ from googletrans import Translator
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from plugins.helpers.list import list
+from plugins.helpers.database import find_one
  
 
 
