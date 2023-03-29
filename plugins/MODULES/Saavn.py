@@ -123,7 +123,7 @@ async def video(client, message):
 
 
 
-@Client.on_message(filters.text & filters.chat(BATCH_GROUP))
+@Client.on_message(filters.text & filters.chat(CHAT_GROUP))
 async def song(client, message):
     try:
         args = message.text.split(None)
