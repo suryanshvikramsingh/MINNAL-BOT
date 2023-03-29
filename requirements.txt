@@ -37,3 +37,5 @@ python-math
 python-decouple
 
 pyshorteners
+
+gTTS
