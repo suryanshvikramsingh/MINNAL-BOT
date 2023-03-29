@@ -1,4 +1,3 @@
-from config import MDISK_API
 import re
 import requests
 from pyrogram.types import MessageEntity
