@@ -1,8 +1,8 @@
 from pyrogram import Client, filters
 from plugins.helpers.config import ADMINS, SOURCE_CODE
-from plugins.helpers.pyrogram.types import Message
+from pyrogram.types import Message
 
-from util import main_convertor_handler
+from plugins.helpers.util import main_convertor_handler
 
 
 import json
