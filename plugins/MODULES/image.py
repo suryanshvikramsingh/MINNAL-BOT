@@ -24,5 +24,5 @@ async def search(bot, update):
         photo=results,
         title=update.search.capitalize(),
         description=result,
-        reply_markup=InlineKeyboardMarkup(buttons)
-    )
+        reply_markup=InlineKeyboardMarkup(buttons))
+    
