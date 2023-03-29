@@ -4,7 +4,6 @@ from pyrogram import Client, filters
     
 from pyrogram import Client,filters
 import requests,os,wget
-from info import BATCH_GROUP, REQST_CHANNEL, SUPPORT_CHAT_ID, ADMINS
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import asyncio
 import requests
