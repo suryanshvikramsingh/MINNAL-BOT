@@ -7,7 +7,9 @@ from pyrogram.errors.exceptions.forbidden_403 import ChatWriteForbidden
 import os
 import sys
 from pyrogram import Client, filters
-from Script import script
+
+BATCH = """This command is used to short all links in your channel. Make the bot as an admin in your channel.\n\n 
+Command usage: `/batch -100xxxx or @xxx`"""
 
 buttons = [
     [
