@@ -12,7 +12,7 @@ A = """{} with user id:- {} used /song command."""
 
 
 
-@Client.on_message(filters.command('smp3') & filters.text & filters.chat(CHAT_GROUP))
+@Client.on_message(filters.command('smp3') & filters.chat(CHAT_GROUP))
 async def video(client, message):
     try:
        args = message.text.split(None, 1)[1]
@@ -44,7 +44,7 @@ async def video(client, message):
     await pak.delete()   
     await client.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
     
-@Client.on_message(filters.command('smp3') & filters.text & filters.chat(CHAT_GROUP))
+@Client.on_message(filters.command('smp3') & filters.chat(CHAT_GROUP))
 async def song(client, message):
     try:
        args = message.text.split(None, 1)[1]
