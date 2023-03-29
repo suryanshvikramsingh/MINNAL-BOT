@@ -20,8 +20,8 @@ START_MESSAGE = """
 
 
 𝐅𝐨𝐫 𝐄𝐱𝐚𝐦𝐩𝐥𝐞 :-
-/vsaavn 𝐀𝐥𝐨𝐧𝐞 𝐬𝐚𝐚𝐯𝐧 𝐦𝐩𝟑 𝐬𝐨𝐧𝐠
-/vmp4 𝐀𝐥𝐨𝐧𝐞 𝐬𝐚𝐚𝐯𝐧 𝐦𝐩𝟒 𝐬𝐨𝐧𝐠
+/ssong 𝐀𝐥𝐨𝐧𝐞 𝐬𝐚𝐚𝐯𝐧 𝐦𝐩𝟑 𝐬𝐨𝐧𝐠
+/svideo 𝐀𝐥𝐨𝐧𝐞 𝐬𝐚𝐚𝐯𝐧 𝐦𝐩𝟒 𝐬𝐨𝐧𝐠
 /ysong 𝐀𝐥𝐨𝐧𝐞 𝐲𝐨𝐮𝐭𝐮𝐛𝐞 𝐦𝐩𝟑 𝐬𝐨𝐧𝐠
 /yvideo 𝐀𝐥𝐨𝐧𝐞 𝐲𝐨𝐮𝐭𝐮𝐛𝐞 𝐦𝐩𝟒 𝐬𝐨𝐧𝐠
 
@@ -35,21 +35,21 @@ START_MESSAGE = """
 
 
 
-@Client.on_message(filters.command('vsaavn') & filters.text)
+@Client.on_message(filters.command('svideo') & filters.text)
 async def video(client, message): 
     try:
-        args = message.text.split(None)
+       args = message.text.split(None, 1)[1]
     except:
-         
-        
-        return
+        return await message.reply("/svideo requires an argument.")
+    if args.startswith(" "):
+        await message.reply("/svideo requires an argument.")
+        return ""
     pak = await message.reply('Downloading...')
     try:
         r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
     except Exception as e:
         await pak.edit(str(e))
         return
-    
     r = requests.get(f"https://saavn.me/search/songs?query={args}&page=2&limit=2").json()
     sname = r['data']['results'][0]['name']
     slink = r['data']['results'][0]['downloadUrl'][4]['link']
@@ -79,14 +79,14 @@ async def video(client, message):
 #    await client.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
         
 
-@Client.on_message(filters.command('saavn') & filters.text)
+@Client.on_message(filters.command('ssong') & filters.text)
 async def song(client, message):
     try:
        args = message.text.split(None, 1)[1]
     except:
-        return await message.reply("/saavn requires an argument.")
+        return await message.reply("/ssong requires an argument.")
     if args.startswith(" "):
-        await message.reply("/saavn requires an argument.")
+        await message.reply("/ssong requires an argument.")
         return ""
     pak = await message.reply('Downloading...')
     try:
