@@ -32,3 +32,6 @@ unshortenit
 mdisky
 
 googletrans==3.1.0a0
+
+python-math
+python-decouple
