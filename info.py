@@ -187,7 +187,7 @@ LAZY_MODE = bool(environ.get("LAZY_MODE"))
 #Add user id of the user in this field those who you want to be Authentic user for file renaming features
 lazy_renamers = [int(lazrenamers) if id_pattern.search(lazrenamers) else lazrenamers for lazrenamers in environ.get('LAZY_RENAMERS', '').split()]
 LAZY_RENAMERS = (lazy_renamers + ADMINS) if lazy_renamers else []
-REQ_CHANNEL = int(environ.get('REQ_CHANNEL'))
+GROUP_CHAT = int(environ.get('GROUP_CHAT'))
 
 
 # LOG_STR += (f"INLINE_CAPTION enabled with value {INLINE_CAPTION}, your files will be send along with this customized caption.\n" if INLINE_CAPTION else "No INLINE_CAPTION Found, Default captions of file will be used.\n")
