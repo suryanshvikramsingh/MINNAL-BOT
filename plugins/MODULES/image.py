@@ -13,8 +13,10 @@ from bs4 import BeautifulSoup
 from pyrogram.types import Message
 
 
-@Client.on_message(filters.command("i") & filters.text) 
+@Client.on_message(filters.command("i") & filters.text)    
 async def photo(client, message):
+    args = message.text.split(None)
+
     results = requests.get(f"https://apibu.herokuapp.com/api/y-images?query={args}&page=1&limit=1").json() 
     img = r['data']['results'][0]['image'][2]['link']   
     await message.reply_photo(
