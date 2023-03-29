@@ -27,9 +27,6 @@ youtube_dl
 wget
 aiofiles
 
-humanize
-hachoir
-
 doodstream
 unshortenit
 mdisky
