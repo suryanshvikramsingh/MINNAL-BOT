@@ -17,9 +17,9 @@ async def song(client, message):
     try:
        args = message.text.split(None, 1)[1]
     except:
-        return await message.reply("/vmp4 requires an argument.")
+        return await message.reply("/saavn requires an argument.")
     if args.startswith(" "):
-        await message.reply("/vmp4 requires an argument.")
+        await message.reply("/saavn requires an argument.")
         return ""
     pak = await message.reply('Downloading...')
     try:
@@ -31,19 +31,18 @@ async def song(client, message):
     sname = r['data']['results'][0]['name']
     slink = r['data']['results'][0]['downloadUrl'][4]['link']
     ssingers = r['data']['results'][0]['primaryArtists']
-#    album_id = r.json()[0]["albumid"]
+  #  album_id = r.json()[0]["albumid"]
     img = r['data']['results'][0]['image'][2]['link']
     thumbnail = wget.download(img)
     file = wget.download(slink)
     ffile = file.replace("mp3", "mp4")
     os.rename(file, ffile)
-    buttons = [[
-        InlineKeyboardButton("JOIN MOVIES", url="https://t.me/NASRANI_UPDATE")
-    ]]                           
-    await message.reply_video(
-    video=ffile, caption=f"[{sname}]({r['data']['results'][0]['url']}) - from @nasrani_update ",thumb=thumbnail,
-    reply_markup=InlineKeyboardMarkup(buttons)
-)
+    await pak.edit('Uploading...')
+    await message.reply_video(video=ffile, title=sname, performer=ssingers,caption=f"[{sname}]({r['data']['results'][0]['url']}) - from saavn ",thumb=thumbnail)
+    os.remove(ffile)
+    os.remove(thumbnail)
+    await pak.delete()
+
 
     os.remove(ffile)
     os.remove(thumbnail)
