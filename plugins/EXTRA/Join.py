@@ -36,7 +36,7 @@ ADS = """
 @Client.on_message(filters.private & filters.command(["sub"]))
 async def sub(client, message):
                  
-    button = [[
+    buttons = [[
         InlineKeyboardButton('𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
     ],[
         InlineKeyboardButton('𝐌𝐨𝐯𝐢𝐞𝐬 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/PYRO_BOTZ'),
@@ -62,7 +62,7 @@ async def sub(client, message):
 @Client.on_message(filters.private & filters.command(["join"]))
 async def sub(client, message):
     text = message.text         
-    button = [[
+    buttons = [[
         InlineKeyboardButton('𝐉𝐎𝐈𝐍 𝐂𝐇𝐀𝐍𝐍𝐄𝐋', url=f'https://t.me/bigmoviesworld')   
     
     ],[
