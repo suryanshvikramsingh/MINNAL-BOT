@@ -30,4 +30,7 @@ aiofiles
 humanize
 hachoir
 
+doodstream
+unshortenit
+mdisky
 
