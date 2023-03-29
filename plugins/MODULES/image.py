@@ -2,7 +2,7 @@ import os
 import requests
 from pyrogram import Client, filters
     
-from pyrogram import Client,filters
+from pyrogram import Client, filters
 import requests,os,wget
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import asyncio
