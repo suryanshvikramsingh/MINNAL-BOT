@@ -29,7 +29,7 @@ import humanize
 import random
 from plugins.helpers.txt import mr
 from plugins.helpers.database import db
-from plugins.helpers.config import START_PIC, FLOOD, ADMINS, LAZY_MODE, LAZY_RENAMERS
+from plugins.helpers.config import START_PIC, FLOOD, ADMINS
 from pyrogram import Client, filters
 from pyrogram.enums import MessageMediaType
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ForceReply
