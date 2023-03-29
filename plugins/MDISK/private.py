@@ -12,11 +12,11 @@ from plugins.helpers.util import replace_mdisk_link, caption
 from plugins.helpers.config import ADMINS, SOURCE_CODE
 from pyrogram.types import Message
 import re
-from info import BATCH_GROUP
+from info import CHAT_GROUP
 
 # Private Chat
 
-@Client.on_message(filters.command("m") & filters.chat(BATCH_GROUP) & (filters.channel | filters.group) & filters.forwarded & filters.incoming)
+@Client.on_message(filters.command("m") & filters.chat(CHAT_GROUP) & (filters.channel | filters.group) & filters.forwarded & filters.incoming)
         
 
 
