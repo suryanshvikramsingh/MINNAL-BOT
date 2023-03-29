@@ -170,7 +170,7 @@ async def video(client, message):
 
 
 @Client.on_message(filters.command('vmp3') & filters.chat(CHAT_GROUP))
-async def video(client, message): 
+async def audio(client, message): 
     try:
         args = message.text.split(None)
     except:
