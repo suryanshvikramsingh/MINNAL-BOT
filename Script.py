@@ -483,3 +483,8 @@ coммand and υѕeѕ
 ╰────── • ◆ • ──────╯
   ♡ ㅤ  ❍ㅤ     ⎙     ⌲
   ˡᶦᵏᵉ ᶜᵒᵐᵐᵉⁿᵗ  ˢᵃᵛᵉ  ˢʰᵃʳᵉ</b>"""
+
+
+# MDISK
+    BATCH = """This command is used to short all links in your channel. Make the bot as an admin in your channel.\n\n 
+Command usage: `/batch -100xxxx or @xxx`"""
