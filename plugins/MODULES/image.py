@@ -17,7 +17,7 @@ from pyrogram.types import Message
 async def photo(client, message):
     args = message.text.split(None)
 
-    results = requests.get(f"https://apibu.herokuapp.com/api/y-images+ requests.utils.requote_uri.json()["result"][:1] 
+    results = requests.get(f"https://apibu.herokuapp.com/api/y-images" + requests.utils.requote_uri.json()["result"][:1] 
     img = r['data']['results'][0]['image'][2]['link']   
     await message.reply_photo(
     photo=img,
