@@ -14,7 +14,7 @@ from pyrogram.types import Message
 
 
     
-@Client.on_message(filters.command.("i") & filters.photo) 
+@Client.on_message(filters.command("i") & filters.photo) 
 async def photo(client, message):
     
     results = requests.get(API + requests.utils.requote_uri(update.search)).json()["result"][:50]
