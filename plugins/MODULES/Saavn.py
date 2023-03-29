@@ -8,7 +8,8 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import asyncio
 from info import LOG_CHANNEL
 BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('💖🇮🇳✨ Made By ✨🇮🇳💖', url='https://t.me/nasrani_update')]])
-A = """{} with user id:- {} used /song command."""
+A = """{} with user id:- {} used /saavn command."""
+B = """{} with user id:- {} used /vsaavn command."""
 
 
 
@@ -50,11 +51,11 @@ async def video(client, message):
     os.remove(thumbnail)
     await pak.delete()
 
-    await client.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
-    await k.delete()
+    await client.send_message(LOG_CHANNEL, B.format(message.from_user.mention, message.from_user.id)) 
+    
 
 
-    await client.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
+#    await client.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
         
 
 @Client.on_message(filters.command('saavn') & filters.text)
@@ -86,6 +87,7 @@ async def song(client, message):
     os.remove(ffile)
     os.remove(thumbnail)
     await pak.delete()
-
+    await client.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
+    
 
 
