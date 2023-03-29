@@ -3,7 +3,6 @@ import re
 import ast
 import math
 import random
-
 import datetime 
 import psutil
 from pyrogram.errors.exceptions.bad_request_400 import MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
@@ -11,13 +10,10 @@ from Script import script
 import pyrogram
 from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, \
     make_inactive
-from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
-    
+from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid    
 from info import LANGUAGES, IMDB_DLT_TIME, BOT_START_TIME, MAX_BTN, ADMINS, AUTH_CHANNEL, AUTH_USERS, SUPPORT_CHAT_ID, CUSTOM_FILE_CAPTION, MSG_ALRT, PICS, AUTH_GROUPS, P_TTI_SHOW_OFF, GRP_LNK, CHNL_LNK, NOR_IMG, LOG_CHANNEL, MAX_B_TN, IMDB, \
     SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, NO_RESULTS_MSG, REQ_CHANNEL, MAIN_CHANNEL, FILE_CHANNEL, FILE_CHANNEL_LINK, CLOSE_IMG, DELETE_TIME, LOGIN_CHANNEL, FILE_CHANNEL, FILE_FORWARD, MAIN_CHANNEL, SP
-
 from datetime import datetime, timedelta
-
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto, ChatPermissions
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
@@ -37,11 +33,54 @@ from database.gfilters_mdb import (
 import logging
 import time
 
+from helper.utils import progress_for_pyrogram, convert
+from pyrogram import Client, filters
+from pyrogram.types import (  InlineKeyboardButton, InlineKeyboardMarkup,ForceReply)
+from hachoir.metadata import extractMetadata
+from hachoir.parser import createParser
+from helper.database import db
+import os 
+import humanize
+from PIL import Image
+import time
+
+
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 
 BUTTONS = {}
 SPELL_CHECK = {}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@Client.on_callback_query(filters.regex('rename'))
+async def rename(bot,update):
+	user_id = update.message.chat.id
+	date = update.message.date
+	await update.message.delete()
+	await update.message.reply_text("»»——— 𝙋𝙡𝙚𝙖𝙨𝙚 𝙚𝙣𝙩𝙚𝙧 𝙣𝙚𝙬 𝙛𝙞𝙡𝙚 𝙣𝙖𝙢𝙚...",	
+	reply_to_message_id=update.message.reply_to_message.id,  
+	reply_markup=ForceReply(True))  
+
+
+
+
+
+
+
+
 
 #@Client.on_message(filters.private & filters.text & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.private & filters.text & filters.incoming)
 #async def pv_filter(client, message):
