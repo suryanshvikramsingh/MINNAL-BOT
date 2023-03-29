@@ -65,7 +65,7 @@ SPELL_CHECK = {}
 
 
 
-@Client.on_callback_query(filters.regex('rename'))
+@Client.on_message(filters.private & filters.command("rn"))
 async def rename(bot,update):
 	user_id = update.message.chat.id
 	date = update.message.date
