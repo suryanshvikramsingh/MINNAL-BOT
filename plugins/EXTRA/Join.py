@@ -6,7 +6,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ForceRepl
 import random
 from info import SP
 
-MESSAGE = """
+MESSAGE = f"""
 𝐓𝐧𝐱 𝐀𝐥𝐥 𝐔𝐬𝐞𝐫𝐬🥰🥰\n
 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐀𝐧𝐧𝐝 𝐒𝐡𝐚𝐫𝐞\n
 നിങ്ങളുടെ ഗ്രൂപ്പിൽ എന്നെ ആഡ് ചെയ്ത് അഡ്മിൻ ആക്കിക്കോ. എല്ലാ മൂവിയും കിട്ടും..\n
@@ -14,7 +14,7 @@ MESSAGE = """
 𝐈𝐭𝐬 𝐄𝐚𝐬𝐲 𝐓𝐨 𝐔𝐬𝐞 𝐌𝐞; 𝐉𝐮𝐬𝐭 𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩 𝐀𝐬 𝐀𝐝𝐦𝐢𝐧, 𝐓𝐡𝐚𝐭𝐬 𝐀𝐥𝐥, 𝐢 𝐰𝐢𝐥𝐥 𝐏𝐫𝐨𝐯𝐢𝐝𝐞 𝐌𝐨𝐯𝐢𝐞𝐬 𝐓𝐡𝐞𝐫𝐞...🤓\n
 𝐂𝐥𝐢𝐜𝐤 𝐇𝐞𝐫𝐞
 𝐓𝐞𝐥𝐞𝐠𝐫𝐚𝐦 𝐁𝐢𝐠𝐠𝐞𝐬𝐭 𝐌𝐨𝐯𝐢𝐞𝐬 𝐟𝐢𝐥𝐭𝐞𝐫 𝐛𝐨𝐭 <a href='http://t.me/{temp.U_NAME}?startgroup=true'>@𝐌𝐢𝐧𝐧𝐚𝐥_𝐌𝐮𝐫𝐚𝐥𝐢_𝐑𝐨𝐛𝐨𝐭</a> 𝐨𝐫 @𝐍𝐀𝐒𝐑𝐀𝐍𝐈_𝐁𝐎𝐓
-𝐀𝐥𝐥 𝐟𝐢𝐥𝐦𝐬 𝐚𝐝𝐝𝐞𝐝 𝐭𝐡𝐢𝐬 𝐛𝐨𝐭. L😌😌
+𝐀𝐥𝐥 𝐟𝐢𝐥𝐦𝐬 𝐚𝐝𝐝𝐞𝐝 𝐭𝐡𝐢𝐬 𝐛𝐨𝐭. 😌😌
 𝐅𝐚𝐬𝐭 𝐣𝐨𝐢𝐧....
 """
 
