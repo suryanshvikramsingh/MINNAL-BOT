@@ -50,7 +50,7 @@ async def sub(client, message):
     reply_markup = InlineKeyboardMarkup(buttons)
     await message.reply_photo(
     photo=random.choice(SP),
-    caption=START_MESSAGE,
+    caption=(START_MESSAGE),
     reply_markup=reply_markup, 
     parse_mode=enums.ParseMode.HTML
     )
