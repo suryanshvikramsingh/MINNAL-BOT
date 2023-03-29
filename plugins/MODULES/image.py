@@ -19,11 +19,11 @@ from pyrogram.types import Message
 async def photo(client, message):
     
     results = requests.get(API + requests.utils.requote_uri(update.search)).json()["result"][:50]
-    try:
-        await message.reply_photo(
-        photo=results,
-        title=update.search.capitalize(),
-        description=result
+    
+    await message.reply_photo(
+    photo=results,
+    title=update.search.capitalize(),
+    description=result
     )
         
     
