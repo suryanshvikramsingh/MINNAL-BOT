@@ -49,7 +49,7 @@ async def sub(client, message):
     ]] 
     reply_markup = InlineKeyboardMarkup(buttons)
     await message.reply_photo(
-    photo=SP,
+    photo=random.choice(SP),
     text=START_MESSAGE,
     reply_markup=reply_markup, 
     parse_mode=enums.ParseMode.HTML
@@ -61,7 +61,7 @@ async def sub(client, message):
 
 @Client.on_message(filters.private & filters.command(["join"]))
 async def sub(client, message):
-    text = message.text         
+    search = message.text         
     buttons = [[
         InlineKeyboardButton('𝐉𝐎𝐈𝐍 𝐂𝐇𝐀𝐍𝐍𝐄𝐋', url=f'https://t.me/bigmoviesworld')   
     
@@ -71,8 +71,8 @@ async def sub(client, message):
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)
     await message.reply_photo(
-    photo=SP,
-    caption=ADS.format(message.text),
+    photo=random.choice(SP),
+    text=ADS.format(message.text),
     reply_markup=reply_markup, 
     parse_mode=enums.ParseMode.HTML
     )
