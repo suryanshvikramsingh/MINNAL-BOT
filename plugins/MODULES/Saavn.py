@@ -12,40 +12,46 @@ A = """{} with user id:- {} used /song command."""
 
 
 
-@Client.on_message(filters.command('vmp4') & filters.text)
-async def song(client, message):
+
+@Client.on_message(filters.command('vsaavn') & filters.text)
+async def video(client, message): 
     try:
-       args = message.text.split(None, 1)[1]
+        args = message.text.split(None)
     except:
-        return await message.reply("/saavn requires an argument.")
-    if args.startswith(" "):
-        await message.reply("/saavn requires an argument.")
-        return ""
+         
+        
+        return
     pak = await message.reply('Downloading...')
     try:
         r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
     except Exception as e:
         await pak.edit(str(e))
         return
-    r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
+    
+    r = requests.get(f"https://saavn.me/search/songs?query={args}&page=2&limit=2").json()
     sname = r['data']['results'][0]['name']
     slink = r['data']['results'][0]['downloadUrl'][4]['link']
     ssingers = r['data']['results'][0]['primaryArtists']
-  #  album_id = r.json()[0]["albumid"]
+#   album_id = r.json()[0]["albumid"]
     img = r['data']['results'][0]['image'][2]['link']
     thumbnail = wget.download(img)
     file = wget.download(slink)
     ffile = file.replace("mp3", "mp4")
     os.rename(file, ffile)
-    await pak.edit('Uploading...')
-    await message.reply_video(video=ffile, title=sname, performer=ssingers,caption=f"[{sname}]({r['data']['results'][0]['url']}) - from saavn ",thumb=thumbnail)
+    buttons = [[
+        InlineKeyboardButton("JOIN MOVIES", url="https://t.me/NASRANI_UPDATE")
+    ]]                           
+    await message.reply_video(
+    video=ffile, caption=f"[{sname}]({r['data']['results'][0]['url']}) - from @nasrani_update ",thumb=thumbnail,
+    reply_markup=InlineKeyboardMarkup(buttons)
+)
+    await message.reply_text(text="download mp3 song @nasrani_batch_store")
     os.remove(ffile)
     os.remove(thumbnail)
     await pak.delete()
 
-
-    os.remove(ffile)
-    os.remove(thumbnail)
+    await client.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
+    await k.delete()
 
 
     await client.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
