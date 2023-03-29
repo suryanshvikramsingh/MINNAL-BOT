@@ -53,7 +53,27 @@ async def sub(client, message):
 
 
 
-
+@Client.on_message(filters.private & filters.command(["ad"]))
+async def sub(client, message):
+    search = message.text         
+    buttons = [[
+        InlineKeyboardButton('𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+    ],[
+        InlineKeyboardButton('𝐌𝐨𝐯𝐢𝐞𝐬 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/PYRO_BOTZ'),
+        InlineKeyboardButton('𝐒𝐨𝐧𝐠 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/PYRO_BOTZ_CHAT')
+    ],[
+        InlineKeyboardButton('𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩', callback_data='about'),
+        InlineKeyboardButton('𝐂𝐡𝐚𝐧𝐧𝐞𝐥', url='https://t.me/bigmoviesworld')
+    ],[
+        InlineKeyboardButton('𝐔𝐩𝐝𝐚𝐭𝐞 𝐂𝐡𝐚𝐧𝐧𝐞𝐥', url=f'https://t.me/+obGgfOP2LZ0wYTBl')
+    ]] 
+    reply_markup = InlineKeyboardMarkup(buttons)
+    await message.reply_photo(
+    photo=random.choice(SP),
+    caption=ADS.format(message.text),
+    reply_markup=reply_markup, 
+    parse_mode=enums.ParseMode.HTML
+    )
 
 
 @Client.on_message(filters.private & filters.command(["ads"]))
