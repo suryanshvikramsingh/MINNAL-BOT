@@ -23,6 +23,6 @@ async def search(bot, update):
         await message.reply_photo(
         photo=results,
         title=update.search.capitalize(),
-        description=result,
-        reply_markup=InlineKeyboardMarkup(buttons))
+        description=result)
+        
     
