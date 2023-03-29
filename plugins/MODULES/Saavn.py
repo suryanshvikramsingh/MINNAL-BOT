@@ -46,7 +46,7 @@ async def song(client, message):
     args = message.text.split(None)
 
     r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
-    sname = r['data']['results'][0]['name']
+#    sname = r['data']['results'][0]['name']
     slink = r['data']['results'][0]['downloadUrl'][4]['link']
     ssingers = r['data']['results'][0]['primaryArtists']
 #    album_id = r.json()[0]["albumid"]
@@ -59,7 +59,7 @@ async def song(client, message):
         InlineKeyboardButton("JOIN MOVIES", url="https://t.me/NASRANI_UPDATE")
     ]]                           
     await message.reply_audio(
-    audio=ffile, title=sname, performer=ssingers,caption=f"[{sname}]({r['data']['results'][0]['url']}) - from @nasrani_update ",thumb=thumbnail,
+    audio=ffile, performer=ssingers,caption=f"[{sname}]({r['data']['results'][0]['url']}) - from @nasrani_update ",thumb=thumbnail,
     reply_markup=InlineKeyboardMarkup(buttons)
 )
 
