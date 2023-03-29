@@ -23,7 +23,7 @@ async def rename_file(bot, msg):
         except Exception as e:            
             return await sts.edit(text=f"Your caption Error unexpected keyword ●> ({e})")           
     else:
-        cap = f"{new_name}\n\n💽 size : {filesize}"
+        cap = f"{new_name}\n\n💽 size : {filesize} \n╭─────── • ◆ • ───────╮\nᴊᴏɪɴ : @bigmoviesworld\n✔️ᴍᴏᴠɪᴇs : @nasrani_update\n🖤 Dᴀʀᴋ Mᴏᴅᴇ : @NasraniSeries\n╰─────── • ◆ • ───────╯"
 
     # this idea's back end is MKN brain 🧠
 
