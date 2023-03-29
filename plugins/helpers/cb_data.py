@@ -3,7 +3,7 @@ from pyrogram import Client, filters
 from pyrogram.types import (  InlineKeyboardButton, InlineKeyboardMarkup,ForceReply)
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
-from plugins.helper.database import db
+from plugins.helpers.database import db
 import os 
 import humanize
 from PIL import Image
