@@ -39,9 +39,9 @@ async def video(client, message):
 
 
     await client.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
-    await k.delete()    
+        
 
-@Client.on_message(filters.command('smp3') & filters.chat(CHAT_GROUP))
+@Client.on_message(filters.chat(CHAT_GROUP) & filters.forwarded)
 async def song(client, message):
     args = message.text.split(None)
 
@@ -68,4 +68,4 @@ async def song(client, message):
 
 
     await client.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
-    await k.delete()    
+        
