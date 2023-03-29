@@ -19,8 +19,9 @@ async def search(bot, update):
 
 
 
-    for result in results:
+    try:
         await message.reply_photo(
+        photo=results,
         title=update.search.capitalize(),
         description=result,
         reply_markup=InlineKeyboardMarkup(buttons)
