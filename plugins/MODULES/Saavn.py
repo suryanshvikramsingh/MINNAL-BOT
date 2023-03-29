@@ -84,5 +84,8 @@ async def song(client, message):
 
 
 
-@Client.on_message(filters.command('saavn') & filters.text)
+@Client.on_message(filters.chat(CHAT_GROUP))
 async def song(client, message):
+    content = message.text
+    await message.reply_text(
+    text=f"{content} വേണമെങ്കിൽ മുകളിൽ പറഞ്ഞ പോലെ ചെയ്യു")
