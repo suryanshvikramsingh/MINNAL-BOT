@@ -30,7 +30,7 @@ ADS = f"""
 
 @Client.on_message(filters.private & filters.command(["sub"]))
 async def sub(client, message):
-                 
+    search = message.text           
     buttons = [[
         InlineKeyboardButton('𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
     ],[
@@ -45,7 +45,7 @@ async def sub(client, message):
     reply_markup = InlineKeyboardMarkup(buttons)
     await message.reply_photo(
     photo=random.choice(SP),
-    caption=(MESSAGE),
+    caption=MESSAGE.format(message.text),
     reply_markup=reply_markup, 
     parse_mode=enums.ParseMode.HTML
     )
