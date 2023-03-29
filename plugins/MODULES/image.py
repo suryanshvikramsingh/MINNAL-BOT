@@ -23,7 +23,7 @@ async def search(bot, update):
 
 
     for result in results:
-        await message.reply_audio(
+        await message.reply_photo(
         title=update.search.capitalize(),
         description=result,
         reply_markup=InlineKeyboardMarkup(buttons)
