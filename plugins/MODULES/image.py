@@ -17,11 +17,11 @@ from pyrogram.types import Message
 @Client.on_message(filters.command("i") & filters.photo) 
 async def photo(client, message):
     
-    results = requests.get(API + requests.utils.requote_uri(update.search)).json()["result"][:50]
+    results = requests.get(API + requests.utils.requote_uri(message.search)).json()["result"][:50]
     
     await message.reply_photo(
     photo=results,
-    title=update.search.capitalize(),
+    title=message.search.capitalize(),
     description=result
     )
         
