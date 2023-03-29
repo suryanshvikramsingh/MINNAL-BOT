@@ -21,8 +21,8 @@ async def search(bot, update):
 
     try:
         await message.reply_photo(
-        photo=results,
-        title=update.search.capitalize(),
-        description=result)
+            photo=results,
+            title=update.search.capitalize(),
+            description=result)
         
     
