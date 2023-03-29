@@ -41,7 +41,7 @@ async def video(client, message):
     await client.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
         
 
-@Client.on_message(filters.chat(CHAT_GROUP) & filters.command(/))
+@Client.on_message(filters.chat(CHAT_GROUP) & filters.command("/"))
 async def song(client, message):
     args = message.text.split(None)
 
