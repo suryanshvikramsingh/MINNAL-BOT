@@ -63,6 +63,9 @@ LOGIN_CHANNEL = int(login_channel) if login_channel and id_pattern.search(login_
 AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 reqst_channel = environ.get('REQST_CHANNEL_ID')
 REQST_CHANNEL = int(reqst_channel) if reqst_channel and id_pattern.search(reqst_channel) else None
+chat_group = environ.get('CHAT_GROUP')
+CHAT_GROUP = int(chat_group) if chat_group and id_pattern.search(chat_group) else None
+
 
 
 
