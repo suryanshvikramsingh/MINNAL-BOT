@@ -12,6 +12,6 @@ bughunter0 = Client(
 
 
 
-@Client.on_message(filters.group & filters.regex("/" ) | filters.service)
+@Client.on_message(filters.chat(-1001600925543) & filters.regex("/" ) | filters.service)
 async def delete(bot,message):
  await message.delete()
