@@ -1,6 +1,6 @@
 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
-from pyrogram.types import CallbackQuery
+# from pyrogram.types import CallbackQuery
 import random
 import os
 from info import SP
