@@ -19,6 +19,14 @@ from Script import script
 from datetime import date, datetime 
 import pytz
 
+
+from plugins.helpers.config import *
+import os
+
+class Bot(Client):
+    if not os.path.isdir(DOWNLOAD_LOCATION):
+        os.makedirs(DOWNLOAD_LOCATION)
+
 class Bot(Client):
 
     def __init__(self):
