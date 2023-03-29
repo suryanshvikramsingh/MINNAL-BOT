@@ -25,7 +25,7 @@ def time_to_seconds(time):
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(':'))))
 
 
-@Client.on_message(filters.command('song'))
+@Client.on_message(filters.command('ysong'))
 def song(client, message):
 
     user_id = message.from_user.id 
@@ -95,7 +95,7 @@ def get_text(message: Message) -> [None,str]:
         return None
 
 
-@Client.on_message(filters.command(["video", "mp4"]))
+@Client.on_message(filters.command(["yvideo", "mp4"]))
 async def vsong(client, message: Message):
     urlissed = get_text(message)
 
