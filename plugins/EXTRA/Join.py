@@ -3,7 +3,7 @@ from utils import temp
 
 from asyncio import sleep
 from pyrogram import Client, filters, enums
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ForceReply, CallbackQuery
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ForceReply
 import random
 from info import SP
 
