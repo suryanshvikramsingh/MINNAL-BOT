@@ -6,7 +6,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ForceRepl
 import random
 from info import SP
 
-START_MESSAGE = """
+START_MESSAGE = f"""
 𝐓𝐧𝐱 𝐀𝐥𝐥 𝐔𝐬𝐞𝐫𝐬🥰🥰
 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐀𝐧𝐧𝐝 𝐒𝐡𝐚𝐫𝐞
 
@@ -24,7 +24,7 @@ START_MESSAGE = """
 𝐅𝐚𝐬𝐭 𝐣𝐨𝐢𝐧....
 """
 
-ADS = """
+ADS = f"""
 𝐇𝐞𝐥𝐥𝐨
 𝐃𝐕𝐃 𝐂𝐨𝐦𝐢𝐧𝐠...𝐅𝐚𝐬𝐭𝐞𝐬𝐭 𝐀𝐝𝐝𝐞𝐝 𝐓𝐡𝐢𝐬 𝐂𝐡𝐚𝐧𝐧𝐞𝐥...
 𝐅𝐚𝐬𝐭 𝐉𝐨𝐢𝐧 𝐓𝐡𝐢𝐬 𝐂𝐡𝐚𝐧𝐧𝐞𝐥
@@ -50,7 +50,7 @@ async def sub(client, message):
     reply_markup = InlineKeyboardMarkup(buttons)
     await message.reply_photo(
     photo=random.choice(SP),
-    text=START_MESSAGE,
+    caption=START_MESSAGE,
     reply_markup=reply_markup, 
     parse_mode=enums.ParseMode.HTML
     )
