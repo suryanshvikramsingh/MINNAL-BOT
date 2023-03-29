@@ -17,11 +17,12 @@ from pyrogram.types import Message
 async def photo(client, message):
     args = message.text.split(None)
 
-    results = requests.get(f"https://apibu.herokuapp.com/api/y-images?query={args}&page=1&limit=1").json() 
+    results = requests.get(f"https://apibu.herokuapp.com/api/y-images+ requests.utils.requote_uri(message.query)
+    ).json()["result"][:50] 
     img = r['data']['results'][0]['image'][2]['link']   
     await message.reply_photo(
     photo=img,
-    results=message.search.capitalize()
+    results=message.query.capitalize()
     )
         
     
