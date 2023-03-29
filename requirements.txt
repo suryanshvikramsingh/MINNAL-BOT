@@ -27,5 +27,7 @@ youtube_dl
 wget
 aiofiles
 
+humanize
+hachoir
 
 
