@@ -29,7 +29,7 @@ import humanize
 import random
 from plugins.helpers.txt import mr
 from plugins.helpers.database import db
-from config import START_PIC, FLOOD, ADMIN 
+from config import START_PIC, FLOOD, ADMINS
 
 
 
