@@ -1,4 +1,4 @@
-from helper.utils import progress_for_pyrogram, convert
+from plugins.helpers.utils import progress_for_pyrogram, convert
 from pyrogram import Client, filters
 from pyrogram.types import (  InlineKeyboardButton, InlineKeyboardMarkup,ForceReply)
 from hachoir.metadata import extractMetadata
