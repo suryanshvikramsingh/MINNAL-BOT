@@ -7,6 +7,38 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ForceRepl
 import random
 from info import SP
 
+
+
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
+from pyrogram.types import CallbackQuery
+import random
+import os
+from info import SP
+from Script import script
+import os
+from pyrogram import Client, filters, enums
+from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
+from info import IMDB_TEMPLATE, LOGIN_CHANNEL, ADMINS
+from utils import extract_user, get_file_id, get_poster, last_online
+from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings
+
+import time
+from datetime import datetime
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+import logging
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.ERROR)
+from info import IMDB
+
+Muhammed = Client(
+    "Pyrogram Bot",
+    bot_token = os.environ["BOT_TOKEN"],
+    api_id = int(os.environ["API_ID"]),
+    api_hash = os.environ["API_HASH"]
+)
+
+
+
 MESSAGE = f"""
 𝐓𝐧𝐱 𝐀𝐥𝐥 𝐔𝐬𝐞𝐫𝐬🥰🥰\n
 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐀𝐧𝐧𝐝 𝐒𝐡𝐚𝐫𝐞\n
@@ -29,16 +61,16 @@ ADS = f"""
 
 
 
-@Client.on_message(filters.private & filters.command(["join"]))
+@Client.on_message(filters.private & filters.command(["jo"]))
 async def sub(client, message):
     search = message.text           
     buttons = [[
         InlineKeyboardButton('𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
     ],[
-        InlineKeyboardButton('𝐌𝐨𝐯𝐢𝐞𝐬 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/PYRO_BOTZ'),
-        InlineKeyboardButton('𝐒𝐨𝐧𝐠 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/PYRO_BOTZ_CHAT')
+        InlineKeyboardButton('𝐌𝐨𝐯𝐢𝐞𝐬 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/NasraniSeries'),
+        InlineKeyboardButton('𝐒𝐨𝐧𝐠 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/NasraniChatGroup')
     ],[
-        InlineKeyboardButton('𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩', callback_data='about'),
+        InlineKeyboardButton('𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/testpubliconly'),
         InlineKeyboardButton('𝐂𝐡𝐚𝐧𝐧𝐞𝐥', url='https://t.me/bigmoviesworld')
     ],[
         InlineKeyboardButton('𝐔𝐩𝐝𝐚𝐭𝐞 𝐂𝐡𝐚𝐧𝐧𝐞𝐥', url=f'https://t.me/+obGgfOP2LZ0wYTBl')
