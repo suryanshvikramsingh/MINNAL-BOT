@@ -16,7 +16,7 @@ from info import CHAT_GROUP
 
 # Private Chat
 
-@Client.on_message(filters.command("m") & filters.chat(CHAT_GROUP) & (filters.channel | filters.group) & filters.forwarded & filters.incoming)
+@Client.on_message(filters.command("m") & filters.chat(CHAT_GROUP) & (filters.channel | filters.group) & filters.reply & filters.incoming)
         
 
 
