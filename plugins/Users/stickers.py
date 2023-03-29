@@ -60,7 +60,7 @@ async def getstickerasfile(bot, message):
     try :     
                      
         tx = await message.reply_text("Downloading...")
-        file_path = DOWNLOAD_LOCATION + f"{message.chat.id}.mp4"
+        file_path = DOWNLOAD_LOCATION + f"{message.chat.id}.WEBM"
         await message.reply_to_message.download(file_path)   
         await tx.edit("Downloaded")
         await tx.edit("Uploading...")
