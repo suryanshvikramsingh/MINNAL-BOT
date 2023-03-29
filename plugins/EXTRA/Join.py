@@ -28,7 +28,7 @@ ADS = f"""
 
 
 
-@Client.on_message(filters.private & filters.command(["sub"]))
+@Client.on_message(filters.private & filters.command(["join"]))
 async def sub(client, message):
     search = message.text           
     buttons = [[
@@ -54,7 +54,8 @@ async def sub(client, message):
 
 
 
-@Client.on_message(filters.private & filters.command(["join"]))
+
+@Client.on_message(filters.private & filters.command(["ads"]))
 async def sub(client, message):
     search = message.text         
     buttons = [[
