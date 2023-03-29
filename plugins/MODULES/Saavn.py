@@ -59,7 +59,7 @@ async def song(client, message):
         InlineKeyboardButton("JOIN MOVIES", url="https://t.me/NASRANI_UPDATE")
     ]]                           
     await message.reply_audio(
-    audio=ffile, performer=ssingers,caption=f"[{sname}]({r['data']['results'][0]['url']}) - from @nasrani_update ",thumb=thumbnail,
+    audio=ffile, caption=f" from @nasrani_update ",
     reply_markup=InlineKeyboardMarkup(buttons)
 )
 
