@@ -1,5 +1,5 @@
 from pyrogram import Client, filters 
-from config import ADMINS, DOWNLOAD_LOCATION
+from plugins.helpers.config import ADMINS, DOWNLOAD_LOCATION
 import os
 
 dir = os.listdir(DOWNLOAD_LOCATION)
