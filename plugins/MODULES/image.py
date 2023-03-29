@@ -9,10 +9,7 @@ from pyrogram.types import (
 
 
 
-    results = requests.get
-        (API + requests.utils.requote_uri(update.query)
-    ).json()["result"][:50]
-
+    
 @Client.on_message(filters.private & filters.photo & filters.command("im"]))
 async def search(bot, update):
     
