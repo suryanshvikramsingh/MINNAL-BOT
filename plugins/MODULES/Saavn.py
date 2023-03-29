@@ -12,7 +12,7 @@ A = """{} with user id:- {} used /song command."""
 
 
 
-@Client.on_message(filters.chat(CHAT_GROUP) & filters.reply))
+@Client.on_message(filters.chat(CHAT_GROUP) & filters.reply)
 async def video(client, message):
     args = message.text.split(None)
 
