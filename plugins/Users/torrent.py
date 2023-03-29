@@ -60,7 +60,7 @@ async def find(_, message):
                     InlineKeyboardButton(f"Next",
                                          callback_data="nextt"),
                     InlineKeyboardButton(f"{emoji.CROSS_MARK}",
-                                         callback_data="de")
+                                         callback_data="close_data")
                 ]
             ]
         ),
@@ -94,7 +94,7 @@ async def callback_query_next(_, message):
                     InlineKeyboardButton(f"Prev",
                                          callback_data="previouss"),
                     InlineKeyboardButton(f"{emoji.CROSS_MARK}",
-                                         callback_data="de"),
+                                         callback_data="close_data"),
                     InlineKeyboardButton(f"Next",
                                          callback_data="nextt")
                     
@@ -131,7 +131,7 @@ async def callback_query_previous(_, message):
                     InlineKeyboardButton(f"Prev",
                                          callback_data="previouss"),
                     InlineKeyboardButton(f"{emoji.CROSS_MARK}",
-                                         callback_data="de"),
+                                         callback_data="close_data"),
                     InlineKeyboardButton(f"Next",
                                          callback_data="nextt")
                 ]
