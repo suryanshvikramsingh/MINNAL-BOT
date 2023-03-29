@@ -12,10 +12,21 @@ A = """{} with user id:- {} used /song command."""
 
 
 
-@Client.on_message(filters.chat(CHAT_GROUP) & filters.reply)
-async def video(client, message):
-    args = message.text.split(None)
-
+@Client.on_message(filters.command('vmp4') & filters.text)
+async def song(client, message):
+    try:
+       args = message.text.split(None, 1)[1]
+    except:
+        return await message.reply("/vmp4 requires an argument.")
+    if args.startswith(" "):
+        await message.reply("/vmp4 requires an argument.")
+        return ""
+    pak = await message.reply('Downloading...')
+    try:
+        r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
+    except Exception as e:
+        await pak.edit(str(e))
+        return
     r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()
     sname = r['data']['results'][0]['name']
     slink = r['data']['results'][0]['downloadUrl'][4]['link']
@@ -70,3 +81,8 @@ async def song(client, message):
     os.remove(ffile)
     os.remove(thumbnail)
     await pak.delete()
+
+
+
+@Client.on_message(filters.command('saavn') & filters.text)
+async def song(client, message):
