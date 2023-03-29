@@ -1,7 +1,7 @@
 # Spotify-Downloader
 
 ### This download from saavn.me an unofficial api
-from pyrogram import Client,filters
+from pyrogram import Client,filters, enums
 import requests,os,wget
 from info import CHAT_GROUP, REQST_CHANNEL, SUPPORT_CHAT_ID, ADMINS
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
@@ -10,6 +10,27 @@ from info import LOG_CHANNEL
 BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('💖🇮🇳✨ Made By ✨🇮🇳💖', url='https://t.me/nasrani_update')]])
 A = """{} with user id:- {} used /saavn command."""
 B = """{} with user id:- {} used /vsaavn command."""
+
+
+START_MESSAGE = """
+𝐇𝐞𝐥𝐥𝐨 <a href='tg://settings'>𝐓𝐡𝐚𝐧𝐤 𝐘𝐨𝐮⚡️</a>
+<i>📌ഏതു സോങ് ആണോ വേണ്ടത് അത് സ്പെല്ലിങ് തെറ്റാതെ ഗ്രൂപ്പിൽ ചോദിച്ചാൽ മാത്രമേ കിട്ടുകയുള്ളു...!! \n\n
+
+𝐑𝐮𝐥𝐞𝐬 𝐀𝐧𝐝 𝐁𝐨𝐭 𝐂𝐨𝐦𝐦𝐚𝐧𝐝𝐬 <a href='http://telegra.ph/Minnal-murali-03-06-12'>𝐂𝐥𝐢𝐜𝐤⚡️</a>
+
+
+𝐅𝐨𝐫 𝐄𝐱𝐚𝐦𝐩𝐥𝐞 :-
+/saavn 𝐀𝐥𝐨𝐧𝐞 𝐬𝐚𝐚𝐯𝐧 𝐦𝐩𝟑 𝐬𝐨𝐧𝐠
+/vmp4 𝐀𝐥𝐨𝐧𝐞 𝐬𝐚𝐚𝐯𝐧 𝐦𝐩𝟒 𝐬𝐨𝐧𝐠
+/ysong 𝐀𝐥𝐨𝐧𝐞 𝐲𝐨𝐮𝐭𝐮𝐛𝐞 𝐦𝐩𝟑 𝐬𝐨𝐧𝐠
+/yvideo 𝐀𝐥𝐨𝐧𝐞 𝐲𝐨𝐮𝐭𝐮𝐛𝐞 𝐦𝐩𝟒 𝐬𝐨𝐧𝐠
+
+𝐎𝐰𝐧𝐞𝐫 𝐍𝐚𝐦𝐞 :- {}
+𝐆𝐫𝐨𝐮𝐩 𝐍𝐚𝐦𝐞 :- {}
+"""
+
+
+
 
 
 
@@ -90,4 +111,15 @@ async def song(client, message):
     await client.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
     
 
-
+@Client.on_message(filters.command("song") & filters.group) 
+async def r_message(client, message):
+    mention = message.from_user.mention
+    buttons = [[
+        InlineKeyboardButton('𝐉𝐨𝐢𝐧 𝐆𝐫𝐨𝐮𝐩', url=f'http://t.me/nasrani_update')
+    ]]
+    reply_markup = InlineKeyboardMarkup(buttons)
+    await message.reply_text(START_MESSAGE.format(message.from_user.mention, message.chat.title),
+    protect_content=True,
+    reply_markup=reply_markup, 
+    parse_mode=enums.ParseMode.HTML
+    )
