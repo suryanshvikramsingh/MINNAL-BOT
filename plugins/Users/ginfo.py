@@ -10,6 +10,8 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 import io 
+from pyrogram.types import Message
+
 
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
@@ -22,12 +24,13 @@ async def who_is(bot, message):
 
 
 @Client.on_message(filters.command(["setphoto"]))
-async def set_new_photo(message: types.Message):
+async def set_new_photo(bot, message):
+
     source_message = message.reply_to_message
     photo = source_message.photo[1]
     photo = await photo.download(destination=io.BytesIO())
     input_file = types.InputFile(path_or_bytesio=photo)
-    await message.chat.set_photo(photo=input_file)
+    await bot.chat.set_photo(photo=input_file)
 
 
 
