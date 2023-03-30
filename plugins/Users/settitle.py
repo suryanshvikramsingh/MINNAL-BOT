@@ -42,5 +42,5 @@ async def who_is(bot, message):
 @Client.on_message(filters.command(["vote"]))
 async def who_is(bot, message):
     chat_id = message.chat.id
-    message_id = message.message.id
+    message_id = message.message_id
     await bot.vote_poll(chat_id, message_id, 6)
