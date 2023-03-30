@@ -99,9 +99,6 @@ INLINE_CAPTION = environ.get("INLINE_CAPTION", f"{script.INLINE_CAPTION}")
 support_chat_id = environ.get('SUPPORT_CHAT_ID')
 SUPPORT_CHAT_ID = int(support_chat_id) if support_chat_id and id_pattern.search(support_chat_id) else None
 
-# Custom Chats
-FILE_CHANNEL = int(environ.get('FILE_CHANNEL', '-1001335744963'))
-FILE_CHANNEL_LINK = environ.get('FILE_CHANNEL_LINK', 'https://t.me/bigmoviesworld')
 
 #VALUES
 HRK_APP_NAME = environ.get('HRK_APP_NAME', 'mybots')
@@ -144,9 +141,11 @@ MAX_B_TN = environ.get("MAX_B_TN", "7")
 MAX_BTN = is_enabled((environ.get('MAX_BTN', "False")), False)
 S_GROUP = environ.get('S_GROUP',"https://t.me/nasrani_update")
 MAIN_CHANNEL = environ.get('MAIN_CHANNEL',"https://t.me/nasrani_update")
-GRP_LNK = environ.get('GRP_LNK', 'https://t.me/nasrani_update')
-CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/MLZ_BOTZ')
-MSG_ALRT = environ.get('MSG_ALRT', 'Piracy Is Crime')
+FILE_FORWARD = environ.get('FILE_FORWARD',"https://t.me/bigmoviesworld")
+MSG_ALRT = environ.get('MSG_ALRT', '𝑪𝑯𝑬𝑪𝑲 & 𝑻𝑹𝒀 𝑨𝑳𝑳 𝑴𝒀 𝑭𝑬𝑨𝑻𝑼𝑹𝑬𝑺')
+FILE_CHANNEL = int(environ.get('FILE_CHANNEL', -1001335744963))
+
+
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', 0))
 # FILE_CHANNEL = int(environ.get('FILE_CHANNEL', 0))
 SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'nasrani_update')
@@ -170,9 +169,9 @@ PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
 LANGUAGES = ["malayalam", "tamil", "english", "hindi", "telugu", "kannada"]
 
 
-FILE_FORWARD = environ.get('FILE_FORWARD',"https://t.me/bigmoviesworld")
-MSG_ALRT = environ.get('MSG_ALRT', '𝑪𝑯𝑬𝑪𝑲 & 𝑻𝑹𝒀 𝑨𝑳𝑳 𝑴𝒀 𝑭𝑬𝑨𝑻𝑼𝑹𝑬𝑺')
-FILE_CHANNEL = int(environ.get('FILE_CHANNEL', -1001335744963))
+# FILE_FORWARD = environ.get('FILE_FORWARD',"https://t.me/bigmoviesworld")
+# MSG_ALRT = environ.get('MSG_ALRT', '𝑪𝑯𝑬𝑪𝑲 & 𝑻𝑹𝒀 𝑨𝑳𝑳 𝑴𝒀 𝑭𝑬𝑨𝑻𝑼𝑹𝑬𝑺')
+# FILE_CHANNEL = int(environ.get('FILE_CHANNEL', -1001335744963))
 
 # Delete Time
 DELETE_TIME = int(environ.get('DELETE_TIME', 180))
