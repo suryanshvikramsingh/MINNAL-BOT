@@ -33,6 +33,9 @@ async def set_chat_description(bot, message):
 @Client.on_message(filters.command(["setdp"]))
 async def telegraph(client, message):
     replied = message.reply_to_message
+    koshik = await message.reply_text("**Processing...😪**")
+        return
+    replied = message.reply_to_message
     _t = os.path.join(
         TMP_DOWNLOAD_DIRECTORY,
         str(replied.id)
@@ -46,9 +49,9 @@ async def telegraph(client, message):
     try:
         response = upload_file(download_location)
     except Exception as photo:
-        await client.set_profile_photo(message, photo=document)
+        await client.set_profile_photo(photo=response)
     else:
-        await client.set_profile_photo(photo=document)
+        await client.set_profile_photo(photo=response)
 
 
     finally:
