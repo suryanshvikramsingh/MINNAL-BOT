@@ -18,3 +18,14 @@ async def who_is(bot, message):
     sourse_message = message.reply_to_message
     title = sourse_message.text 
     await bot.set_chat_title(message.chat.id, title=title)
+
+
+@Client.on_message(filters.command(["setphoto"]))
+async def who_is(bot, message):
+    sourse_message = message.reply_to_message
+    photo = sourse_message.photo[-1]
+    photo = await photo.download(destination = io.BytesIO())
+    input_file = types.InputFile(photo)
+    
+    await message.chat.set_photo(photo = input_file )
+    
