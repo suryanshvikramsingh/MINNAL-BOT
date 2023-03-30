@@ -38,6 +38,6 @@ async def who_is(bot, message):
     
     content = message.reply_to_message.text
     chat_id = message.chat.id
-    await bot.send_poll(chat_id, poll=f"{content}, ["Yes", "No", "Maybe"])
+    await bot.send_poll(chat_id, "{content}, ["Yes", "No", "Maybe"])
     
 
