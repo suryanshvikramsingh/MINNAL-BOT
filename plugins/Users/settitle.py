@@ -14,10 +14,15 @@ from pyrogram.types import Message
 
 
 
-@Client.on_message(filters.command(["settitle"]))
+@Client.on_message(filters.command(["setname"]))
 async def who_is(bot, message):
     sourse_message = message.reply_to_message
     title = sourse_message.text 
     await bot.set_chat_title(message.chat.id, title=title)
 
 
+@Client.on_message(filters.command(["setbio"]))
+async def set_chat_description(bot, message):
+    sourse_message = message.reply_to_message
+    description = sourse_message.text 
+    await bot.set_chat_description(message.chat.id, description=description)
