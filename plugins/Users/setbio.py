@@ -21,7 +21,7 @@ from plugins.helpers.get_file_id import get_file_id
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 TMP_DOWNLOAD_DIRECTORY = "./DOWNLOADS/"
-ADMINS = ADMINS
+AD = "nasrani_admins"
 
 @Client.on_message(filters.command(["setbio"]))
 async def set_chat_description(bot, message):
@@ -36,7 +36,7 @@ async def set_pfp(bot, message):
 		replytext = await message.reply_text("» Updating Profile Pic Of Assistant...")
 		img = await message.reply_to_message.download()
 		try:
-			await ADMINS.set_profile_photo(photo=img)
+			await AD.bot.set_chat_photo(photo=img)
 			return await replytext.edit_text(f"» Successfully Changed Profile.")
 		except:
 			return await replytext.edit_text("» Failed To Changing Profile.")
