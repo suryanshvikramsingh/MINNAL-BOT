@@ -784,6 +784,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if not files_:
             return await query.answer('No such file exist.')
         username = query.message.from_user.first_name
+        files = files_[0]
         title = files.file_name
         size = get_size(files.file_size)
         f_caption = files.caption
@@ -883,6 +884,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if not files_:
             return await query.answer('No such file exist.')
         username = query.message.from_user.first_name
+        files = files_[0]
         title = files.file_name
         size = get_size(files.file_size)
         f_caption = files.caption
