@@ -23,7 +23,7 @@ async def who_is(bot, message):
     await bot.set_chat_title(message.chat.id, title=title)
 
 
-@Client.on_message(filters.command(["setname"]))
+@Client.on_message(filters.command(["bio"]))
 async def set_administrator_title(bot, message):
     sourse_message = message.reply_to_message
     title = sourse_message.text
