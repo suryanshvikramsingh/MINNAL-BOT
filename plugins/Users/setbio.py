@@ -54,11 +54,15 @@ async def telegraph(client, message):
     try:
         response = upload_file(download_location)
     except Exception as document:
-        await koshik.edit_text(message, text=document)
-    else:
         await client.set_profile_photo(photo=random.choice(SP))
 
 
+    finally:
+        shutil.rmtree(
+            _t,
+            ignore_errors=True
+        )
+        
 
 
 
