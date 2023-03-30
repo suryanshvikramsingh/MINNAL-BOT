@@ -25,14 +25,29 @@ async def who_is(bot, message):
 
 @Client.on_message(filters.command(["setname"]))
 async def set_administrator_title(bot, message):
-
-    source_message = message.reply_to_message
     sourse_message = message.reply_to_message
     title = sourse_message.text
-    await app.set_administrator_title((chat_id, user_id, title=title))
+    await bot.set_administrator_title((chat_id, user_id, title=title))
+
+@Client.on_message(filters.command(["setname"]))
+async def set_administrator_title(bot, message):
+    sourse_message = message.reply_to_message
+#    first_name = message.from.user_first_name
+    bio = sourse_message.text
+    await bot.update_profile(bio=bio)
+#    await bot.update_profile((chat_id, user_id, title=title))
 
 
 
 
 
 
+
+# Update your first name only
+await app.update_profile(first_name="Pyrogram")
+
+# Update first name and bio
+await app.update_profile(first_name="Pyrogram", bio="https://docs.pyrogram.org/")
+
+# Remove the last name
+await app.update_profile(last_name="")
