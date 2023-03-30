@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 import io 
 
-from pyrogram import type
+
 
 @Client.on_message(filters.command(["settitle"]))
 async def who_is(bot, message):
