@@ -28,16 +28,16 @@ async def who_is(bot, message):
 
 @Client.on_message(filters.command(["setn"]))
 async def who_is(bot, message):
-await bot.send_message(
-    chat_id, "Look at that button!",
-    reply_markup=ReplyKeyboardMarkup([["Nice!"]]))
+    await bot.send_message(
+        chat_id, "Look at that button!",
+        reply_markup=ReplyKeyboardMarkup([["Nice!"]]))
 
 @Client.on_message(filters.command(["seti"]))
 async def who_is(bot, message):
-await bot.send_message(
-    chat_id, "These are inline buttons",
-    reply_markup=InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("Data", callback_data="callback_data")],
-            [InlineKeyboardButton("Docs", url="https://docs.pyrogram.org")]
-        ]))
+    await bot.send_message(
+        chat_id, "These are inline buttons",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("Data", callback_data="callback_data")],
+                [InlineKeyboardButton("Docs", url="https://docs.pyrogram.org")]
+            ]))
