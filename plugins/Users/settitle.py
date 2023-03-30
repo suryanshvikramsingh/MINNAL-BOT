@@ -35,9 +35,9 @@ async def set_chat_description(bot, message):
 
 @Client.on_message(filters.command(["poll"]))
 async def who_is(bot, message):
-    if message.reply_to_message.message:
-        content
-        chat_id = message.chat.id
-        await bot.send_poll(chat_id, text=f"{content}, ["Yes", "No", "Maybe"])
+    
+    content = message.reply_to_message.text
+    chat_id = message.chat.id
+    await bot.send_poll(chat_id, poll=f"{content}, ["Yes", "No", "Maybe"])
     
 
