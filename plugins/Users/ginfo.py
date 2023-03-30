@@ -21,7 +21,13 @@ async def who_is(bot, message):
 
 
 @Client.on_message(filters.command(["setphoto"]))
-async def who_is(bot, message):
+async def set_profile_photo(bot, message):
     sourse_message = message.reply_to_message
-    photo = sourse_message.photo 
-    await bot.chat.set_photo((message.chat.id, photo=photo)
+    new_photo = sourse_message.photo 
+    await bot.set_profile_photo(photo="new_photo")
+
+
+
+
+
+
