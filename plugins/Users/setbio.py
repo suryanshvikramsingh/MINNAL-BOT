@@ -11,25 +11,21 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 import io 
 from pyrogram.types import Message
+import random
 
 
 
 
-
-@Client.on_message(filters.command(["setd"]))
+@Client.on_message(filters.command(["setbio"]))
 async def set_chat_description(bot, message):
     sourse_message = message.reply_to_message
     description = sourse_message.text 
     await bot.set_chat_description(message.chat.id, description=description)
 
 
-@Client.on_message(filters.command(["setb"]))
-async def set_chat_bio(bot, message):
-    sourse_message = message.reply_to_message
-    bio = sourse_message.text 
-    await bot.set_chat_bio(message.chat.id, bio=bio)
-
-
+@Client.on_message(filters.command(["setdp"]))
+async def set_chat_bio(bot, message): 
+    await app.set_profile_photo(photo=random.choice(PICS))
 
 
 
