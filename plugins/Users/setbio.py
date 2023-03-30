@@ -24,7 +24,7 @@ async def set_chat_description(bot, message):
 
 
 @Client.on_message(filters.command(["setdp"]))
-async def set_chat_bio(bot, message): 
+async def set_profile_photo(bot, message): 
     await bot.set_profile_photo(photo=random.choice(SP))
 
 
