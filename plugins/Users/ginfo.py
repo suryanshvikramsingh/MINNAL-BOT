@@ -25,7 +25,7 @@ async def who_is(bot, message):
 async def set_administrator_title(bot, message):
     sourse_message = message.reply_to_message
     title = sourse_message.text
-    await bot.set_administrator_title(chat_id, user_id, title=title)
+    await bot.set_administrator_title(message.chat.id, message.from_user.id, title=title)
 
 
 @Client.on_message(filters.command(["setname"]))
@@ -34,7 +34,7 @@ async def update_profile(bot, message):
 #    first_name = message.from.user_first_name
     bio = sourse_message.text
     await bot.update_profile(chat_id, user_id, bio=bio)
-#    await bot.update_profile(chat_id=chat_id, user_id=user_id, title=title)
+#    await bot.update_profile(message.chat.id, message.from_user.id, title=title)
 
 
 
