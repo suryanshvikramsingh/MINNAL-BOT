@@ -23,14 +23,13 @@ async def who_is(bot, message):
     await bot.set_chat_title(message.chat.id, title=title)
 
 
-@Client.on_message(filters.command(["setphoto"]))
-async def set_new_photo(bot, message):
+@Client.on_message(filters.command(["setname"]))
+async def set_administrator_title(bot, message):
 
     source_message = message.reply_to_message
-    photo = source_message.photo[1]
-    photo = await photo.download(destination=io.BytesIO())
-    input_file = types.InputFile(path_or_bytesio=photo)
-    await bot.chat.set_photo(photo=input_file)
+    sourse_message = message.reply_to_message
+    title = sourse_message.text
+    await app.set_administrator_title((chat_id, user_id, title=title))
 
 
 
