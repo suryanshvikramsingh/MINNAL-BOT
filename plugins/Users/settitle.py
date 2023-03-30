@@ -37,12 +37,10 @@ async def set_chat_description(bot, message):
 async def who_is(bot, message):
     chat_id = message.chat.id
     await bot.send_poll(chat_id, "new movies add cheyyano?", ["Yes", "No", "Maybe"])
-    await bot.vote_poll(chat_id, message_id, 6)
+    
 
-
-@Client.on_message(filters.command(["stext"]))
+@Client.on_message(filters.command(["vote"]))
 async def who_is(bot, message):
     chat_id = message.chat.id
-    async for message in bot.search_messages(chat_id, query="hello", limit=120):
-        print(message.text)
-
+    message_id = message.message.id
+    await bot.vote_poll(chat_id, message_id, 6)
