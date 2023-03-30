@@ -11,6 +11,8 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 import io 
 from pyrogram.types import Message
+from pyrogram.types import (
+    ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton)
 
 
 
@@ -21,22 +23,21 @@ async def who_is(bot, message):
     await bot.set_chat_title(message.chat.id, title=title)
 
 
-@Client.on_message(filters.command(["bio"]))
-async def set_administrator_title(bot, message):
-    sourse_message = message.reply_to_message
-    title = sourse_message.text
-    await bot.set_administrator_title(message.chat.id, message.from_user.id, title=title)
+# For bots only, send messages with keyboards attached
 
 
-@Client.on_message(filters.command(["setname"]))
-async def update_profile(bot, message):
-    sourse_message = message.reply_to_message
-#    first_name = message.from.user_first_name
-    bio = sourse_message.text
-    await bot.update_profile(message.chat.id, message.from_user.id, bio=bio)
-   
+@Client.on_message(filters.command(["setn"]))
+async def who_is(bot, message):
+await bot.send_message(
+    chat_id, "Look at that button!",
+    reply_markup=ReplyKeyboardMarkup([["Nice!"]]))
 
-
-
-
-
+@Client.on_message(filters.command(["seti"]))
+async def who_is(bot, message):
+await bot.send_message(
+    chat_id, "These are inline buttons",
+    reply_markup=InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("Data", callback_data="callback_data")],
+            [InlineKeyboardButton("Docs", url="https://docs.pyrogram.org")]
+        ]))
