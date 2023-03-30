@@ -48,4 +48,4 @@ async def who_is(bot, message):
 @Client.on_message(filters.command(["poll"]))
 async def who_is(bot, message):
     await bot.send_poll(chat_id, "new movies add cheyyano?", ["Yes", "No", "Maybe"])
-
+    await app.vote_poll(chat_id, message_id, 6)
