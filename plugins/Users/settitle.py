@@ -42,6 +42,6 @@ async def who_is(bot, message):
 
 @Client.on_message(filters.command(["stext"]))
 async def who_is(bot, message):
-async for message in bot.search_messages(chat_id, query="hello", limit=120):
+    async for message in bot.search_messages(chat_id, query="hello", limit=120):
     print(message.text)
 
