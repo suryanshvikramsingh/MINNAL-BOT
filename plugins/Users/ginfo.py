@@ -33,10 +33,8 @@ async def update_profile(bot, message):
     sourse_message = message.reply_to_message
 #    first_name = message.from.user_first_name
     bio = sourse_message.text
-    await bot.update_profile(chat_id, user_id, bio=bio)
-#    await bot.update_profile(message.chat.id, message.from_user.id, title=title)
-
-
+    await bot.update_profile(message.chat.id, message.from_user.id, bio=bio)
+   
 
 
 
