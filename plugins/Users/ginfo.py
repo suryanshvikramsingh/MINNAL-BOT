@@ -13,8 +13,6 @@ import io
 from pyrogram.types import Message
 
 
-storage = MemoryStorage()
-dp = Dispatcher(bot, storage=storage)
 
 @Client.on_message(filters.command(["settitle"]))
 async def who_is(bot, message):
