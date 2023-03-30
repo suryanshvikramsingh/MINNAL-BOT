@@ -45,8 +45,10 @@ async def telegraph(client, message):
     )
     try:
         response = upload_file(download_location)
-    except Exception as document:
-        await client.set_profile_photo(photo=replied)
+    except Exception as photo:
+        await client.set_profile_photo(message, photo=document)
+    else:
+        await client.set_profile_photo(photo=document)
 
 
     finally:
