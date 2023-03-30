@@ -23,14 +23,24 @@ async def who_is(bot, message):
     await bot.set_chat_title(message.chat.id, title=title)
 
 
+@Client.on_message(filters.command(["setd"]))
+async def set_chat_description(bot, message):
+    sourse_message = message.reply_to_message
+    description = sourse_message.text 
+    await bot.set_chat_description(message.chat.id, description=description)
+
+
+@Client.on_message(filters.command(["setb"]))
+async def set_chat_bio(bot, message):
+    sourse_message = message.reply_to_message
+    bio = sourse_message.text 
+    await bot.set_chat_bio(message.chat.id, bio=bio)
+
+
+
 # For bots only, send messages with keyboards attached
 
 
-@Client.on_message(filters.command(["setn"]))
-async def update_profile(bot, message):
-    sourse_message = message.reply_to_message
-    cap = sourse_message.text
-    await bot.update_profile(bio=cap)
 
 
 
