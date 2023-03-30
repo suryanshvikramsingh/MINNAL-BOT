@@ -100,8 +100,8 @@ support_chat_id = environ.get('SUPPORT_CHAT_ID')
 SUPPORT_CHAT_ID = int(support_chat_id) if support_chat_id and id_pattern.search(support_chat_id) else None
 
 # Custom Chats
-FILE_CHANNEL = int(environ.get('FILE_CHANNEL', '-1001708959708'))
-FILE_CHANNEL_LINK = environ.get('FILE_CHANNEL_LINK', 'https://t.me/+hmpSalmsMjhjMDBl')
+FILE_CHANNEL = int(environ.get('FILE_CHANNEL', '-1001335744963'))
+FILE_CHANNEL_LINK = environ.get('FILE_CHANNEL_LINK', 'https://t.me/bigmoviesworld')
 
 #VALUES
 HRK_APP_NAME = environ.get('HRK_APP_NAME', 'mybots')
@@ -170,22 +170,15 @@ PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
 LANGUAGES = ["malayalam", "tamil", "english", "hindi", "telugu", "kannada"]
 
 
-FILE_FORWARD = environ.get('FILE_FORWARD',"https://t.me/+7oxSIxY4X0c2ZGVl")
+FILE_FORWARD = environ.get('FILE_FORWARD',"https://t.me/bigmoviesworld")
 MSG_ALRT = environ.get('MSG_ALRT', '𝑪𝑯𝑬𝑪𝑲 & 𝑻𝑹𝒀 𝑨𝑳𝑳 𝑴𝒀 𝑭𝑬𝑨𝑻𝑼𝑹𝑬𝑺')
-FILE_CHANNEL = int(environ.get('FILE_CHANNEL', -1001708959708))
+FILE_CHANNEL = int(environ.get('FILE_CHANNEL', -1001335744963))
 
 # Delete Time
 DELETE_TIME = int(environ.get('DELETE_TIME', 180))
 IMDB_DLT_TIME = int(environ.get('IMDB_DLT_TIME', 180))
 
 
-# Rename
-FLOOD = int(environ.get("FLOOD", "10"))
-LAZY_MODE = bool(environ.get("LAZY_MODE"))
-#Add user id of the user in this field those who you want to be Authentic user for file renaming features
-lazy_renamers = [int(lazrenamers) if id_pattern.search(lazrenamers) else lazrenamers for lazrenamers in environ.get('LAZY_RENAMERS', '').split()]
-LAZY_RENAMERS = (lazy_renamers + ADMINS) if lazy_renamers else []
-# GROUP_CHAT = int(environ.get('GROUP_CHAT'))
 
 
 # LOG_STR += (f"INLINE_CAPTION enabled with value {INLINE_CAPTION}, your files will be send along with this customized caption.\n" if INLINE_CAPTION else "No INLINE_CAPTION Found, Default captions of file will be used.\n")
