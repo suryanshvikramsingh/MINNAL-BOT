@@ -34,8 +34,8 @@ async def set_chat_description(bot, message):
 async def telegraph(client, message):
     replied = message.reply_to_message
     koshik = await message.reply_text("**Processing...😪**")
+
         return
-    replied = message.reply_to_message
     _t = os.path.join(
         TMP_DOWNLOAD_DIRECTORY,
         str(replied.id)
