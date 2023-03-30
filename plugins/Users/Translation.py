@@ -1,6 +1,6 @@
 from googletrans import Translator
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from plugins.helpers.list import list
 from plugins.helpers.database import find_one
  
@@ -16,20 +16,7 @@ async def left(client,message):
 			tr_text = message.reply_to_message.text
 			translator = Translator()
 			translation = translator.translate(tr_text,dest = lg_cd)
-			hehek = InlineKeyboardMarkup(
-                                [
-                                    [
-                                        InlineKeyboardButton(
-                                            text=f"𝘔𝘰𝘳𝘦 𝘓𝘢𝘯𝘨 𝘊𝘰𝘥𝘦𝘴", url="https://cloud.google.com/translate/docs/languages"
-                                        )
-                                    ],
-				    [
-                                        InlineKeyboardButton(
-                                            "𝘊𝘭𝘰𝘴𝘦", callback_data="close_data"
-                                        )
-                                    ],
-                                ]
-                            )
+		
 			try:
 				for i in list:
 					if list[i]==translation.src:
