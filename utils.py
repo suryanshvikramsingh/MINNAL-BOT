@@ -48,28 +48,15 @@ class temp(object):
     SETTINGS = {}
 
 
-async def get_fsub(bot, query):
-    try:
-        user = await bot.get_chat_member(LOGIN_CHANNEL, query.from_user.id)
-    except UserNotParticipant:
-        pass
-    except Exception as e:
-        logger.exception(e)
-    else:
-        if user.status != enums.ChatMemberStatus.BANNED:
-            return True
-
-
-
 async def mute_login(bot, query):
     try:
-        user = await bot.get_chat_member(LOGIN_CHANNEL, query.from_user.id)
+        user = await bot.get_chat_member(AUTH_CHANNEL, query.from_user.id)
     except UserNotParticipant:
         pass
     except Exception as e:
         logger.exception(e)
     else:
-        if user.status != enums.ChatMemberStatus.BANNED:
+        if user.status != 'kicked':
             return True
 
     return False
