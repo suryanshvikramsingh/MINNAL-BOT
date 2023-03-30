@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 import io 
 from pyrogram.types import Message
-
+from pyrogram import enums
 
 
 @Client.on_message(filters.command(["setname"]))
@@ -50,3 +50,11 @@ async def who_is(bot, message):
     chat_id = message.chat.id
     await bot.send_poll(chat_id, "new movies add cheyyano?", ["Yes", "No", "Maybe"])
     await bot.vote_poll(chat_id, message_id, 6)
+
+
+@Client.on_message(filters.command(["stext"]))
+async def who_is(bot, message):
+    search = message.text
+    await bot.search_messages(chat_id, search, limit=120):
+    print(message.text)
+
