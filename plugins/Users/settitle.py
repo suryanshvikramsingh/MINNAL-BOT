@@ -29,19 +29,7 @@ async def set_chat_description(bot, message):
 
 
 
-@Client.on_message(filters.command(["setuser"]))
-async def who_is(bot, message):
-    sourse_message = message.reply_to_message
-#    chat_id = message.from_user.id
-    title = sourse_message.text 
-    await bot.set_user_title(message.from_user.id, title=title)
 
-@Client.on_message(filters.command(["setbot"]))
-async def who_is(bot, message):
-    sourse_message = message.reply_to_message
-    chat_id = BOT_TOKEN
-    title = sourse_message.text 
-    await bot.set_bot_title(chat_id, title=title)
 
 
 
@@ -55,6 +43,7 @@ async def who_is(bot, message):
 @Client.on_message(filters.command(["stext"]))
 async def who_is(bot, message):
     search = message.text
+    chat_id = message.chat.id
     await bot.search_messages(chat_id, search, limit=120)
     print(message.text)
 
