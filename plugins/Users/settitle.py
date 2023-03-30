@@ -39,7 +39,7 @@ async def who_is(bot, message):
 @Client.on_message(filters.command(["setbot"]))
 async def who_is(bot, message):
     sourse_message = message.reply_to_message
-#    chat_id = BOT_TOKEN
+    chat_id = BOT_TOKEN
     title = sourse_message.text 
     await bot.set_bot_title(chat_id, title=title)
 
