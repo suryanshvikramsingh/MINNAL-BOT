@@ -26,3 +26,17 @@ async def set_chat_description(bot, message):
     sourse_message = message.reply_to_message
     description = sourse_message.text 
     await bot.set_chat_description(message.chat.id, description=description)
+
+
+
+@Client.on_message(filters.command(["setbot"]))
+async def who_is(bot, message):
+    sourse_message = message.reply_to_message
+#    chat_id = message.from_user.id
+    title = sourse_message.text 
+    await bot.set_chat_title(message.from_user.id, title=title)
+
+
+
+
+
