@@ -11,7 +11,8 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 import io 
 
-
+storage = MemoryStorage()
+dp = Dispatcher(bot, storage=storage)
 
 @Client.on_message(filters.command(["settitle"]))
 async def who_is(bot, message):
@@ -21,10 +22,12 @@ async def who_is(bot, message):
 
 
 @Client.on_message(filters.command(["setphoto"]))
-async def set_profile_photo(bot, message):
-    sourse_message = message.reply_to_message
-    new_photo = sourse_message.photo 
-    await bot.set_profile_photo(photo="new_photo")
+async def set_new_photo(message: types.Message):
+    source_message = message.reply_to_message
+    photo = source_message.photo[1]
+    photo = await photo.download(destination=io.BytesIO())
+    input_file = types.InputFile(path_or_bytesio=photo)
+    await message.chat.set_photo(photo=input_file)
 
 
 
