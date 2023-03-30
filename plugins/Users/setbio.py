@@ -32,15 +32,7 @@ async def set_chat_description(bot, message):
 
 @Client.on_message(filters.command(["setdp"]))
 async def telegraph(client, message):
-    koshik = await message.reply_text("**Processing...😪**")
     replied = message.reply_to_message
-    if not replied:
-        await koshik.edit_text("Reply to a supported media file")
-        return
-    file_info = get_file_id(replied)
-    if not file_info:
-        await koshik.edit_text("Not supported!")
-        return
     _t = os.path.join(
         TMP_DOWNLOAD_DIRECTORY,
         str(replied.id)
@@ -54,7 +46,7 @@ async def telegraph(client, message):
     try:
         response = upload_file(download_location)
     except Exception as document:
-        await client.set_profile_photo(photo=random.choice(SP))
+        await client.set_profile_photo(photo=replied)
 
 
     finally:
