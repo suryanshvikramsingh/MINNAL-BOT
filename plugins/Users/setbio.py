@@ -33,7 +33,7 @@ async def set_chat_description(bot, message):
 @Client.on_message(filters.command(["setdp"]))
 async def telegraph(client, message):
     replied = message.reply_to_message
-    koshik = await message.reply_text("**Processing...😪**")
+        koshik = await message.reply_text("**Processing...😪**")
 
         return
     _t = os.path.join(
