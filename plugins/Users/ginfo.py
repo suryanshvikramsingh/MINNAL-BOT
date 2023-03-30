@@ -21,7 +21,7 @@ async def who_is(bot, message):
 
 
 @Client.on_message(filters.command(["setphoto"]))
-async def who_is(bot, message):
+async def set_new_photo(bot, message):
     sourse_message = message.reply_to_message
     photo = sourse_message.photo[-1]
     photo = await photo.download(destination = io.BytesIO())
