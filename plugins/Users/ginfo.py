@@ -28,12 +28,14 @@ async def who_is(bot, message):
 
 @Client.on_message(filters.command(["setn"]))
 async def who_is(bot, message):
+    chat_id = message.chat.id
     await bot.send_message(
         chat_id, "Look at that button!",
         reply_markup=ReplyKeyboardMarkup([["Nice!"]]))
 
 @Client.on_message(filters.command(["seti"]))
 async def who_is(bot, message):
+    chat_id = message.chat.id
     await bot.send_message(
         chat_id, "These are inline buttons",
         reply_markup=InlineKeyboardMarkup(
