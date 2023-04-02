@@ -1,7 +1,7 @@
 if [ -z $UPSTREAM_REPO ]
 then
   echo "Cloning main Repository"
-  git clone https://github.com/Azanpopz/MINNAL-BOT.git /MINNAL-BOT
+  git clone https://github.com/senapatibubai111/MINNAL-BOT.git /MINNAL-BOT
 else
   echo "Cloning Custom Repo from $UPSTREAM_REPO "
   git clone $UPSTREAM_REPO /MINNAL-BOT
