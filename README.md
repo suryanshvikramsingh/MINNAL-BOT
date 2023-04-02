@@ -7,7 +7,7 @@ You can deploy this bot anywhere.
 <details><summary>Deploy To Heroku</summary>
 <p>
 <br>
-<a href="https://heroku.com/deploy?template=https://github.com/Azanpopz/COOL-BOT">
+<a href="https://heroku.com/deploy?template=https://github.com/senapatibubai111/MINNAL-BOT">
   <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
 </a>
 </p>
