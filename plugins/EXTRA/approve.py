@@ -36,7 +36,7 @@ pr0fess0r_99=Client(
     api_id = int(environ["API_ID"]),
     api_hash = environ["API_HASH"]
 )
-
+AUTH_CHANNEL = int(pr0fess0r_99) if pr0fess0r_99 and id_pattern.search(pr0fess0r_99) else None
 TEXT = environ.get("APPROVED_WELCOME_TEXT", "ʜᴇʟʟᴏ {mention} ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴍʏ ᴄʜᴀɴɴᴇʟ. {title}\n\nᴏɴʟʏ ɴᴇᴡ ᴀɴᴅ ʟᴏᴡ ꜱɪᴢᴇ ᴍᴏᴠɪᴇ ᴀᴠᴀɪʟᴀʙʟᴇ. ᴇɴᴊᴏʏɪɴɢ🔥🔥")
 APPROVED = environ.get("APPROVED_WELCOME", "on").lower()
 
